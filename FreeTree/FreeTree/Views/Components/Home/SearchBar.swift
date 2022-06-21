@@ -5,7 +5,10 @@ struct SearchBarView: View {
     @Binding var searching: Bool
     let searchAction: () -> Void
     let cleanData: () -> Void
+<<<<<<< HEAD
     let placeHolderText: String
+=======
+>>>>>>> Componente da SearchBar implementado
     var body: some View {
         HStack {
             ZStack {
@@ -16,7 +19,11 @@ struct SearchBarView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(Color.gray)
                         .padding(.leading, 8)
+<<<<<<< HEAD
                     TextField(placeHolderText, text: $searchText).onSubmit {
+=======
+                    TextField("Digite o nome do livro", text: $searchText).onSubmit {
+>>>>>>> Componente da SearchBar implementado
                         searching = true
                         searchAction()
                     }
@@ -44,8 +51,12 @@ struct SearchBarView_Previews: PreviewProvider {
             searchText: .constant(""),
             searching: .constant(true),
             searchAction: {return},
+<<<<<<< HEAD
             cleanData: {return},
             placeHolderText: "Pesquisar"
         )
+=======
+            cleanData: {return})
+>>>>>>> Componente da SearchBar implementado
     }
 }
