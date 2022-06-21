@@ -110,7 +110,6 @@
 			isa = PBXGroup;
 			children = (
 				E82818B32861E48300E81C82 /* Tree.swift */,
-				C25BBCE82861E25900CDAC42 /* JsonManager.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -125,6 +124,7 @@
 		6194B5DD285A0B5900991D50 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				C25BBCE82861E25900CDAC42 /* JsonManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
