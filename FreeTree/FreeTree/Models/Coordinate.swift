@@ -10,6 +10,10 @@ import MapKit
 struct Coordinate: Codable {
     let latitude: Double
     let longitude: Double
+    init(latitude: Double = 0.0, longitude: Double = 0.0) {
+        self.latitude = latitude
+        self.longitude = longitude
+    }
 }
 
 extension Coordinate {

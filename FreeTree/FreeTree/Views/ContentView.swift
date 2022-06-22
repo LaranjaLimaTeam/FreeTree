@@ -7,9 +7,33 @@
 
 import SwiftUI
 
-struct ContentView: View {    var body: some View {
-        Text("Hello, world!")
-            .padding()
+struct ContentView: View {
+    init() {
+        let tabBarApperance = UITabBarAppearance()
+        let tabBarItemApperance = UITabBarItemAppearance()
+        tabBarItemApperance.selected.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.systemGreen]
+        tabBarItemApperance.selected.iconColor = .systemGreen
+        tabBarApperance.stackedLayoutAppearance = tabBarItemApperance
+        UITabBar.appearance().standardAppearance = tabBarApperance
+    }
+    var body: some View {
+        TabView {
+            MapView()
+                .tabItem {
+                    Image(systemName: "map")
+                    Text("Mapa")
+                }
+            RecipesView()
+                .tabItem {
+                    Image(systemName: "text.book.closed")
+                    Text("Receitas")
+                }
+            ProfileView()
+                .tabItem {
+                    Image(systemName: "person")
+                    Text("Perfil")
+                }
+        }
     }
 }
 
