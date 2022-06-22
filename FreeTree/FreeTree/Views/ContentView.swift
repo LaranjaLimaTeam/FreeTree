@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ContentView: View {
-    
     init() {
         let tabBarApperance = UITabBarAppearance()
         let tabBarItemApperance = UITabBarItemAppearance()
@@ -17,7 +16,6 @@ struct ContentView: View {
         tabBarApperance.stackedLayoutAppearance = tabBarItemApperance
         UITabBar.appearance().standardAppearance = tabBarApperance
     }
-    
     var body: some View {
         TabView {
             MapView()
