@@ -1,13 +1,13 @@
 import Foundation
 
 struct JsonManager {
-    static public func decoding<T: Decodable>(fileName nomeArquivo: String) -> T? {
-        let caminhoDoArquivo = Bundle.main.url(forResource: nomeArquivo, withExtension: "json")
-        if let arquivo = caminhoDoArquivo {
+    static public func decoding<T: Decodable>(fileName: String) -> T? {
+        let filePath = Bundle.main.url(forResource: fileName, withExtension: "json")
+        if let file = filePath {
             do {
-                let data = try Data(contentsOf: arquivo)
-                let resultado = try JSONDecoder().decode(T.self, from: data)
-                return resultado
+                let data = try Data(contentsOf: file)
+                let result = try JSONDecoder().decode(T.self, from: data)
+                return result
             } catch {
                 print(error)
             }
@@ -21,20 +21,15 @@ struct JsonManager {
         do {
             let codableJSON = try encoder.encode(data)
             let fileManager = FileManager.default
-            // Pego o diretorio de documentos
             let directory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            // Adiciono a pasta JSON ao path e o arquivo myJsonData
             print(directory)
             let filePath = directory.appendingPathComponent("JSON").appendingPathComponent("myJsonData.json")
             do {
-                // Tento escrever no JSON
                 try codableJSON.write(to: filePath, options: [.atomic])
                 print("JSON updated")
             } catch {
-                // handle error
                 print("Error while saving to path. Error: \(error)")
                 do {
-                    //Tento criar o diretorio caso nao exista
                     try fileManager.createDirectory(at: directory.appendingPathComponent("JSON"),
                                                     withIntermediateDirectories: false)
                     try codableJSON.write(to: filePath, options: [.atomic])
