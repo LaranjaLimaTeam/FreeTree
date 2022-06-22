@@ -9,7 +9,6 @@ import MapKit
 
 struct PolylineMapView: UIViewRepresentable {
     @Binding var region: MKCoordinateRegion
-    
     func makeCoordinator() -> PolylineMapViewCoordinator {
         PolylineMapViewCoordinator(self)
     }
@@ -27,7 +26,6 @@ struct PolylineMapView: UIViewRepresentable {
 
 final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     private let map: PolylineMapView
-    
     init(_ control: PolylineMapView) {
         self.map = control
     }

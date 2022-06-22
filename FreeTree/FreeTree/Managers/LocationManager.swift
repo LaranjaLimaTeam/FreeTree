@@ -8,13 +8,11 @@ import CoreLocation
 
 class LocationManager: NSObject, ObservableObject {
     private let manager = CLLocationManager()
-    @Published private(set) var userLocation: CLLocation?
-    @Published private(set) var latitude: Double?
-    @Published private(set) var longitude: Double?
+    @Published private(set) var locationCoordinate: Coordinate?
     static let shared = LocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 37.334803, longitude: -122.008965)
 
-    override init() {
+    private override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyBest
@@ -56,8 +54,7 @@ extension LocationManager: CLLocationManagerDelegate {
         guard let location = locations.last else {
             return
         }
-        self.userLocation = location
-        self.latitude = location.coordinate.latitude
-        self.longitude = location.coordinate.longitude
+        let coordenate = Coordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
+        self.locationCoordinate = coordenate
     }
 }

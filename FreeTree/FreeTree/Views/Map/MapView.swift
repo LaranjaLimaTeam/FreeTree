@@ -10,9 +10,8 @@ import MapKit
 struct MapView: View {
     @ObservedObject var locationManager = LocationManager.shared
     @State private var region = MKCoordinateRegion(
-        center: LocationManager.shared.userLocation?.coordinate ?? LocationManager.shared.defaultLocation ,
+        center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-    
     var body: some View {
         VStack {
             PolylineMapView(
@@ -21,8 +20,8 @@ struct MapView: View {
             .edgesIgnoringSafeArea(.top)
             .onAppear {
                 locationManager.requestLocation()
-            }.onReceive(locationManager.$userLocation, perform: { _ in
-                if let coordinate = locationManager.userLocation?.coordinate {
+            }.onReceive(locationManager.$locationCoordinate, perform: { _ in
+                if let coordinate = locationManager.locationCoordinate?.coordinate {
                     region.center = coordinate
                 }
             })
