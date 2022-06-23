@@ -14,7 +14,7 @@ struct JsonManager {
         }
         return nil
     }
-
+     
     static public func saveJson<T: Encodable>(data: T) {
         let encoder = JSONEncoder()
         encoder.outputFormatting = .prettyPrinted
