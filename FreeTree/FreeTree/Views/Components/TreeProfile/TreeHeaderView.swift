@@ -1,10 +1,12 @@
 import SwiftUI
+import Combine
 
 struct TreeHeaderView: View {
     let tagLimit: Int
     @ObservedObject var treeViewModel: TreeProfileViewModel
     @State var pageControl = 0
-
+    
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(treeViewModel.tree.name)
@@ -26,7 +28,7 @@ struct TreeHeaderView: View {
             }
             .padding(.horizontal, 16)
             .frame(height: UIScreen.main.bounds.height/20)
-            DistanceView(distance: treeViewModel.getDistance())
+            DistanceView(distance: treeViewModel.distance)
                 .padding(.leading, 16)
             SegmentedControlView(showMode: $pageControl,
                                  description: "Choose the view you want",

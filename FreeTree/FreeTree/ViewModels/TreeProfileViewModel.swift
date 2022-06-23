@@ -1,19 +1,24 @@
-//
-//  TreeProfileViewModel.swift
-//  FreeTree
-//
-//  Created by Nathan Batista de Oliveira on 23/06/22.
-//
-
 import Foundation
+import Combine
 import CoreLocation
 
 class TreeProfileViewModel: ObservableObject {
     @Published var tree: Tree
-    @Published var locationManager = LocationManager.shared
+    @Published var distance: Double = 0
+    private let locationManager = LocationManager.shared
+    var cancellable: Cancellable?
 
     init(tree: Tree) {
         self.tree = tree
+        cancellable =  self.locationManager.$locationCoordinate
+            .map { coordinate in
+                let distance = self.getDistance(coordinate: tree.coordinates ??
+                                                Coordinate(latitude: self.locationManager.defaultLocation.latitude,
+                                                            longitude: self.locationManager.defaultLocation.longitude))
+                return distance
+            }.sink(receiveValue: { distance in
+                self.distance = distance
+            })
     }
 
     func getStringDate() -> String {
@@ -29,9 +34,10 @@ class TreeProfileViewModel: ObservableObject {
         return newDate
     }
 
-    func getDistance() -> Double {
-        guard let distanceInMeters = locationManager.getDistance(coordinates: tree.coordinates) else {return 0}
+    func getDistance(coordinate: Coordinate) -> Double {
+        guard let distanceInMeters = locationManager.getDistance(coordinates: coordinate) else {return 0}
         let distanceInKm: Double = distanceInMeters*1.0/1000
         return distanceInKm
     }
+    
 }
