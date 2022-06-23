@@ -5,11 +5,6 @@ struct TreeHeaderView: View {
     @ObservedObject var treeViewModel: TreeProfileViewModel
     @State var pageControl = 0
 
-    init(tree: Tree, tagLimit: Int) {
-        self.treeViewModel = TreeProfileViewModel(tree: tree)
-        self.tagLimit = tagLimit
-    }
-
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             Text(treeViewModel.tree.name)
@@ -45,7 +40,7 @@ struct TreeHeaderView: View {
 struct TreeHeaderView_Previews: PreviewProvider {
     static let tree = Tree()
     static var previews: some View {
-        TreeHeaderView(tree: tree, tagLimit: 4)
+        TreeHeaderView(tagLimit: 4, treeViewModel: TreeProfileViewModel(tree: tree))
     }
 }
 
