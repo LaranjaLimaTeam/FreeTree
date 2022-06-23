@@ -2,6 +2,7 @@ import Foundation
 
 struct JsonManager {
     static public func decoding<T: Decodable>(fileName: String) -> T? {
+
         let filePath = Bundle.main.url(forResource: fileName, withExtension: "json")
         if let safeFilePath = filePath {
             do {
