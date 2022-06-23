@@ -8,6 +8,6 @@
 import Foundation
 
 struct UserProfile: Codable {
-    let name: String = "Karina Costa"
-    let imageName: String = "person"
+    var name: String = "Karina Costa"
+    var imageName: String = "person"
 }

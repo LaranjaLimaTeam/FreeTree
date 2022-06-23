@@ -10,7 +10,7 @@ import CoreLocation
 
 class TreeProfileViewModel: ObservableObject {
     @Published var tree: Tree
-    let currentLocation: Coordinate = Coordinate()
+    @Published var locationManager = LocationManager.shared
 
     init(tree: Tree) {
         self.tree = tree
@@ -30,10 +30,7 @@ class TreeProfileViewModel: ObservableObject {
     }
 
     func getDistance() -> Double {
-        let coordinate1 = CLLocation(latitude: tree.coordinates.latitude, longitude: tree.coordinates.longitude)
-        let coordinate2 = CLLocation(latitude: 0.5, longitude: 0.0)
-
-        let distanceInMeters = coordinate1.distance(from: coordinate2)
+        guard let distanceInMeters = locationManager.getDistance(coordinates: tree.coordinates) else {return 0}
         let distanceInKm: Double = distanceInMeters*1.0/1000
         return distanceInKm
     }

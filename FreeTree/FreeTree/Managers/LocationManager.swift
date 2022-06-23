@@ -30,6 +30,17 @@ class LocationManager: NSObject, ObservableObject {
         return manager.authorizationStatus == CLAuthorizationStatus.authorizedAlways ||
         manager.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse
     }
+    
+    func getDistance(coordinates: Coordinate) -> Double? {
+        if let safeLocation = locationCoordinate {
+            let coordinate1 = CLLocation(latitude: coordinates.latitude, longitude: coordinates.longitude)
+            let coordinate2 = CLLocation(latitude: safeLocation.latitude, longitude: safeLocation.longitude)
+
+            let distanceInMeters = coordinate1.distance(from: coordinate2)
+            return distanceInMeters
+        }
+        return nil
+    }
 }
 
 extension LocationManager: CLLocationManagerDelegate {
