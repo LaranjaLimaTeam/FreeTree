@@ -9,38 +9,38 @@ import SwiftUI
 
 struct AddTreeView: View {
     
-    @State var tree = Tree()
+    @ObservedObject var viewModel = AddTreeViewModel()
     
     private let title = "Adicionar árvore"
-    
+
     var body: some View {
         NavigationView {
             VStack {
                 Form {
                     Section {
-                        TextField("Nome", text: $tree.name)
+                        TextField("Nome", text: $viewModel.tree.name)
                     } header: {
                         Text("identificação")
                     }
                     Section {
-                        TextField("Rua", text: $tree.address.street)
-                        TextField("Número", value: $tree.address.number, formatter: NumberFormatter())
-                        TextField("Bairro", text: $tree.address.neighborHood)
-                        TextField("Cidade", text: $tree.address.city)
-                        TextField("Estado", text: $tree.address.stateOrProvince)
-                        TextField("CEP", text: $tree.address.zipCode)
+                        TextField("Rua", text: $viewModel.tree.address.street)
+                        TextField("Número", value: $viewModel.tree.address.number, formatter: NumberFormatter())
+                        TextField("Bairro", text: $viewModel.tree.address.neighborHood)
+                        TextField("Cidade", text: $viewModel.tree.address.city)
+                        TextField("Estado", text: $viewModel.tree.address.stateOrProvince)
+                        TextField("CEP", text: $viewModel.tree.address.zipCode)
                     } header: {
                         Text("Endereço")
                     }
                     Section {
-                        TextField("Latitude", value: $tree.coordinates.latitude, format: FloatingPointFormatStyle())
-                        TextField("Longitude", value: $tree.coordinates.longitude, format: FloatingPointFormatStyle())
+                        TextField("Latitude", value: $viewModel.tree.coordinates.latitude, format: FloatingPointFormatStyle())
+                        TextField("Longitude", value: $viewModel.tree.coordinates.longitude, format: FloatingPointFormatStyle())
                     } header: {
                         Text("coordenadas")
                     }
                 }
                 Button {
-                    {}()
+                    viewModel.addTree()
                 } label: {
                     Text("Adicionar árvore")
                         .foregroundColor(.white)

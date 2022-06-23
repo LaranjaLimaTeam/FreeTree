@@ -21,6 +21,7 @@
 		E82818B62861EC9B00E81C82 /* JSONTreeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* JSONTreeManager.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
 		E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818BB2861F51F00E81C82 /* ProfileView.swift */; };
+		E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */; };
 		E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE9D0C2863579C002F747B /* AddTreeView.swift */; };
 		E8EF0FE9286353F00085FC57 /* TreeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EF0FE8286353F00085FC57 /* TreeManager.swift */; };
 		F0F833B67002D7129BF870BC /* Pods_FreeTree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94158BFC38E5A0DCB8F43071 /* Pods_FreeTree.framework */; };
@@ -45,6 +46,7 @@
 		E82818B52861EC9B00E81C82 /* JSONTreeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTreeManager.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		E82818BB2861F51F00E81C82 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeViewModel.swift; sourceTree = "<group>"; };
 		E8AE9D0C2863579C002F747B /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
 		E8EF0FE8286353F00085FC57 /* TreeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -124,6 +126,7 @@
 			isa = PBXGroup;
 			children = (
 				61E4A8C6286343A0008F333C /* MapViewModel.swift */,
+				E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 			files = (
 				E82818B42861E48300E81C82 /* Tree.swift in Sources */,
 				C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */,
+				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				6194B5CE285A0AB600991D50 /* ContentView.swift in Sources */,
 				613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */,
 				613F04662861E42A00E4CC47 /* MapView.swift in Sources */,
