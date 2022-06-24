@@ -12,9 +12,7 @@ class TreeProfileViewModel: ObservableObject {
         self.tree = tree
         cancellable =  self.locationManager.$locationCoordinate
             .map { coordinate in
-                let distance = self.getDistance(coordinate: tree.coordinates ??
-                                                Coordinate(latitude: self.locationManager.defaultLocation.latitude,
-                                                            longitude: self.locationManager.defaultLocation.longitude))
+                let distance = self.getDistance(coordinate: tree.coordinates)
                 return distance
             }.sink(receiveValue: { distance in
                 self.distance = distance
