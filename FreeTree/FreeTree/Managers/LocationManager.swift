@@ -5,6 +5,7 @@
 //  Created by Giordano Mattiello on 21/06/22.
 //
 import CoreLocation
+import os.log
 
 class LocationManager: NSObject, ObservableObject {
     private let manager = CLLocationManager()
@@ -21,7 +22,7 @@ class LocationManager: NSObject, ObservableObject {
     }
 
     func requestLocation(completion: @escaping () -> Void ) {
-        print("DEBUG: Request location")
+        os_log("Request location", log: .default, type: .debug)
         self.completion = completion
         manager.requestWhenInUseAuthorization()
     }
@@ -38,15 +39,15 @@ extension LocationManager: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
         switch status {
         case .notDetermined:
-            print("DEBUG: Not Determined")
+            os_log("Location Manager Authorization %@", log: .default, type: .debug, "Not Determined")
         case .restricted:
-            print("DEBUG: Restricted")
+            os_log("Location Manager Authorization %@", log: .default, type: .debug, "Restricted")
         case .denied:
-            print("DEBUG: Denied")
+            os_log("Location Manager Authorization %@", log: .default, type: .debug, "Denied")
         case .authorizedAlways:
-            print("DEBUG: Authorized Always")
+            os_log("Location Manager Authorization %@", log: .default, type: .debug, "Authorized Always")
         case .authorizedWhenInUse:
-            print("DEBUG: Authorized When In Use")
+            os_log("Location Manager Authorization %@", log: .default, type: .debug, "Authorized When In Use")
         @unknown default:
             break
         }

@@ -51,7 +51,4 @@ struct JsonManager {
             return nil
         }
     }
-//    static public func loadJson<T: Codable>(data: T) -> [T]? {
-//
-//    }
 }

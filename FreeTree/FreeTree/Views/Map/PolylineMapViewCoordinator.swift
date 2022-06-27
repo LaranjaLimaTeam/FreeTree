@@ -26,8 +26,8 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     }
     func treePin(annotation: MKAnnotation) -> MKAnnotationView? {
         let view = MKAnnotationView(annotation: annotation, reuseIdentifier: "tree")
-        view.image =  UIImage(named: "zoboomafoo")
-        view.frame.size = CGSize(width: 100, height: 100)
+        view.image =  UIImage(named: "tree-placemark")
+        view.frame.size = CGSize(width: 50, height: 50)
         return view
     }
 }

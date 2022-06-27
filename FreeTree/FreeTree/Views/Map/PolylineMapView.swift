@@ -6,6 +6,7 @@
 //
 import SwiftUI
 import MapKit
+import os.log
 
 struct PolylineMapView: UIViewRepresentable {
     @EnvironmentObject var mapViewModel: MapViewModel
@@ -21,7 +22,8 @@ struct PolylineMapView: UIViewRepresentable {
         return mapView
     }
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<PolylineMapView>) {
-        print("DEBUG: Updating map")
+        os_log("Updating map", log: .default, type: .debug)
+        
         if mapViewModel.hasToCentrilize {
             uiView.setRegion(mapViewModel.region, animated: true)
             mapViewModel.hasToCentrilize = false
@@ -36,7 +38,4 @@ struct PolylineMapView: UIViewRepresentable {
             })
         }
     }
-
 }
-
-
