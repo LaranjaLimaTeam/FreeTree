@@ -6,6 +6,7 @@ struct SearchBarView: View {
     let searchAction: () -> Void
     let cleanData: () -> Void
     let placeHolderText: String
+
     var body: some View {
         HStack {
             ZStack {

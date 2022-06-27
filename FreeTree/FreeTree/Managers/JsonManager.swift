@@ -9,7 +9,7 @@ struct JsonManager {
                 let result = try JSONDecoder().decode([T].self, from: data)
                 return result
             } catch {
-                print(error)
+                print("here->",error)
             }
         }
         return nil

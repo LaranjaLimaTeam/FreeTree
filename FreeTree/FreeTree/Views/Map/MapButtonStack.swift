@@ -14,7 +14,6 @@ struct MapButtonStack: View {
         VStack(spacing: 0) {
             MapButton(systemIcon: "leaf") {
                 // TODO: implementar ação
-                mapViewModel.addTrees([mapViewModel.debugGerateRandomTree()])
                 print("add tree button tapped")
             }
             Divider()

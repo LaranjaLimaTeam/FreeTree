@@ -59,15 +59,5 @@ class MapViewModel: ObservableObject {
             }
         })
     }
-    func debugGerateRandomTree() -> Tree {
-        let latRand = Double.random(in: -0.05 ..< 0.05)
-        let lonRand = Double.random(in: -0.05 ..< 0.05)
-        let address = Address(street: "debug", number: trees.count, neighborHood: "debug",
-                              city: "debug", stateOrProvince: "debug", zipCode: "debug")
-        let tree = Tree(name: "tree \(trees.count)",
-                    address: address,
-                    coordinates: Coordinate(latitude: 37.334803+latRand, longitude: -122.008965 + lonRand))
-        return tree
-    }
     
 }
