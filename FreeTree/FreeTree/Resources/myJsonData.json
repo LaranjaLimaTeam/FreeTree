@@ -1,0 +1,33 @@
+[
+    {
+        "name":  "tree 1",
+        "address": {
+            "street": "street",
+            "number": 10,
+            "neighborHood": "",
+            "city": "Copertino",
+            "stateOrProvince": "ksmd",
+            "zipCode": "123123"
+        },
+        "coordinates":{
+            "latitude": 37.334803,
+            "longitude": -122.008965
+        }
+    },
+    {
+        "name":  "tree 2",
+        "address": {
+            "street": "street",
+            "number": 11,
+            "neighborHood": "",
+            "city": "Copertino",
+            "stateOrProvince": "ksmd",
+            "zipCode": "123123"
+        },
+        "coordinates":{
+            "latitude": 37.34489,
+            "longitude": -122.0090
+        }
+    }
+
+]

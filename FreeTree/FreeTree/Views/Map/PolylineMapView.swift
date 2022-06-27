@@ -21,7 +21,7 @@ struct PolylineMapView: UIViewRepresentable {
         return mapView
     }
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<PolylineMapView>) {
-        print("Updating")
+        print("DEBUG: Updating map")
         if mapViewModel.hasToCentrilize {
             uiView.setRegion(mapViewModel.region, animated: true)
             mapViewModel.hasToCentrilize = false

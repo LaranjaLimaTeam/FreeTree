@@ -11,6 +11,7 @@
 		613F04662861E42A00E4CC47 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613F04652861E42A00E4CC47 /* MapView.swift */; };
 		613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613F04672862050D00E4CC47 /* PolylineMapView.swift */; };
 		614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614097EB2864C6640019E4C3 /* PolylineMapViewCoordinator.swift */; };
+		6162A2072869DFB2001F8449 /* myJsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6162A2062869DFB2001F8449 /* myJsonData.json */; };
 		6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6194B5CB285A0AB600991D50 /* FreeTreeApp.swift */; };
 		6194B5CE285A0AB600991D50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6194B5CD285A0AB600991D50 /* ContentView.swift */; };
 		6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6194B5CF285A0AB700991D50 /* Assets.xcassets */; };
@@ -20,8 +21,14 @@
 		C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BBCE82861E25900CDAC42 /* JsonManager.swift */; };
 		C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5FA722862029500BA2469 /* SearchBar.swift */; };
 		E82818B42861E48300E81C82 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B32861E48300E81C82 /* Tree.swift */; };
+		E82818B62861EC9B00E81C82 /* JSONTreeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* JSONTreeManager.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
 		E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818BB2861F51F00E81C82 /* ProfileView.swift */; };
+		E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */; };
+		E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848039D28649953008BD2F9 /* MapButtonStack.swift */; };
+		E84803A02864A495008BD2F9 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848039F2864A495008BD2F9 /* MapButton.swift */; };
+		E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE9D0C2863579C002F747B /* AddTreeView.swift */; };
+		E8EF0FE9286353F00085FC57 /* TreeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EF0FE8286353F00085FC57 /* TreeManager.swift */; };
 		F0F833B67002D7129BF870BC /* Pods_FreeTree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94158BFC38E5A0DCB8F43071 /* Pods_FreeTree.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,6 +37,7 @@
 		613F04652861E42A00E4CC47 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		613F04672862050D00E4CC47 /* PolylineMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineMapView.swift; sourceTree = "<group>"; };
 		614097EB2864C6640019E4C3 /* PolylineMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineMapViewCoordinator.swift; sourceTree = "<group>"; };
+		6162A2062869DFB2001F8449 /* myJsonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = myJsonData.json; sourceTree = "<group>"; };
 		6194B5C8285A0AB600991D50 /* FreeTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6194B5CB285A0AB600991D50 /* FreeTreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTreeApp.swift; sourceTree = "<group>"; };
 		6194B5CD285A0AB600991D50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -43,8 +51,14 @@
 		C25BBCE82861E25900CDAC42 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		C2B5FA722862029500BA2469 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		E82818B32861E48300E81C82 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
+		E82818B52861EC9B00E81C82 /* JSONTreeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONTreeManager.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
 		E82818BB2861F51F00E81C82 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeViewModel.swift; sourceTree = "<group>"; };
+		E848039D28649953008BD2F9 /* MapButtonStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButtonStack.swift; sourceTree = "<group>"; };
+		E848039F2864A495008BD2F9 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
+		E8AE9D0C2863579C002F747B /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
+		E8EF0FE8286353F00085FC57 /* TreeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,8 +88,18 @@
 				613F04652861E42A00E4CC47 /* MapView.swift */,
 				613F04672862050D00E4CC47 /* PolylineMapView.swift */,
 				614097EB2864C6640019E4C3 /* PolylineMapViewCoordinator.swift */,
+				E848039D28649953008BD2F9 /* MapButtonStack.swift */,
+				E848039F2864A495008BD2F9 /* MapButton.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		6162A20A2869ED09001F8449 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6162A2062869DFB2001F8449 /* myJsonData.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		6194B5BF285A0AB600991D50 = {
@@ -99,6 +123,7 @@
 		6194B5CA285A0AB600991D50 /* FreeTree */ = {
 			isa = PBXGroup;
 			children = (
+				6162A20A2869ED09001F8449 /* Resources */,
 				6194B5DD285A0B5900991D50 /* Managers */,
 				6194B5DC285A0B5000991D50 /* Extensions */,
 				6194B5DB285A0B1600991D50 /* Models */,
@@ -123,6 +148,7 @@
 			isa = PBXGroup;
 			children = (
 				61E4A8C6286343A0008F333C /* MapViewModel.swift */,
+				E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -135,6 +161,7 @@
 				6194B5CD285A0AB600991D50 /* ContentView.swift */,
 				E82818B92861F50200E81C82 /* RecipesView.swift */,
 				E82818BB2861F51F00E81C82 /* ProfileView.swift */,
+				E8AE9D0C2863579C002F747B /* AddTreeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -158,8 +185,10 @@
 		6194B5DD285A0B5900991D50 /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				E82818B52861EC9B00E81C82 /* JSONTreeManager.swift */,
 				613F04632861E34000E4CC47 /* LocationManager.swift */,
 				C25BBCE82861E25900CDAC42 /* JsonManager.swift */,
+				E8EF0FE8286353F00085FC57 /* TreeManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -249,6 +278,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6194B5D3285A0AB700991D50 /* Preview Assets.xcassets in Resources */,
+				6162A2072869DFB2001F8449 /* myJsonData.json in Resources */,
 				6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,7 +324,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -303,16 +333,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E84803A02864A495008BD2F9 /* MapButton.swift in Sources */,
 				E82818B42861E48300E81C82 /* Tree.swift in Sources */,
 				C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */,
 				614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */,
+				E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */,
+				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */,
 				6194B5CE285A0AB600991D50 /* ContentView.swift in Sources */,
 				613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */,
 				613F04662861E42A00E4CC47 /* MapView.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
+				E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */,
 				E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */,
 				6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */,
+				E82818B62861EC9B00E81C82 /* JSONTreeManager.swift in Sources */,
+				E8EF0FE9286353F00085FC57 /* TreeManager.swift in Sources */,
 				61E4A8C7286343A0008F333C /* MapViewModel.swift in Sources */,
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
 				61E4A8C528634204008F333C /* Coordinate.swift in Sources */,

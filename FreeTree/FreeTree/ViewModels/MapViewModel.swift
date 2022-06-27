@@ -9,29 +9,48 @@ import MapKit
 import SwiftUI
 
 class MapViewModel: ObservableObject {
-    var locationManager = LocationManager.shared
-    
-    @Published var trees:[Tree] = []
-    @Published var hasToCentrilize:Bool = false
+    @Published private(set) var trees: [Tree] = []
+    @Published var hasToCentrilize: Bool = false
     @Published var region = MKCoordinateRegion(
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
-    func updateTrees(){
-        let latRand = Double.random(in: -0.05 ..< 0.05)
-        let lonRand = Double.random(in: -0.05 ..< 0.05)
-        //DEBUG
-        if (trees.count<10){
-            trees.append(Tree(name: String(trees.count), address:
-                                Address(street: "", number: 0, neighborHood: "", city: "", stateOrProvince: "", zipCode: ""),
-                              coordinates: Coordinate(latitude: 37.334803+latRand, longitude: -122.008965 + lonRand)))
+    var locationManager = LocationManager.shared
+    let treeManager: TreeManager
+    
+    init(treeManager: TreeManager = JSONTreeManager()) {
+        self.treeManager = treeManager
+        self.fetchTrees()
+    }
+    
+    func addTrees(_ newTrees: [Tree]) {
+        self.trees.append(contentsOf: newTrees)
+    }
+    func removeTree(tree: Tree) {
+        self.trees = trees.filter {
+            $0.coordinates.latitude != tree.coordinates.latitude &&
+            $0.coordinates.longitude != tree.coordinates.longitude &&
+            $0.name != tree.name
         }
     }
-    func centralizeMapRegion(){
+    
+    func centralizeMapRegion() {
         hasToCentrilize = true
     }
-    func requestLocation(){
+    func fetchTrees() {
+        treeManager.fetch(completion: {  [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let loadedTrees):
+                strongSelf.addTrees(loadedTrees)
+            case .failure(let error):
+                print(error)
+            }
+        })
+    }
+    
+    func requestLocation() {
         locationManager.requestLocation(completion: {
             guard let location = self.locationManager.locationCoordinate else { return }
             OperationQueue.main.addOperation {
@@ -40,5 +59,15 @@ class MapViewModel: ObservableObject {
             }
         })
     }
-
+    func debugGerateRandomTree() -> Tree {
+        let latRand = Double.random(in: -0.05 ..< 0.05)
+        let lonRand = Double.random(in: -0.05 ..< 0.05)
+        let address = Address(street: "debug", number: trees.count, neighborHood: "debug",
+                              city: "debug", stateOrProvince: "debug", zipCode: "debug")
+        let tree = Tree(name: "tree \(trees.count)",
+                    address: address,
+                    coordinates: Coordinate(latitude: 37.334803+latRand, longitude: -122.008965 + lonRand))
+        return tree
+    }
+    
 }

@@ -8,24 +8,35 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    @ObservedObject var locationManager = LocationManager.shared
     @StateObject var mapViewModel = MapViewModel()
 
     var body: some View {
-        VStack {
-            PolylineMapView()
-            .edgesIgnoringSafeArea(.top)
-            .onAppear {
-                mapViewModel.requestLocation()
+        ZStack {
+            VStack {
+                PolylineMapView()
+                .edgesIgnoringSafeArea(.top)
+                .onAppear {
+                    mapViewModel.requestLocation()
+                }
+                .environmentObject(mapViewModel)
+                if !mapViewModel.locationManager.isLocationAuthorized() {
+                    // TODO: Débito técnico -> design para Localização não autorizada
+                    Text("You haven't shared your location")
+                    Text("Please allow in Settings")
+                }
             }
-            .environmentObject(mapViewModel)
-            if !locationManager.isLocationAuthorized() {
-                // TODO: Débito técnico -> design para Localização não autorizada
-                Text("You haven't shared your location")
-                Text("Please allow in Settings")
+            HStack {
+                Spacer()
+                MapButtonStack()
+                    .environmentObject(mapViewModel)
+                    .padding()
             }
         }
     }
+}
 
-
+struct MapView_Previews: PreviewProvider {
+    static var previews: some View {
+        MapView()
+    }
 }
