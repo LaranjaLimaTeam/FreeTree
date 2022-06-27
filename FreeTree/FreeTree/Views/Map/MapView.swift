@@ -16,6 +16,14 @@ struct MapView: View {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
+    // TODO: mover para MapViewModel
+    @State private var showAddTreeSheet: Bool = false
+    
+    // TODO: mover para MapViewModel
+    private func showAddTreeModal() {
+        self.showAddTreeSheet = true
+    }
+    
     var body: some View {
         ZStack {
             VStack {
@@ -38,9 +46,12 @@ struct MapView: View {
             }
             HStack {
                 Spacer()
-                MapButtonStack()
+                MapButtonStack(addTreeButtonAction: showAddTreeModal)
                     .padding()
             }
+        }
+        .sheet(isPresented: $showAddTreeSheet) {
+            AddTreeView()
         }
     }
 }

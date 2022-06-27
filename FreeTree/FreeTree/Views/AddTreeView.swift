@@ -10,6 +10,7 @@ import SwiftUI
 struct AddTreeView: View {
     
     @ObservedObject var viewModel = AddTreeViewModel()
+    @Environment(\.dismiss) var dismiss
     
     private let title = "Adicionar árvore"
 
@@ -58,7 +59,7 @@ struct AddTreeView: View {
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button("Cancelar") {
-                        print("dismiss")
+                        self.dismiss()
                     }
                 }
             }
