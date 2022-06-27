@@ -13,16 +13,24 @@ struct ImageHeader: View {
         HStack {
             Text("Criado por")
                 .font(.subheadline)
-            Image(systemName: treeViewModel.tree.profile.imageName)
-                .resizable()
-                .aspectRatio(contentMode: .fill)
-                .background(.green)
-                .clipShape(Circle())
+            RoundedProfileImage(imageName: treeViewModel.tree.profile.imageName, backgroundColor: nil)
                 .frame(width: UIScreen.main.bounds.width/10, height: UIScreen.main.bounds.width/10)
             Text(treeViewModel.tree.profile.name)
                 .font(.subheadline)
             Text("em \(treeViewModel.getStringDate())")
                 .font(.subheadline)
         }
+    }
+}
+
+struct RoundedProfileImage: View {
+    let imageName: String
+    let backgroundColor: Color?
+    var body: some View {
+        Image(systemName: imageName)
+            .resizable()
+            .aspectRatio(contentMode: .fill)
+            .background(backgroundColor ?? .green)
+            .clipShape(Circle())
     }
 }
