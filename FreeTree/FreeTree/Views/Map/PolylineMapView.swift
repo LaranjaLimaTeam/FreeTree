@@ -8,7 +8,8 @@ import SwiftUI
 import MapKit
 
 struct PolylineMapView: UIViewRepresentable {
-    @Binding var region: MKCoordinateRegion
+    @EnvironmentObject var mapViewModel: MapViewModel
+    
     func makeCoordinator() -> PolylineMapViewCoordinator {
         PolylineMapViewCoordinator(self)
     }
@@ -16,17 +17,26 @@ struct PolylineMapView: UIViewRepresentable {
         let mapView = MKMapView()
         mapView.showsUserLocation = true
         mapView.delegate = context.coordinator
-        mapView.region = region
+        mapView.region = mapViewModel.region
         return mapView
     }
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<PolylineMapView>) {
-        uiView.setRegion(region, animated: true)
+        print("Updating")
+        if mapViewModel.hasToCentrilize {
+            uiView.setRegion(mapViewModel.region, animated: true)
+            mapViewModel.hasToCentrilize = false
+        }
+        if mapViewModel.trees.count != uiView.annotations.count-1 {
+            uiView.removeAnnotations(uiView.annotations)
+            mapViewModel.trees.forEach({ tree in
+                let annotationTree = MKPointAnnotation()
+                annotationTree.title = tree.name
+                annotationTree.coordinate = tree.coordinates.coordinate
+                uiView.addAnnotation(annotationTree)
+            })
+        }
     }
+
 }
 
-final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
-    private let map: PolylineMapView
-    init(_ control: PolylineMapView) {
-        self.map = control
-    }
-}
+

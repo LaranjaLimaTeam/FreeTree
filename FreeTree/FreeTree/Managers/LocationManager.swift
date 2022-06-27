@@ -11,7 +11,8 @@ class LocationManager: NSObject, ObservableObject {
     @Published private(set) var locationCoordinate: Coordinate?
     static let shared = LocationManager()
     let defaultLocation = CLLocationCoordinate2D(latitude: 37.334803, longitude: -122.008965)
-
+    private var completion: (() -> Void)?
+    
     private override init() {
         super.init()
         manager.delegate = self
@@ -19,8 +20,9 @@ class LocationManager: NSObject, ObservableObject {
         manager.startUpdatingLocation()
     }
 
-    func requestLocation() {
+    func requestLocation(completion: @escaping () -> Void ) {
         print("DEBUG: Request location")
+        self.completion = completion
         manager.requestWhenInUseAuthorization()
     }
     func checkIfLocationServiceIsEnable() -> Bool {
@@ -56,5 +58,9 @@ extension LocationManager: CLLocationManagerDelegate {
         }
         let coordenate = Coordinate(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
         self.locationCoordinate = coordenate
+        if let completion = self.completion {
+            completion()
+            self.completion = nil
+        }
     }
 }
