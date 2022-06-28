@@ -17,5 +17,5 @@ Ut massa facilisis vel tempor nunc feugiat viverra sed.
  Molestie ipsum nulla pretium, erat nibh aenean neque, eget posuere.
  Morbi dignissim dignissim suspendisse vestibulum.
 """
-    let date = Date()
+    let date = "27/06/2022 12:00"
 }

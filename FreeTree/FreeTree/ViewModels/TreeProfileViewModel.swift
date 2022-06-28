@@ -19,11 +19,12 @@ class TreeProfileViewModel: ObservableObject {
             })
     }
 
-    func getStringDate(inputDate: Date) -> String {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm"
-        let date =  dateFormatter.date(from: tree.creationTimeStamp)!
-        var newDate = date.formatted()
+    func getStringDate(inputDate: String) -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "dd/MM/yyyy hh:mm"
+//        let date =  dateFormatter.date(from: tree.creationTimeStamp)!
+//        var newDate = date.formatted()
+        var newDate = inputDate
         let start = newDate.index(newDate.startIndex, offsetBy: 0)
         let end = newDate.index(newDate.startIndex, offsetBy: 10)
         let range = start..<end
