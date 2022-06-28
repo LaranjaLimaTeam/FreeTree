@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct TipsView: View {
-    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     @ObservedObject var treeViewModel: TreeProfileViewModel
     let comments: [Comment]
     
@@ -23,8 +22,7 @@ struct TipsView: View {
                         }
                     }
                 }
-                TextForCommentView(presentationMode: $presentationMode,
-                               treeViewModel: treeViewModel)
+                TextForCommentView(treeViewModel: treeViewModel)
                 .padding(.bottom, 8)
             }
             .padding(.top, 8)
@@ -38,8 +36,7 @@ struct TipsView_Previews: PreviewProvider {
                            Comment(),
                            Comment()]
     static var previews: some View {
-        TipsView(presentationMode: .constant(.medium),
-                 treeViewModel: TreeProfileViewModel(tree: Tree()),
+        TipsView(treeViewModel: TreeProfileViewModel(tree: Tree()),
                  comments: comments)
     }
 }

@@ -11,14 +11,12 @@ import UIKit
 extension View {
 
     func sheetModal<SheetView: View>(_ showSheet: Binding<Bool>,
-                                     _ presentationMode: Binding<UISheetPresentationController.Detent.Identifier>, 
                                      @ViewBuilder sheetView: @escaping () -> SheetView) -> some View {
         let sheetView = sheetView()
         return self.background(
             HalfSheetHelper(sheetView: sheetView,
                             customHostingController: CustomHostingController(rootView: sheetView),
-                            showSheet: showSheet,
-                            presentationMode: presentationMode)
+                            showSheet: showSheet)
         )
     }
 }
@@ -30,7 +28,6 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable {
     let customHostingController: CustomHostingController<SheetView>
 
     @Binding var showSheet: Bool
-    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
 
     func makeUIViewController(context: Context) -> UIViewController {
         self.viewController.view.backgroundColor = .clear
@@ -38,7 +35,6 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        customHostingController.changeDetentMode(mode: presentationMode)
         if showSheet {
             uiViewController.present(customHostingController, animated: true) {
                 DispatchQueue.main.async {
@@ -54,28 +50,7 @@ class CustomHostingController<Content: View>: UIHostingController<Content> {
 
     override func viewDidLoad() {
         if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.detents = [.medium(), .large()]
-            presentationController.selectedDetentIdentifier = .medium
+            presentationController.detents = [.large()]
         }
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.selectedDetentIdentifier = .medium
-        }
-    }
-    
-    func changeDetentMode(mode: UISheetPresentationController.Detent.Identifier) {
-        if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.selectedDetentIdentifier = mode
-        }
-    }
-    
-    func getDetentMode() -> UISheetPresentationController.Detent.Identifier? {
-        if let presentationController = presentationController as? UISheetPresentationController {
-            return presentationController.selectedDetentIdentifier
-        }
-        return nil
     }
 }

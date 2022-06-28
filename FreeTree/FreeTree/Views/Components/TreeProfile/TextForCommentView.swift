@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TextForCommentView: View {
     @State var text: String = ""
-    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     @ObservedObject var treeViewModel: TreeProfileViewModel
     var body: some View {
         ZStack(alignment: .trailing) {
@@ -18,9 +17,6 @@ struct TextForCommentView: View {
             HStack {
                 TextField("Digite seu comentário", text: $text)
                     .padding(.leading, 8)
-                    .onTapGesture {
-                        self.presentationMode = .large
-                    }
                 Button {
                     print("Clicou")
                     let comment = Comment(user: UserProfile(), comment: text)
@@ -32,9 +28,6 @@ struct TextForCommentView: View {
                 }
             }
         }
-        .onDisappear(perform: {
-            self.presentationMode = .medium
-        })
         .frame(width: UIScreen.main.bounds.width-32, height: 34)
         .padding(.horizontal, 16)
     }
@@ -42,6 +35,6 @@ struct TextForCommentView: View {
 
 struct TextForCommentView_Previews: PreviewProvider {
     static var previews: some View {
-        TextForCommentView(presentationMode: .constant(.medium), treeViewModel: TreeProfileViewModel(tree: Tree()))
+        TextForCommentView(treeViewModel: TreeProfileViewModel(tree: Tree()))
     }
 }
