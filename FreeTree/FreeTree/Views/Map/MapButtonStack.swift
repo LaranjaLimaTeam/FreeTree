@@ -10,11 +10,11 @@ import SwiftUI
 struct MapButtonStack: View {
     @EnvironmentObject var mapViewModel: MapViewModel
     
+
     var body: some View {
         VStack(spacing: 0) {
             MapButton(systemIcon: "leaf") {
-                // TODO: implementar ação
-                print("add tree button tapped")
+                mapViewModel.showAddTreeModal()
             }
             Divider()
             MapButton(systemIcon: "square.stack.3d.down.right") {

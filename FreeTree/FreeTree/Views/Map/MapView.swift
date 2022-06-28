@@ -8,6 +8,7 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
+
     @StateObject var mapViewModel = MapViewModel()
 
     var body: some View {
@@ -31,6 +32,9 @@ struct MapView: View {
                     .environmentObject(mapViewModel)
                     .padding()
             }
+        }
+        .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
+            AddTreeView()
         }
     }
 }

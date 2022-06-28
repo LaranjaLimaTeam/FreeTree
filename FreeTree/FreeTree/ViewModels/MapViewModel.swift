@@ -15,7 +15,7 @@ class MapViewModel: ObservableObject {
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
-    
+    @Published var showAddTreeSheet: Bool = false
     private let locationManager = LocationManager.shared
     private let treeManager: TreeManager
     
@@ -33,6 +33,9 @@ class MapViewModel: ObservableObject {
             $0.coordinates.longitude != tree.coordinates.longitude &&
             $0.name != tree.name
         }
+    }
+    func showAddTreeModal() {
+        self.showAddTreeSheet = true
     }
     
     func centralizeMapRegion() {
