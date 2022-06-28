@@ -16,8 +16,9 @@ struct BottomSheet<Content: View>: View {
         GeometryReader { reader in
             content
                 .cornerRadius(10)
-                .offset(y: isPresented ? reader.frame(in: .global).height/1.75 : reader.frame(in: .global).height)
+                .offset(y: isPresented ? reader.frame(in: .global).height/2 : reader.frame(in: .global).height)
         }
+        .ignoresSafeArea()
     }
 }
 

@@ -27,7 +27,9 @@ struct MapView: View {
                 }
             }
             BottomSheet(isPresented: $mapViewModel.showAddTreeSheet) {
+                Color.init(uiColor: .systemGray5)
                 AddTreeView()
+//                    .padding()
             }
             HStack {
                 Spacer()
