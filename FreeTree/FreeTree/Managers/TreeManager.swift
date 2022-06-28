@@ -9,8 +9,10 @@ import Foundation
 
 protocol TreeManager {
     func create(_ tree: Tree, completion: @escaping (Result<Tree, TreeManagerError>) -> Void)
+    func fetch(completion: @escaping (Result<[Tree], TreeManagerError>) -> Void)
 }
 
 enum TreeManagerError: Error {
     case creationError
+    case fetchError
 }
