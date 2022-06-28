@@ -19,7 +19,7 @@ struct MapView: View {
                     mapViewModel.requestLocation()
                 }
                 .environmentObject(mapViewModel)
-                if !mapViewModel.locationManager.isLocationAuthorized() {
+                if !mapViewModel.isLocationAuthorized() {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     Text("You haven't shared your location")
                     Text("Please allow in Settings")

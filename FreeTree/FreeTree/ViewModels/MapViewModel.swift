@@ -16,8 +16,8 @@ class MapViewModel: ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
-    var locationManager = LocationManager.shared
-    let treeManager: TreeManager
+    private let locationManager = LocationManager.shared
+    private let treeManager: TreeManager
     
     init(treeManager: TreeManager = JSONTreeManager()) {
         self.treeManager = treeManager
@@ -58,6 +58,9 @@ class MapViewModel: ObservableObject {
                 self.centralizeMapRegion()
             }
         })
+    }
+    func isLocationAuthorized() -> Bool {
+        return locationManager.isLocationAuthorized()
     }
     
 }
