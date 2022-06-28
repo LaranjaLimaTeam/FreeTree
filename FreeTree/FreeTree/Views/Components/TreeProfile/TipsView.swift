@@ -10,6 +10,7 @@ import SwiftUI
 struct TipsView: View {
     @ObservedObject var treeViewModel: TreeProfileViewModel
     let comments: [Comment]
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct TipsView: View {
                         }
                     }
                 }
-                TextForCommentView(treeViewModel: treeViewModel)
+                TextForCommentView(treeViewModel: treeViewModel, presentationMode: $presentationMode)
                 .padding(.bottom, 8)
             }
             .padding(.top, 8)
@@ -37,6 +38,7 @@ struct TipsView_Previews: PreviewProvider {
                            Comment()]
     static var previews: some View {
         TipsView(treeViewModel: TreeProfileViewModel(tree: Tree()),
-                 comments: comments)
+                 comments: comments,
+                 presentationMode: .constant(.medium))
     }
 }

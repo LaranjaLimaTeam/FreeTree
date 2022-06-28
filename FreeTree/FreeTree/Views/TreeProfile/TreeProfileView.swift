@@ -11,6 +11,7 @@ struct TreeProfileView: View {
     @State var pageControl = 0
     @ObservedObject var treeViewModel: TreeProfileViewModel
     let comments: [Comment]
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     var body: some View {
         VStack {
             TreeHeaderView(tagLimit: 3,
@@ -22,7 +23,8 @@ struct TreeProfileView: View {
             switch pageControl {
             case 0:
                 TipsView(treeViewModel: treeViewModel,
-                         comments: comments)
+                         comments: comments,
+                         presentationMode: $presentationMode)
                 .padding(.top, 8)
             case 1:
                 Text("Nao Implementado Ainda")
@@ -39,6 +41,6 @@ struct TreeProfileView_Previews: PreviewProvider {
                            Comment()]
     static var previews: some View {
         TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
-                        comments: comments)
+                        comments: comments, presentationMode: .constant(.medium))
     }
 }

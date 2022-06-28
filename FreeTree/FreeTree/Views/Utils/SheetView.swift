@@ -8,49 +8,59 @@ import Foundation
 import SwiftUI
 import UIKit
 
-extension View {
-
-    func sheetModal<SheetView: View>(_ showSheet: Binding<Bool>,
-                                     @ViewBuilder sheetView: @escaping () -> SheetView) -> some View {
-        let sheetView = sheetView()
-        return self.background(
-            HalfSheetHelper(sheetView: sheetView,
-                            customHostingController: CustomHostingController(rootView: sheetView),
-                            showSheet: showSheet)
-        )
+class HalfSheetController<Content>: UIHostingController<Content>,
+                                        UISheetPresentationControllerDelegate where Content: View {
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
+    
+    init(content: Content, presentationMode: Binding<UISheetPresentationController.Detent.Identifier>) {
+        self._presentationMode = presentationMode
+        super.init(rootView: content)
+    }
+    
+    @MainActor required dynamic init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if let presentation = sheetPresentationController {
+            presentation.detents = [.medium(), .large()]
+            presentation.prefersGrabberVisible = true
+            presentation.largestUndimmedDetentIdentifier = .medium
+            presentation.delegate = self
+        }
+    }
+    
+    func changeMode(mode: UISheetPresentationController.Detent.Identifier) {
+        if let presentation = sheetPresentationController {
+            presentation.selectedDetentIdentifier = mode
+        }
+    }
+    func sheetPresentationControllerDidChangeSelectedDetentIdentifier(_ sheetPresentationController: UISheetPresentationController) {
+        if let newIdentifier = sheetPresentationController.selectedDetentIdentifier {
+            self.presentationMode = newIdentifier
+        }
     }
 }
 
-struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable {
+struct HalfSheet<Content>: UIViewControllerRepresentable where Content: View {
+    
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
 
-    var sheetView: SheetView
-    let viewController = UIViewController()
-    let customHostingController: CustomHostingController<SheetView>
-
-    @Binding var showSheet: Bool
-
-    func makeUIViewController(context: Context) -> UIViewController {
-        self.viewController.view.backgroundColor = .clear
-        return self.viewController
+    private let content: Content
+    
+    @inlinable init(@ViewBuilder content: () -> Content,
+                    presentationMode: Binding<UISheetPresentationController.Detent.Identifier>) {
+        self.content = content()
+        self._presentationMode = presentationMode
     }
-
-    func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        if showSheet {
-            uiViewController.present(customHostingController, animated: true) {
-                DispatchQueue.main.async {
-                    self.showSheet.toggle()
-                }
-            }
-        }
+    
+    func makeUIViewController(context: Context) -> HalfSheetController<Content> {
+        return HalfSheetController(content: content, presentationMode: $presentationMode)
     }
-
-}
-
-class CustomHostingController<Content: View>: UIHostingController<Content> {
-
-    override func viewDidLoad() {
-        if let presentationController = presentationController as? UISheetPresentationController {
-            presentationController.detents = [.large()]
-        }
+    
+    func updateUIViewController(_ controller: HalfSheetController<Content>, context: Context) {
+        controller.changeMode(mode: presentationMode)
     }
 }
