@@ -8,17 +8,13 @@
 import SwiftUI
 
 struct MapButtonStack: View {
+    @EnvironmentObject var mapViewModel: MapViewModel
     
-    private let addTreeButtonAction: () -> Void
-    
-    init(addTreeButtonAction: @escaping () -> Void) {
-        self.addTreeButtonAction = addTreeButtonAction
-    }
-    
+
     var body: some View {
         VStack(spacing: 0) {
             MapButton(systemIcon: "leaf") {
-                addTreeButtonAction()
+                mapViewModel.showAddTreeModal()
             }
             Divider()
             MapButton(systemIcon: "square.stack.3d.down.right") {
@@ -27,7 +23,7 @@ struct MapButtonStack: View {
             }
             Divider()
             MapButton(systemIcon: "paperplane") {
-                // TODO: implementar ação
+                mapViewModel.centralizeMapRegion()
                 print("center on user button tapped")
             }
         }
@@ -39,6 +35,6 @@ struct MapButtonStack: View {
 
 struct MapButtonStack_Previews: PreviewProvider {
     static var previews: some View {
-        MapButtonStack(addTreeButtonAction: {})
+        MapButtonStack()
     }
 }
