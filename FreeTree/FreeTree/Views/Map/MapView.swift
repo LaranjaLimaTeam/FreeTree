@@ -15,7 +15,7 @@ struct MapView: View {
         ZStack {
             VStack {
                 PolylineMapView()
-                .edgesIgnoringSafeArea(.top)
+                .edgesIgnoringSafeArea(.vertical)
                 .onAppear {
                     mapViewModel.requestLocation()
                 }
