@@ -15,23 +15,28 @@ struct TextForCommentView: View {
         ZStack(alignment: .trailing) {
             RoundedRectangle(cornerRadius: 16)
                 .stroke(.black)
-            TextField("Digite seu comentário", text: $text)
-                .padding(.leading, 8)
-                .onTapGesture {
-                    self.presentationMode = .large
+            HStack {
+                TextField("Digite seu comentário", text: $text)
+                    .padding(.leading, 8)
+                    .onTapGesture {
+                        self.presentationMode = .large
+                    }
+                Button {
+                    print("Clicou")
+                    let comment = Comment(user: UserProfile(), comment: text)
+                    treeViewModel.insertComment(comment: comment)
+                } label: {
+                    Image(systemName: "arrow.up.circle.fill")
+                        .foregroundColor(.green)
+                        .padding(.trailing, 8)
                 }
-            Button {
-                print("Clicou")
-                let comment = Comment(user: UserProfile(), comment: text)
-                treeViewModel.insertComment(comment: comment)
-            } label: {
-                Image(systemName: "arrow.up.circle.fill")
-                    .foregroundColor(.green)
-                    .padding(.trailing, 8)
             }
         }
-        .frame(width: UIScreen.main.bounds.width, height: 34)
-        .padding(.horizontal, 8)
+        .onDisappear(perform: {
+            self.presentationMode = .medium
+        })
+        .frame(width: UIScreen.main.bounds.width-32, height: 34)
+        .padding(.horizontal, 16)
     }
 }
 

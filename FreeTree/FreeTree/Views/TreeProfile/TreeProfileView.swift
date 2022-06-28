@@ -29,7 +29,7 @@ struct TreeProfileView: View {
             case 1:
                 Text("Nao Implementado Ainda")
             default:
-                Text("Erro")
+                EmptyView()
             }
         }
     }

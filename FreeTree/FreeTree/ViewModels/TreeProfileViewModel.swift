@@ -24,7 +24,6 @@ class TreeProfileViewModel: ObservableObject {
         dateFormatter.dateFormat = "dd/MM/yyyy hh:mm"
         let date =  dateFormatter.date(from: tree.creationTimeStamp)!
         var newDate = date.formatted()
-        print(newDate)
         let start = newDate.index(newDate.startIndex, offsetBy: 0)
         let end = newDate.index(newDate.startIndex, offsetBy: 10)
         let range = start..<end

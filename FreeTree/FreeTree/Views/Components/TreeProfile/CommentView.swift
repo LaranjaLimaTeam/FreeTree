@@ -1,5 +1,5 @@
 //
-//  CommentHeaderView.swift
+//  CommentView.swift
 //  FreeTree
 //
 //  Created by Nathan Batista de Oliveira on 24/06/22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CommentHeaderView: View {
+struct CommentView: View {
     let comment: Comment
     let treeViewModel: TreeProfileViewModel
     var body: some View {
@@ -25,10 +25,10 @@ struct CommentHeaderView: View {
     }
 }
 
-struct CommentHeaderView_Previews: PreviewProvider {
+struct CommentView_Previews: PreviewProvider {
     static let comment = Comment()
     static var previews: some View {
-        CommentHeaderView(comment: comment,
+        CommentView(comment: comment,
                           treeViewModel: TreeProfileViewModel(tree: Tree()))
     }
 }

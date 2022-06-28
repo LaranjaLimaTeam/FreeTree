@@ -21,7 +21,6 @@ extension View {
                             presentationMode: presentationMode)
         )
     }
-
 }
 
 struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable {
@@ -39,16 +38,14 @@ struct HalfSheetHelper<SheetView: View>: UIViewControllerRepresentable {
     }
 
     func updateUIViewController(_ uiViewController: UIViewController, context: Context) {
-        print("update! \(presentationMode)")
+        customHostingController.changeDetentMode(mode: presentationMode)
         if showSheet {
-            customHostingController.changeDetentMode(mode: presentationMode)
             uiViewController.present(customHostingController, animated: true) {
                 DispatchQueue.main.async {
                     self.showSheet.toggle()
                 }
             }
         }
-        customHostingController.changeDetentMode(mode: presentationMode)
     }
 
 }
@@ -58,6 +55,14 @@ class CustomHostingController<Content: View>: UIHostingController<Content> {
     override func viewDidLoad() {
         if let presentationController = presentationController as? UISheetPresentationController {
             presentationController.detents = [.medium(), .large()]
+            presentationController.selectedDetentIdentifier = .medium
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        if let presentationController = presentationController as? UISheetPresentationController {
+            presentationController.selectedDetentIdentifier = .medium
         }
     }
     
@@ -66,5 +71,11 @@ class CustomHostingController<Content: View>: UIHostingController<Content> {
             presentationController.selectedDetentIdentifier = mode
         }
     }
-
+    
+    func getDetentMode() -> UISheetPresentationController.Detent.Identifier? {
+        if let presentationController = presentationController as? UISheetPresentationController {
+            return presentationController.selectedDetentIdentifier
+        }
+        return nil
+    }
 }

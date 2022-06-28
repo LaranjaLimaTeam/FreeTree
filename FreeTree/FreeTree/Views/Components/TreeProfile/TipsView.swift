@@ -19,7 +19,7 @@ struct TipsView: View {
                 ScrollView(.vertical) {
                     LazyVStack(spacing: 8) {
                         ForEach(comments) { comment in
-                            CommentHeaderView(comment: comment, treeViewModel: treeViewModel)
+                            CommentView(comment: comment, treeViewModel: treeViewModel)
                         }
                     }
                 }
@@ -27,6 +27,7 @@ struct TipsView: View {
                                treeViewModel: treeViewModel)
                 .padding(.bottom, 8)
             }
+            .padding(.top, 8)
         }
         
     }
