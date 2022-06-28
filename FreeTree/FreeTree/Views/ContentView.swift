@@ -17,6 +17,7 @@ struct ContentView: View {
         tabBarApperance.stackedLayoutAppearance = tabBarItemApperance
         UITabBar.appearance().standardAppearance = tabBarApperance
     }
+    
     var body: some View {
         TabView {
             MapView()

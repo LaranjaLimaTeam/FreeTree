@@ -15,7 +15,7 @@ struct AddTreeView: View {
     private let title = "Adicionar árvore"
 
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
                 Form {
                     Section {
@@ -56,14 +56,14 @@ struct AddTreeView: View {
             .background(Color(uiColor: UIColor.systemGroupedBackground))
             .navigationTitle(self.title)
             .navigationBarTitleDisplayMode(.inline)
-            .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button("Cancelar") {
-                        self.dismiss()
-                    }
-                }
-            }
-        }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button("Cancelar") {
+//                        self.dismiss()
+//                    }
+//                }
+//            }
+//        }
         .tint(.init(uiColor: .systemGreen))
     }
 }

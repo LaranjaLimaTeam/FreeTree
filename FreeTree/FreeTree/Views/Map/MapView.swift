@@ -20,8 +20,8 @@ struct MapView: View {
     @State private var showAddTreeSheet: Bool = false
     
     // TODO: mover para MapViewModel
-    private func showAddTreeModal() {
-        self.showAddTreeSheet = true
+    private func toggleAddTreeViewSheet() {
+        self.showAddTreeSheet.toggle()
     }
     
     var body: some View {
@@ -44,14 +44,18 @@ struct MapView: View {
                     Text("Please allow in Settings")
                 }
             }
+            BottomSheet(isPresented: $showAddTreeSheet) {
+                AddTreeView()
+            }
             HStack {
                 Spacer()
-                MapButtonStack(addTreeButtonAction: showAddTreeModal)
+                MapButtonStack {
+                    withAnimation(.default) {
+                        self.toggleAddTreeViewSheet()
+                    }
+                }
                     .padding()
             }
-        }
-        .sheet(isPresented: $showAddTreeSheet) {
-            AddTreeView()
         }
     }
 }
