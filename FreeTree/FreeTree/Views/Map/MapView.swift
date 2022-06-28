@@ -8,29 +8,18 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-    
-    @ObservedObject var locationManager = LocationManager.shared
-    
-    @State private var region = MKCoordinateRegion(
-        center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
-        span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
-    )
-    
+    @StateObject var mapViewModel = MapViewModel()
+
     var body: some View {
         ZStack {
             VStack {
-                PolylineMapView(
-                    region: $region
-                )
+                PolylineMapView()
                 .edgesIgnoringSafeArea(.top)
                 .onAppear {
-                    locationManager.requestLocation()
-                }.onReceive(locationManager.$locationCoordinate, perform: { _ in
-                    if let coordinate = locationManager.locationCoordinate?.coordinate {
-                        region.center = coordinate
-                    }
-                })
-                if !locationManager.isLocationAuthorized() {
+                    mapViewModel.requestLocation()
+                }
+                .environmentObject(mapViewModel)
+                if !mapViewModel.isLocationAuthorized() {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     Text("You haven't shared your location")
                     Text("Please allow in Settings")
@@ -39,6 +28,7 @@ struct MapView: View {
             HStack {
                 Spacer()
                 MapButtonStack()
+                    .environmentObject(mapViewModel)
                     .padding()
             }
         }

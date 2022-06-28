@@ -8,12 +8,12 @@
 import Foundation
 
 struct Tree: Codable {
+    var creationTimeStamp: String = "27/06/2022 12:00"
     var name: String = "Limoeiro"
     var address: Address = Address()
     var coordinates: Coordinate = Coordinate()
     var tags: [String] = ["Limoeiro", "Azedo", "Melancia"]
     var profile: UserProfile = UserProfile()
-    var creationDate: Date = Date()
 }
 
 struct Address: Codable {

@@ -24,4 +24,13 @@ class JSONTreeManager: TreeManager {
             completion(.failure(.creationError))
         }
     }
+    public func fetch(completion: @escaping (Result<[Tree], TreeManagerError>) -> Void) {
+        let result: [Tree]? = JsonManager.decoding(fileName: "myJsonData")
+        if let result = result {
+            completion(.success(result))
+        } else {
+            completion(.failure(.fetchError))
+        }
+    }
+    
 }

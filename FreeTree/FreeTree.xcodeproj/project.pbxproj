@@ -10,6 +10,8 @@
 		613F04642861E34000E4CC47 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613F04632861E34000E4CC47 /* LocationManager.swift */; };
 		613F04662861E42A00E4CC47 /* MapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613F04652861E42A00E4CC47 /* MapView.swift */; };
 		613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 613F04672862050D00E4CC47 /* PolylineMapView.swift */; };
+		614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614097EB2864C6640019E4C3 /* PolylineMapViewCoordinator.swift */; };
+		6162A2072869DFB2001F8449 /* myJsonData.json in Resources */ = {isa = PBXBuildFile; fileRef = 6162A2062869DFB2001F8449 /* myJsonData.json */; };
 		6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6194B5CB285A0AB600991D50 /* FreeTreeApp.swift */; };
 		6194B5CE285A0AB600991D50 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6194B5CD285A0AB600991D50 /* ContentView.swift */; };
 		6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6194B5CF285A0AB700991D50 /* Assets.xcassets */; };
@@ -42,6 +44,8 @@
 		613F04632861E34000E4CC47 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		613F04652861E42A00E4CC47 /* MapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapView.swift; sourceTree = "<group>"; };
 		613F04672862050D00E4CC47 /* PolylineMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineMapView.swift; sourceTree = "<group>"; };
+		614097EB2864C6640019E4C3 /* PolylineMapViewCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolylineMapViewCoordinator.swift; sourceTree = "<group>"; };
+		6162A2062869DFB2001F8449 /* myJsonData.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = myJsonData.json; sourceTree = "<group>"; };
 		6194B5C8285A0AB600991D50 /* FreeTree.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FreeTree.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6194B5CB285A0AB600991D50 /* FreeTreeApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeTreeApp.swift; sourceTree = "<group>"; };
 		6194B5CD285A0AB600991D50 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -99,10 +103,19 @@
 			children = (
 				613F04652861E42A00E4CC47 /* MapView.swift */,
 				613F04672862050D00E4CC47 /* PolylineMapView.swift */,
+				614097EB2864C6640019E4C3 /* PolylineMapViewCoordinator.swift */,
 				E848039D28649953008BD2F9 /* MapButtonStack.swift */,
 				E848039F2864A495008BD2F9 /* MapButton.swift */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		6162A20A2869ED09001F8449 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				6162A2062869DFB2001F8449 /* myJsonData.json */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		6194B5BF285A0AB600991D50 = {
@@ -126,6 +139,7 @@
 		6194B5CA285A0AB600991D50 /* FreeTree */ = {
 			isa = PBXGroup;
 			children = (
+				6162A20A2869ED09001F8449 /* Resources */,
 				6194B5DD285A0B5900991D50 /* Managers */,
 				6194B5DC285A0B5000991D50 /* Extensions */,
 				6194B5DB285A0B1600991D50 /* Models */,
@@ -304,6 +318,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6194B5D3285A0AB700991D50 /* Preview Assets.xcassets in Resources */,
+				6162A2072869DFB2001F8449 /* myJsonData.json in Resources */,
 				6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -361,6 +376,7 @@
 				E84803A02864A495008BD2F9 /* MapButton.swift in Sources */,
 				E82818B42861E48300E81C82 /* Tree.swift in Sources */,
 				C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */,
+				614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */,
 				E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */,
 				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				C204299C2863478B003C6B71 /* SheetView.swift in Sources */,

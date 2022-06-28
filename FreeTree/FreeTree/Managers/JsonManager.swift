@@ -1,16 +1,15 @@
 import Foundation
 
 struct JsonManager {
-    static public func decoding<T: Decodable>(fileName: String) -> T? {
-
+    static public func decoding<T: Decodable>(fileName: String) -> [T]? {
         let filePath = Bundle.main.url(forResource: fileName, withExtension: "json")
         if let safeFilePath = filePath {
             do {
                 let data = try Data(contentsOf: safeFilePath)
-                let result = try JSONDecoder().decode(T.self, from: data)
+                let result = try JSONDecoder().decode([T].self, from: data)
                 return result
             } catch {
-                print(error)
+                print("here->",error)
             }
         }
         return nil

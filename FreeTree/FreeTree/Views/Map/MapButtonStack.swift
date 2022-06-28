@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct MapButtonStack: View {
+    @EnvironmentObject var mapViewModel: MapViewModel
     
     var body: some View {
         VStack(spacing: 0) {
@@ -22,7 +23,7 @@ struct MapButtonStack: View {
             }
             Divider()
             MapButton(systemIcon: "paperplane") {
-                // TODO: implementar ação
+                mapViewModel.centralizeMapRegion()
                 print("center on user button tapped")
             }
         }
