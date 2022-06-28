@@ -16,7 +16,7 @@ class JSONTreeManager: TreeManager {
     }
     
     public func create(_ tree: Tree, completion: @escaping (Result<Tree, TreeManagerError>) -> Void) {
-        let result = JsonManager.saveJson(data: tree)
+        let result = JsonManager.saveJson(data: tree, fileName: JsonManager.defaultJson)
         
         if let result = result {
             completion(.success(result))
@@ -25,7 +25,7 @@ class JSONTreeManager: TreeManager {
         }
     }
     public func fetch(completion: @escaping (Result<[Tree], TreeManagerError>) -> Void) {
-        let result: [Tree]? = JsonManager.decoding(fileName: "myJsonData")
+        let result: [Tree]? = JsonManager.decodingJson(fileName: JsonManager.defaultJson)
         if let result = result {
             completion(.success(result))
         } else {

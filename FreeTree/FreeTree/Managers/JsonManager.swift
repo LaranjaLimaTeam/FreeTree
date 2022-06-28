@@ -1,22 +1,26 @@
 import Foundation
 
 struct JsonManager {
-    static public func decoding<T: Decodable>(fileName: String) -> [T]? {
-        let filePath = Bundle.main.url(forResource: fileName, withExtension: "json")
-        if let safeFilePath = filePath {
-            do {
-                let data = try Data(contentsOf: safeFilePath)
-                let result = try JSONDecoder().decode([T].self, from: data)
-                return result
-            } catch {
-                print("here->",error)
-            }
+    static let defaultJson = "myJsonData.json"
+    
+    static public func decodingJson<T: Decodable>(fileName: String) -> [T]? {
+        let fileManager = FileManager.default
+        let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let fileURL = directoryURL.appendingPathComponent("JSON").appendingPathComponent(defaultJson)
+
+        do {
+            let data = try Data(contentsOf: fileURL)
+            let jsonData = try JSONDecoder().decode([T].self, from: data)
+            return jsonData
+        } catch {
+            print("error:\(error)")
         }
+        
         return nil
     }
-
-    static public func saveJson<T: Codable>(data: T) -> T? {
-        var dataArray: [T]? = decoding(fileName: "myJsonData")
+    
+    static public func saveJson<T: Codable>(data: T, fileName: String) -> T? {
+        var dataArray: [T]? = decodingJson(fileName: fileName)
         
         if var dataArray = dataArray {
             dataArray.append(contentsOf: [data])
@@ -30,7 +34,7 @@ struct JsonManager {
             let codableJSON = try encoder.encode(dataArray)
             let fileManager = FileManager.default
             let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-            let fileURL = directoryURL.appendingPathComponent("JSON").appendingPathComponent("myJsonData.json")
+            let fileURL = directoryURL.appendingPathComponent("JSON").appendingPathComponent(fileName)
             do {
                 try codableJSON.write(to: fileURL, options: [.atomic])
                 return data
