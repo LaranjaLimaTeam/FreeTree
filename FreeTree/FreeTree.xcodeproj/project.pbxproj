@@ -26,6 +26,7 @@
 		C20D0CCA2869EDD600BF425C /* TipsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D0CC92869EDD600BF425C /* TipsView.swift */; };
 		C20D0CCC2869EE2A00BF425C /* TextForCommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20D0CCB2869EE2A00BF425C /* TextForCommentView.swift */; };
 		C20FA61F286622DB00F4D3C4 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20FA61E286622DB00F4D3C4 /* CommentView.swift */; };
+		C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */; };
 		C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25623DF286B25EE009E2781 /* PhotoList.swift */; };
 		C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BBCE82861E25900CDAC42 /* JsonManager.swift */; };
 		C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5FA722862029500BA2469 /* SearchBar.swift */; };
@@ -69,6 +70,7 @@
 		C20D0CC92869EDD600BF425C /* TipsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TipsView.swift; sourceTree = "<group>"; };
 		C20D0CCB2869EE2A00BF425C /* TextForCommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextForCommentView.swift; sourceTree = "<group>"; };
 		C20FA61E286622DB00F4D3C4 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
+		C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		C25623DF286B25EE009E2781 /* PhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoList.swift; sourceTree = "<group>"; };
 		C25BBCE82861E25900CDAC42 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		C2B5FA722862029500BA2469 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
@@ -243,6 +245,7 @@
 			isa = PBXGroup;
 			children = (
 				C204299B2863478B003C6B71 /* SheetView.swift */,
+				C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -425,6 +428,7 @@
 				C20D0CCC2869EE2A00BF425C /* TextForCommentView.swift in Sources */,
 				E8EF0FE9286353F00085FC57 /* TreeManager.swift in Sources */,
 				61E4A8C7286343A0008F333C /* MapViewModel.swift in Sources */,
+				C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */,
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
 				61E4A8C528634204008F333C /* Coordinate.swift in Sources */,
 				C20429992863464B003C6B71 /* TreeHeaderView.swift in Sources */,
@@ -484,7 +488,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -538,7 +542,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.4;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -554,11 +558,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeTree/Preview Content\"";
+				DEVELOPMENT_TEAM = X7KR94TCJ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) photo use";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please grant access to your location to use map functions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -572,6 +579,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LaranjaLimaTeam.FreeTree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -584,11 +592,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeTree/Preview Content\"";
+				DEVELOPMENT_TEAM = X7KR94TCJ8;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) photo use";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please grant access to your location to use map functions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -602,6 +613,7 @@
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = LaranjaLimaTeam.FreeTree;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

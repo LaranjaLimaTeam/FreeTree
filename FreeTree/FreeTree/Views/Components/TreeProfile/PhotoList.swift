@@ -8,11 +8,14 @@
 import SwiftUI
 
 struct PhotoList: View {
+    @State private var sourceType: UIImagePickerController.SourceType = .camera
+    @State private var selectedImage: Image?
+    @State private var isImagePickerDisplay = false
+    
     let images: [Data]
-    let imageName = ["cloud",
-                     "cloud",
-                     "cloud",
-                     "cloud"]
+    @State var imageName = [Image("tree1"),
+                            Image("tree2"),
+                            Image("tree3")]
     
     let columns = [
         GridItem(),
@@ -21,23 +24,38 @@ struct PhotoList: View {
     ]
     
     var body: some View {
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(0..<imageName.count) { item in
-                    if !images.isEmpty {
-//                        if let uiImage = UIImage(data: item) {
-//                            Image(uiImage: uiImage)
-//                        }
-                    } else {
-                        Image(systemName: imageName[item])
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
+        if !isImagePickerDisplay {
+            ScrollView {
+//                NavigationLink(isActive: $isImagePickerDisplay) {
+//                    ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
+//                } label: {
+//                    EmptyView()
+//                }
+                LazyVGrid(columns: columns, spacing: 16) {
+                    Image(systemName: "photo")
+                        .resizable()
+                        .aspectRatio(contentMode: .fit)
+                        .onTapGesture {
+                            isImagePickerDisplay.toggle()
+                        }
+                    ForEach(0..<imageName.count) { item in
+                        if !images.isEmpty {
+    //                        if let uiImage = UIImage(data: item) {
+    //                            Image(uiImage: uiImage)
+    //                        }
+                        } else {
+                            imageName[item]
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                        }
                     }
                 }
+                .padding(.horizontal, 16)
             }
-            .padding(.horizontal, 16)
+            .frame(maxHeight: 300)
+        } else {
+            CaptureImageView(isShown: $isImagePickerDisplay, image: $selectedImage, images: $imageName)
         }
-        .frame(maxHeight: 300)
     }
 }
 
