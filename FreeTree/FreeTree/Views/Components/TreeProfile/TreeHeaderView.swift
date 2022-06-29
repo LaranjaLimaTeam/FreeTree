@@ -4,8 +4,6 @@ import Combine
 struct TreeHeaderView: View {
     let tagLimit: Int
     @ObservedObject var treeViewModel: TreeProfileViewModel
-    @State var pageControl = 0
-    
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
@@ -30,19 +28,17 @@ struct TreeHeaderView: View {
             .frame(height: UIScreen.main.bounds.height/20)
             DistanceView(distance: treeViewModel.distance)
                 .padding(.leading, 16)
-            SegmentedControlView(showMode: $pageControl,
-                                 description: "Choose the view you want",
-                                 pagesName: ["Dicas", "Fotos"])
-            .padding(.horizontal, 16)
-            Spacer()
+           
         }
     }
 }
 
 struct TreeHeaderView_Previews: PreviewProvider {
+    static var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     static let tree = Tree()
     static var previews: some View {
-        TreeHeaderView(tagLimit: 4, treeViewModel: TreeProfileViewModel(tree: tree))
+        TreeHeaderView(tagLimit: 4,
+                       treeViewModel: TreeProfileViewModel(tree: tree) )
     }
 }
 

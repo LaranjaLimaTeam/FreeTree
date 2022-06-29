@@ -34,8 +34,10 @@ struct AddTreeView: View {
                         Text("Endereço")
                     }
                     Section {
-                        TextField("Latitude", value: $viewModel.tree.coordinates.latitude, format: FloatingPointFormatStyle())
-                        TextField("Longitude", value: $viewModel.tree.coordinates.longitude, format: FloatingPointFormatStyle())
+                        TextField("Latitude", value: $viewModel.tree.coordinates.latitude,
+                                  format: FloatingPointFormatStyle())
+                        TextField("Longitude", value: $viewModel.tree.coordinates.longitude,
+                                  format: FloatingPointFormatStyle())
                     } header: {
                         Text("coordenadas")
                     }
