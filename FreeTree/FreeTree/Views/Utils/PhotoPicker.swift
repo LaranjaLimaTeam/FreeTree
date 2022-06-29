@@ -10,7 +10,7 @@ import SwiftUI
 
 struct CaptureImageView {
     
-    /// MARK: - Properties
+    // MARK: - Properties
     @Binding var isShown: Bool
     @Binding var image: Image?
     @Binding var images: [Image]
@@ -30,7 +30,7 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
     _images = images
   }
   func imagePickerController(_ picker: UIImagePickerController,
-                didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
+                             didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
      guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
      imageInCoordinator = Image(uiImage: unwrapImage)
       if let imageInCoordinator = imageInCoordinator {
@@ -56,5 +56,3 @@ extension CaptureImageView: UIViewControllerRepresentable {
         
     }
 }
-
-

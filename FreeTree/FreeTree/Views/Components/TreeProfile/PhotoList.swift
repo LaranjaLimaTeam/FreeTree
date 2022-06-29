@@ -26,33 +26,25 @@ struct PhotoList: View {
     var body: some View {
         if !isImagePickerDisplay {
             ScrollView {
-//                NavigationLink(isActive: $isImagePickerDisplay) {
-//                    ImagePickerView(selectedImage: self.$selectedImage, sourceType: self.sourceType)
-//                } label: {
-//                    EmptyView()
-//                }
-                LazyVGrid(columns: columns, spacing: 16) {
-                    Image(systemName: "photo")
-                        .resizable()
-                        .aspectRatio(contentMode: .fit)
-                        .onTapGesture {
-                            isImagePickerDisplay.toggle()
-                        }
-                    ForEach(0..<imageName.count) { item in
-                        if !images.isEmpty {
-    //                        if let uiImage = UIImage(data: item) {
-    //                            Image(uiImage: uiImage)
-    //                        }
-                        } else {
-                            imageName[item]
-                                .resizable()
-                                .aspectRatio(contentMode: .fit)
+                    LazyVGrid(columns: columns, spacing: 16) {
+                        Image(systemName: "camera")
+                            .resizable()
+                            .aspectRatio(contentMode: .fit)
+                            .foregroundColor(.green)
+                            .onTapGesture {
+                                isImagePickerDisplay.toggle()
+                            }
+                        ForEach(0..<imageName.count) { item in
+                                imageName[item]
+                                    .resizable()
+                                    .aspectRatio(contentMode: .fit)
+                            
                         }
                     }
-                }
-                .padding(.horizontal, 16)
+                    .padding(.horizontal, 16)
+                    .padding(.vertical, 16)
             }
-            .frame(maxHeight: 300)
+            .background(Color.init(uiColor: UIColor.secondarySystemBackground))
         } else {
             CaptureImageView(isShown: $isImagePickerDisplay, image: $selectedImage, images: $imageName)
         }
