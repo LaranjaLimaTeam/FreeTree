@@ -9,13 +9,18 @@ import SwiftUI
 
 struct AddTreeView: View {
     
-    @ObservedObject var viewModel = AddTreeViewModel()
+    @ObservedObject var addTreeViewModel = AddTreeViewModel()
+    @ObservedObject var mapViewModel: MapViewModel
+    
+    init(mapViewModel: MapViewModel) {
+        self.mapViewModel = mapViewModel
+    }
 
     var body: some View {
         VStack(alignment: .leading) {
             TextField(
                 "User name (email address)",
-                text: $viewModel.tree.name
+                text: $addTreeViewModel.tree.name
             )
             .padding(.horizontal, 16)
             .frame(height: 44)
@@ -35,7 +40,9 @@ struct AddTreeView: View {
             .padding(.horizontal, 16)
             ToggleField()
             ToggleField()
-            LargeButton()
+            LargeButton {
+                addTreeViewModel.addTree()
+            }
             Spacer()
         }
         .padding(.top, 16)
@@ -46,14 +53,17 @@ struct AddTreeView: View {
 
 struct AddTreeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTreeView()
+        AddTreeView(mapViewModel: MapViewModel())
     }
 }
 
 struct LargeButton: View {
+    
+    var action: () -> Void
+    
     var body: some View {
         Button {
-            print("")
+            action()
         } label: {
             Text("Adicionar árvore")
                 .foregroundColor(.white)
