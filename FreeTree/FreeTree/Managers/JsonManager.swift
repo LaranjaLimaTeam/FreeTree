@@ -7,7 +7,6 @@ struct JsonManager {
         let fileManager = FileManager.default
         let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let fileURL = directoryURL.appendingPathComponent("JSON").appendingPathComponent(defaultJson)
-
         do {
             let data = try Data(contentsOf: fileURL)
             let jsonData = try JSONDecoder().decode([T].self, from: data)
@@ -21,9 +20,9 @@ struct JsonManager {
     
     static public func saveJson<T: Codable>(data: T, fileName: String) -> T? {
         var dataArray: [T]? = decodingJson(fileName: fileName)
-        
-        if var dataArray = dataArray {
-            dataArray.append(contentsOf: [data])
+        if var safeDataArray = dataArray {
+            safeDataArray.append(contentsOf: [data])
+            dataArray = safeDataArray
         } else {
             dataArray = [data]
         }
