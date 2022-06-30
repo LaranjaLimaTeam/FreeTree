@@ -10,11 +10,12 @@ import SwiftUI
 struct MapButtonStack: View {
     @EnvironmentObject var mapViewModel: MapViewModel
     
-
     var body: some View {
         VStack(spacing: 0) {
             MapButton(systemIcon: "leaf") {
-                mapViewModel.showAddTreeModal()
+                withAnimation {
+                    mapViewModel.showAddTreeModal()
+                }
             }
             Divider()
             MapButton(systemIcon: "square.stack.3d.down.right") {
@@ -24,7 +25,6 @@ struct MapButtonStack: View {
             Divider()
             MapButton(systemIcon: "paperplane") {
                 mapViewModel.centralizeMapRegion()
-                print("center on user button tapped")
             }
         }
         .frame(maxWidth: 30)

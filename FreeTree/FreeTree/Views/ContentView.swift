@@ -11,23 +11,6 @@ struct ContentView: View {
     
     var body: some View {
         MapView()
-//        TabView {
-//            MapView()
-//                .tabItem {
-//                    Image(systemName: "map")
-//                    Text("Mapa")
-//                }
-//            RecipesView()
-//                .tabItem {
-//                    Image(systemName: "text.book.closed")
-//                    Text("Receitas")
-//                }
-//            ProfileView()
-//                .tabItem {
-//                    Image(systemName: "person")
-//                    Text("Perfil")
-//                }
-//        }
     }
 }
 

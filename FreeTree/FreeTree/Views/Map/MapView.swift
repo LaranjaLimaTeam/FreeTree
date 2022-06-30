@@ -26,15 +26,18 @@ struct MapView: View {
                     Text("Please allow in Settings")
                 }
             }
+            BottomSheet(isPresented: $mapViewModel.showAddTreeSheet) {
+                Color.init(uiColor: .systemGray5)
+                AddTreeView(
+                    isPresented: $mapViewModel.showAddTreeSheet
+                )
+            }
             HStack {
                 Spacer()
                 MapButtonStack()
                     .environmentObject(mapViewModel)
                     .padding()
             }
-        }
-        .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
-            AddTreeView()
         }
     }
 }
