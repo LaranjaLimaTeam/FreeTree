@@ -7,7 +7,8 @@
 
 import Foundation
 
-protocol TreeManager {
+protocol TreeDAO {
+    var treesPublished: Published<[Tree]>.Publisher { get }
     func create(_ tree: Tree, completion: @escaping (Result<Tree, TreeManagerError>) -> Void)
     func fetch(completion: @escaping (Result<[Tree], TreeManagerError>) -> Void)
 }

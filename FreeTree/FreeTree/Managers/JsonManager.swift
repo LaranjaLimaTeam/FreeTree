@@ -3,10 +3,10 @@ import Foundation
 struct JsonManager {
     static let defaultJson = "myJsonData.json"
     
-    static public func decodingJson<T: Decodable>(fileName: String) -> [T]? {
+    public func decodingJson<T: Decodable>(fileName: String) -> [T]? {
         let fileManager = FileManager.default
         let directoryURL = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
-        let fileURL = directoryURL.appendingPathComponent("JSON").appendingPathComponent(defaultJson)
+        let fileURL = directoryURL.appendingPathComponent("JSON").appendingPathComponent(fileName)
         do {
             let data = try Data(contentsOf: fileURL)
             let jsonData = try JSONDecoder().decode([T].self, from: data)
@@ -18,7 +18,7 @@ struct JsonManager {
         return nil
     }
     
-    static public func saveJson<T: Codable>(data: T, fileName: String) -> T? {
+    public func saveJson<T: Codable>(data: T, fileName: String) -> T? {
         var dataArray: [T]? = decodingJson(fileName: fileName)
         if var safeDataArray = dataArray {
             safeDataArray.append(contentsOf: [data])

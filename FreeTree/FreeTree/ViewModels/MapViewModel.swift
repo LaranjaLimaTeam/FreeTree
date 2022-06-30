@@ -7,9 +7,10 @@
 
 import MapKit
 import SwiftUI
+import Combine
 
 class MapViewModel: ObservableObject {
-    @Published private(set) var trees: [Tree] = []
+    @Published private(set) var treesOnMap: [Tree] = []
     @Published var hasToCentrilize: Bool = false
     @Published var region = MKCoordinateRegion(
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
@@ -17,42 +18,31 @@ class MapViewModel: ObservableObject {
     )
     @Published var showAddTreeSheet: Bool = false
     private let locationManager = LocationManager.shared
-    private let treeManager: TreeManager
+    private let treeManager = TreeManagerImplementation.shared
+    var cancellable: Cancellable?
     
-    init(treeManager: TreeManager = JSONTreeManager()) {
-        self.treeManager = treeManager
-        self.fetchTrees()
+    init() {
+        cancellable = self.treeManager.$trees
+            // TODO: Implement filters from contextual menu
+            .filter({ _ in
+                return true
+            })
+            .sink(receiveValue: { treeArray in
+                self.treesOnMap = treeArray
+            })
     }
-    
-    func addTrees(_ newTrees: [Tree]) {
-        self.trees.append(contentsOf: newTrees)
-    }
-    func removeTree(tree: Tree) {
-        self.trees = trees.filter {
-            $0.coordinates.latitude != tree.coordinates.latitude &&
-            $0.coordinates.longitude != tree.coordinates.longitude &&
-            $0.name != tree.name
-        }
-    }
+
     func showAddTreeModal() {
         self.showAddTreeSheet = true
     }
     
     func centralizeMapRegion() {
+        if let location = self.locationManager.locationCoordinate {
+            self.region.center = location.coordinate
+        }
         hasToCentrilize = true
     }
-    func fetchTrees() {
-        treeManager.fetch(completion: {  [weak self] result in
-            guard let strongSelf = self else { return }
-            switch result {
-            case .success(let loadedTrees):
-                strongSelf.addTrees(loadedTrees)
-            case .failure(let error):
-                print(error)
-            }
-        })
-    }
-    
+
     func requestLocation() {
         locationManager.requestLocation(completion: {
             guard let location = self.locationManager.locationCoordinate else { return }
