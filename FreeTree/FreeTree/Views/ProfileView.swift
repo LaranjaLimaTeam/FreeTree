@@ -9,13 +9,20 @@ import SwiftUI
 
 struct ProfileView: View {
     @State var sheet = false
+    @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     var body: some View {
         Text("ProfileView")
             .onTapGesture {
                 sheet = true
             }
-            .sheetModal($sheet) {
-                TreeHeaderView(tagLimit: 3, treeViewModel: TreeProfileViewModel(tree: Tree()))
+            .sheet(isPresented: $sheet) {
+                HalfSheet(content: {
+                    TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
+                                    comments: [Comment(),
+                                               Comment(),
+                                               Comment()],
+                                    presentationMode: $presentationMode)
+                }, presentationMode: $presentationMode)
             }
     }
 }

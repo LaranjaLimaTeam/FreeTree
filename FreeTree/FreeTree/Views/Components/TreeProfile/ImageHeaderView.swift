@@ -17,7 +17,7 @@ struct ImageHeader: View {
                 .frame(width: UIScreen.main.bounds.width/10, height: UIScreen.main.bounds.width/10)
             Text(treeViewModel.tree.profile.name)
                 .font(.subheadline)
-            Text("em \(treeViewModel.getStringDate())")
+            Text("em \(treeViewModel.getStringDate(inputDate: treeViewModel.tree.creationTimeStamp))")
                 .font(.subheadline)
         }
     }
