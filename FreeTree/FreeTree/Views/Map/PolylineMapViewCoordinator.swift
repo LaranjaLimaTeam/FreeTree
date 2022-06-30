@@ -13,7 +13,15 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
         self.map = control
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        print(view.annotation?.title! ?? "nil")
+        let treeArray = map.mapViewModel.treesOnMap
+        let tree = treeArray.filter {
+            if let subtitle = view.annotation?.subtitle {
+               return "\($0.id)" == subtitle
+            }
+            return false
+        }
+        map.mapViewModel.selectedTree = tree.first!
+        map.mapViewModel.showTreeProfile.toggle()
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {

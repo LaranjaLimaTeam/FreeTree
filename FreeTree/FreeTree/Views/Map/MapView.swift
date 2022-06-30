@@ -10,6 +10,7 @@ import MapKit
 struct MapView: View {
 
     @StateObject var mapViewModel = MapViewModel()
+    @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
 
     var body: some View {
         ZStack {
@@ -38,6 +39,13 @@ struct MapView: View {
                     .environmentObject(mapViewModel)
                     .padding()
             }
+        }
+        .sheet(isPresented: $mapViewModel.showTreeProfile) {
+            HalfSheet(content: {
+                TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
+                                comments: [],
+                                presentationMode: $presentationMode)
+            }, presentationMode: $presentationMode)
         }
     }
 }
