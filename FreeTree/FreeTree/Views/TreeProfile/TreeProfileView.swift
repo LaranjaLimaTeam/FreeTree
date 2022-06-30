@@ -27,7 +27,7 @@ struct TreeProfileView: View {
                          presentationMode: $presentationMode)
                 .padding(.top, 8)
             case 1:
-                Text("Nao Implementado Ainda")
+                PhotoList()
             default:
                 EmptyView()
             }
