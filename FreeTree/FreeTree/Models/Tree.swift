@@ -7,7 +7,10 @@
 
 import Foundation
 
-struct Tree: Codable {
+struct Tree: Codable, Equatable {
+    static func == (lhs: Tree, rhs: Tree) -> Bool {
+        return lhs.id == rhs.id
+    }
     var id = UUID()
     var creationTimeStamp: String = "27/06/2022 12:00"
     var name: String = "Limoeiro"
@@ -15,6 +18,7 @@ struct Tree: Codable {
     var coordinates: Coordinate = Coordinate()
     var tags: [String] = ["Limoeiro", "Azedo", "Melancia"]
     var profile: UserProfile = UserProfile()
+    var images: [Data] = []
 }
 
 struct Address: Codable {

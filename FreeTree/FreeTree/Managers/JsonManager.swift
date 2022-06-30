@@ -18,9 +18,12 @@ struct JsonManager {
         return nil
     }
     
-    public func saveJson<T: Codable>(data: T, fileName: String) -> T? {
+    public func saveJson<T: Codable>(data: T, fileName: String) -> T? where T: Equatable {
         var dataArray: [T]? = decodingJson(fileName: fileName)
         if var safeDataArray = dataArray {
+            safeDataArray = safeDataArray.filter({ iterableData in
+                return !(iterableData == data)
+            })
             safeDataArray.append(contentsOf: [data])
             dataArray = safeDataArray
         } else {

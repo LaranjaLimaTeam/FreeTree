@@ -10,7 +10,7 @@ import SwiftUI
 struct TextForCommentView: View {
     @State var text: String = ""
     @ObservedObject var treeViewModel: TreeProfileViewModel
-    @Binding var presentationMode : UISheetPresentationController.Detent.Identifier
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     var body: some View {
         ZStack(alignment: .trailing) {
             RoundedRectangle(cornerRadius: 16)
@@ -21,10 +21,21 @@ struct TextForCommentView: View {
                     .onTapGesture {
                         self.presentationMode = .large
                     }
+                    .onSubmit {
+                        let comment = Comment(treeId: "\(treeViewModel.tree.id)",
+                                              user: UserProfile(),
+                                              comment: self.text)
+                        treeViewModel.insertComment(comment: comment)
+                        self.text = ""
+                    }
                 Button {
                     print("Clicou")
-                    let comment = Comment(user: UserProfile(), comment: text)
+                    let comment = Comment(treeId: "\(treeViewModel.tree.id)",
+                                          user: UserProfile(),
+                                          comment: self.text)
                     treeViewModel.insertComment(comment: comment)
+                    self.text = ""
+                    UIApplication.shared.endEditing()
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
                         .foregroundColor(.green)
@@ -40,5 +51,11 @@ struct TextForCommentView: View {
 struct TextForCommentView_Previews: PreviewProvider {
     static var previews: some View {
         TextForCommentView(treeViewModel: TreeProfileViewModel(tree: Tree()), presentationMode: .constant(.medium))
+    }
+}
+
+extension UIApplication {
+    func endEditing() {
+        sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
     }
 }

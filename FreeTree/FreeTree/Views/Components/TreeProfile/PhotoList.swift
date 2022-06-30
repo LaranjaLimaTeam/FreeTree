@@ -8,12 +8,8 @@
 import SwiftUI
 
 struct PhotoList: View {
-    @State private var sourceType: UIImagePickerController.SourceType = .camera
-    @State private var selectedImage: Image?
-    @State private var isImagePickerDisplay = false
-    @State var imageName = [Image("tree1"),
-                            Image("tree2"),
-                            Image("tree3")]
+    @Binding var imageName: [Data]
+    @Binding var pickingPhoto: Bool
     
     let columns = [
         GridItem(),
@@ -22,7 +18,6 @@ struct PhotoList: View {
     ]
     
     var body: some View {
-        if !isImagePickerDisplay {
             ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
                         ZStack {
@@ -38,16 +33,18 @@ struct PhotoList: View {
                                 height: (UIScreen.main.bounds.width - 4*16)/3)
                         .cornerRadius(16)
                             .onTapGesture {
-                                isImagePickerDisplay.toggle()
+                                self.pickingPhoto = true
                             }
                         ForEach(0..<imageName.count) { item in
                             ZStack {
                                 Color.white
-                                imageName[item]
-                                    .resizable()
-                                    .aspectRatio(contentMode: .fit)
-                                    .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
-                                           height: (UIScreen.main.bounds.width - 4*16)/3)
+                                if let uiImage = UIImage(data: imageName[item]) {
+                                    Image(uiImage: uiImage)
+                                        .resizable()
+                                        .aspectRatio(contentMode: .fit)
+                                        .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
+                                               height: (UIScreen.main.bounds.width - 4*16)/3)
+                                }
                             }
                             .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
                                     height: (UIScreen.main.bounds.width - 4*16)/3)
@@ -58,14 +55,12 @@ struct PhotoList: View {
                     .padding(.vertical, 16)
             }
             .background(Color.init(uiColor: UIColor.secondarySystemBackground))
-        } else {
-            CaptureImageView(isShown: $isImagePickerDisplay, image: $selectedImage, images: $imageName)
         }
     }
-}
 
 struct PhotoList_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoList()
+        PhotoList(imageName: .constant([]),
+                  pickingPhoto: .constant(false))
     }
 }

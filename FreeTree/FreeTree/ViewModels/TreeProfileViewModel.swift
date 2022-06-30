@@ -5,8 +5,10 @@ import CoreLocation
 class TreeProfileViewModel: ObservableObject {
     @Published var tree: Tree
     @Published var distance: Double = 0
+    @Published var comments:[Comment] = []
     private let locationManager = LocationManager.shared
     var cancellable: Cancellable?
+    private let treeManager = TreeManagerImplementation.shared
 
     init(tree: Tree) {
         self.tree = tree
@@ -41,5 +43,28 @@ class TreeProfileViewModel: ObservableObject {
     
     func insertComment(comment: Comment) {
         print("Comentário inserido")
+        self.comments.insert(comment, at: 0)
+        self.updateComment(comment: comment)
+    }
+    
+    func updateTree() {
+        treeManager.addTree(tree: self.tree) { result in
+            switch result {
+            case .success(let tree):
+                print("Salvo com sucesso")
+            case .failure(let error):
+                print("Erro ao atualizar arvore")
+            }
+        }
+    }
+    
+    func updateComment(comment: Comment) {
+        let jsonManager = JsonManager()
+        _ = jsonManager.saveJson(data: comment, fileName: "comment.json")
+    }
+    
+    func fetchComment() {
+        let jsonManager = JsonManager()
+        self.comments = jsonManager.decodingJson(fileName: "comment.json") ?? []
     }
 }

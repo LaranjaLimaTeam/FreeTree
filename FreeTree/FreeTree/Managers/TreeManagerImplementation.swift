@@ -15,7 +15,7 @@ class TreeManagerImplementation {
     let treeRepository: TreeDAO
     var cancellable: Cancellable?
     
-    init(treeRepository: TreeRepository = TreeRepository()) {
+    init(treeRepository: TreeDAO = TreeRepository()) {
         self.treeRepository = treeRepository
         cancellable = self.treeRepository.treesPublished
             .sink(receiveValue: { treeArray in
@@ -35,6 +35,7 @@ class TreeManagerImplementation {
             }
         }
     }
+    
     func updateTrees(completion: @escaping (Result<Bool, TreeManagerError>) -> Void) {
         self.treeRepository.fetch(completion: { [weak self] result in
             guard let strongSelf = self else { return }

@@ -7,7 +7,12 @@
 
 import Foundation
 
-struct Comment: Identifiable {
+struct Comment: Identifiable, Equatable, Codable {
+    static func == (lhs: Comment, rhs: Comment) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    var treeId = ""
     let id = UUID()
     var user: UserProfile = UserProfile()
     var comment =  """

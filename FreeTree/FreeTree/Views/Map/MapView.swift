@@ -41,11 +41,17 @@ struct MapView: View {
             }
         }
         .sheet(isPresented: $mapViewModel.showTreeProfile) {
-            HalfSheet(content: {
-                TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
-                                comments: [],
-                                presentationMode: $presentationMode)
-            }, presentationMode: $presentationMode)
+            if let safeSelectedTree = mapViewModel.selectedTree {
+                let treeProfileViewModel = TreeProfileViewModel(tree: safeSelectedTree)
+                HalfSheet(content: {
+                    TreeProfileView(treeViewModel: treeProfileViewModel,
+                                    presentationMode: $presentationMode)
+                }, presentationMode: $presentationMode)
+                .onDisappear {
+                    treeProfileViewModel.updateTree()
+                }
+            }
+            
         }
     }
 }

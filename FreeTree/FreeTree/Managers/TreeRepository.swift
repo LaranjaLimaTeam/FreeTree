@@ -31,6 +31,9 @@ class TreeRepository: TreeDAO {
         let result = jsonManager.saveJson(data: tree, fileName: JsonManager.defaultJson)
     
         if let result = result {
+            self.trees = self.trees.filter {
+                return !($0 == tree)
+            }
             trees.append(tree)
             completion(.success(result))
         } else {

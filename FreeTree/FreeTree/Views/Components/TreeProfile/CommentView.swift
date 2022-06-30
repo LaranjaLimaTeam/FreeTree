@@ -13,15 +13,15 @@ struct CommentView: View {
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
             RoundedProfileImage(imageName: "person", backgroundColor: .blue)
-                .padding([.top, .leading], 8)
                 .frame(width: (UIScreen.main.bounds.width-32)/6, height: (UIScreen.main.bounds.width-32)/6)
+                .padding([.top, .leading], 16)
             CommentTextView(comment: comment,
                         treeViewModel: treeViewModel)
+            .padding(.vertical,16)
         }
-        .padding([.top, .horizontal])
+        .frame(width: UIScreen.main.bounds.width - 32, alignment: .leading)
         .background(.white)
         .cornerRadius(16)
-        .padding(.horizontal, 16)
     }
 }
 
