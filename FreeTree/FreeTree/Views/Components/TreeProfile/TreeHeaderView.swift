@@ -4,6 +4,7 @@ import Combine
 struct TreeHeaderView: View {
     let tagLimit: Int
     @ObservedObject var treeViewModel: TreeProfileViewModel
+    @State var pageControl = 0
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
