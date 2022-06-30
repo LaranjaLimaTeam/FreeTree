@@ -8,6 +8,7 @@
 import Foundation
 
 struct Tree: Codable {
+    var id = UUID()
     var creationTimeStamp: String = "27/06/2022 12:00"
     var name: String = "Limoeiro"
     var address: Address = Address()

@@ -32,6 +32,7 @@ struct PolylineMapView: UIViewRepresentable {
                 let annotationTree = MKPointAnnotation()
                 annotationTree.title = tree.name
                 annotationTree.coordinate = tree.coordinates.coordinate
+                annotationTree.subtitle = "\(tree.id)"
                 uiView.addAnnotation(annotationTree)
             })
         }

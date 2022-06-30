@@ -13,6 +13,8 @@ class MapViewModel: ObservableObject {
     @Published private(set) var treesOnMap: [Tree] = []
     @Published var hasToCentrilize: Bool = false
     @Published var showAddTreeSheet: Bool = false
+    @Published var showTreeProfile: Bool = false
+    @Published var selectedTree: Tree?
     @Published var region = MKCoordinateRegion(
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
