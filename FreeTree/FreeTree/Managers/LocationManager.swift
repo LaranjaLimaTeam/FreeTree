@@ -8,11 +8,16 @@ import CoreLocation
 import os.log
 
 class LocationManager: NSObject, ObservableObject {
-    private let manager = CLLocationManager()
-    @Published private(set) var locationCoordinate: Coordinate?
+    
     static let shared = LocationManager()
-    let defaultLocation = CLLocationCoordinate2D(latitude: 37.334803, longitude: -122.008965)
+    
+    @Published private(set) var locationCoordinate: Coordinate?
+    
+    private let manager = CLLocationManager()
     private var completion: (() -> Void)?
+    
+    // TODO: converter para computed property
+    public let defaultLocation = CLLocationCoordinate2D(latitude: 37.334803, longitude: -122.008965)
     
     private override init() {
         super.init()
@@ -26,9 +31,11 @@ class LocationManager: NSObject, ObservableObject {
         self.completion = completion
         manager.requestWhenInUseAuthorization()
     }
+    
     func checkIfLocationServiceIsEnable() -> Bool {
         return CLLocationManager.locationServicesEnabled()
     }
+    
     func isLocationAuthorized() -> Bool {
         return manager.authorizationStatus == CLAuthorizationStatus.authorizedAlways ||
         manager.authorizationStatus == CLAuthorizationStatus.authorizedWhenInUse

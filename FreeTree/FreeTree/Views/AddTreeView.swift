@@ -9,13 +9,9 @@ import SwiftUI
 
 struct AddTreeView: View {
     
+    @Binding var isPresented: Bool
     @ObservedObject var addTreeViewModel = AddTreeViewModel()
-    @ObservedObject var mapViewModel: MapViewModel
     
-    init(mapViewModel: MapViewModel) {
-        self.mapViewModel = mapViewModel
-    }
-
     var body: some View {
         VStack(alignment: .leading) {
             TextField(
@@ -38,10 +34,13 @@ struct AddTreeView: View {
                     .padding(.bottom, 12)
             }
             .padding(.horizontal, 16)
-            ToggleField()
-            ToggleField()
-            LargeButton {
-                addTreeViewModel.addTree()
+            ToggleField("Foi plantada por você?", value: .constant(true))
+            ToggleField("É frutífera?", value: .constant(true))
+            LargeButton(title: "Adicionar árvore") {
+                withAnimation {
+                    addTreeViewModel.addTree()
+                    self.isPresented = false
+                }
             }
             Spacer()
         }
@@ -53,37 +52,8 @@ struct AddTreeView: View {
 
 struct AddTreeView_Previews: PreviewProvider {
     static var previews: some View {
-        AddTreeView(mapViewModel: MapViewModel())
-    }
-}
-
-struct LargeButton: View {
-    
-    var action: () -> Void
-    
-    var body: some View {
-        Button {
-            action()
-        } label: {
-            Text("Adicionar árvore")
-                .foregroundColor(.white)
-                .frame(maxWidth: .greatestFiniteMagnitude)
-                .padding(.vertical, 13)
-                .background(Color.init(uiColor: .systemGreen))
-                .cornerRadius(13)
-        }
-        .padding(.horizontal, 16)
-    }
-}
-
-struct ToggleField: View {
-    var body: some View {
-        HStack {
-            Toggle("Foi plantada por você?", isOn: .constant(true))
-                .padding(.horizontal, 16)
-        }
-        .frame(height: 44)
-        .background(.white)
-        .padding(.bottom, 8)
+        AddTreeView(
+            isPresented: .constant(true)
+        )
     }
 }

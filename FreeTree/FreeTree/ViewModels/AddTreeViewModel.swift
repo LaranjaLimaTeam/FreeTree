@@ -12,6 +12,7 @@ class AddTreeViewModel: ObservableObject {
 
     @Published var tree = Tree()
     @ObservedObject private var locationManager: LocationManager
+    @Environment(\.dismiss) var dismiss
     
     private let treeManager: TreeManager
 
@@ -31,6 +32,7 @@ class AddTreeViewModel: ObservableObject {
         self.tree.coordinates = getTreeCoordinate()
         
         self.treeManager.create(self.tree) { [weak self] result in
+            guard let self = self else { return }
             switch result {
             case .success:
                 print("success")
