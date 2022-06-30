@@ -11,8 +11,6 @@ struct PhotoList: View {
     @State private var sourceType: UIImagePickerController.SourceType = .camera
     @State private var selectedImage: Image?
     @State private var isImagePickerDisplay = false
-    
-    let images: [Data]
     @State var imageName = [Image("tree1"),
                             Image("tree2"),
                             Image("tree3")]
@@ -27,18 +25,33 @@ struct PhotoList: View {
         if !isImagePickerDisplay {
             ScrollView {
                     LazyVGrid(columns: columns, spacing: 16) {
-                        Image(systemName: "camera")
-                            .resizable()
-                            .aspectRatio(contentMode: .fit)
-                            .foregroundColor(.green)
+                        ZStack {
+                            Color.white
+                            Image(systemName: "camera")
+                                .resizable()
+                                .aspectRatio(contentMode: .fit)
+                                .foregroundColor(.green)
+                                .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
+                                       height: (UIScreen.main.bounds.width - 4*16)/6)
+                        }
+                        .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
+                                height: (UIScreen.main.bounds.width - 4*16)/3)
+                        .cornerRadius(16)
                             .onTapGesture {
                                 isImagePickerDisplay.toggle()
                             }
                         ForEach(0..<imageName.count) { item in
+                            ZStack {
+                                Color.white
                                 imageName[item]
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                            
+                                    .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
+                                           height: (UIScreen.main.bounds.width - 4*16)/3)
+                            }
+                            .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
+                                    height: (UIScreen.main.bounds.width - 4*16)/3)
+                            .cornerRadius(16)
                         }
                     }
                     .padding(.horizontal, 16)
@@ -53,6 +66,6 @@ struct PhotoList: View {
 
 struct PhotoList_Previews: PreviewProvider {
     static var previews: some View {
-        PhotoList(images: [])
+        PhotoList()
     }
 }
