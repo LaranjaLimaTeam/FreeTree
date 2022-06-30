@@ -22,15 +22,13 @@ struct PolylineMapView: UIViewRepresentable {
         return mapView
     }
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<PolylineMapView>) {
-        os_log("Updating map", log: .default, type: .debug)
-        
         if mapViewModel.hasToCentrilize {
             uiView.setRegion(mapViewModel.region, animated: true)
             mapViewModel.hasToCentrilize = false
         }
-        if mapViewModel.trees.count != uiView.annotations.count-1 {
+        if mapViewModel.treesOnMap.count != uiView.annotations.count-1 {
             uiView.removeAnnotations(uiView.annotations)
-            mapViewModel.trees.forEach({ tree in
+            mapViewModel.treesOnMap.forEach({ tree in
                 let annotationTree = MKPointAnnotation()
                 annotationTree.title = tree.name
                 annotationTree.coordinate = tree.coordinates.coordinate

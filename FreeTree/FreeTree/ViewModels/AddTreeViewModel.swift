@@ -9,36 +9,34 @@ import Foundation
 import SwiftUI
 
 class AddTreeViewModel: ObservableObject {
-
-    @Published var tree = Tree()
     @ObservedObject private var locationManager: LocationManager
-    @Environment(\.dismiss) var dismiss
+    @Published var tree = Tree()
+    private let treeManager: TreeManagerImplementation
     
-    private let treeManager: TreeManager
-
     init() {
-        self.treeManager = JSONTreeManager()
+        self.treeManager = TreeManagerImplementation.shared
         self.locationManager = LocationManager.shared
-    }
-    
-    private func getTreeCoordinate() -> Coordinate {
-        guard let currentCoordinate = locationManager.locationCoordinate else {
-            return Coordinate()
-        }
-        return currentCoordinate
     }
     
     public func addTree() {
         self.tree.coordinates = getTreeCoordinate()
         
-        self.treeManager.create(self.tree) { [weak self] result in
-            guard let self = self else { return }
+        self.treeManager.addTree(tree: tree) { [weak self] result in
+            guard let strongSelf = self else { return }
             switch result {
             case .success:
-                print("success")
-            case .failure:
-                print("error")
+                print("Tree added with success")
+            case . failure(_):
+                print("error on add a tree")
             }
         }
     }
+                                 
+    private func getTreeCoordinate() -> Coordinate {
+            guard let currentCoordinate = locationManager.locationCoordinate else {
+                return Coordinate()
+            }
+            return currentCoordinate
+    }
+                                 
 }
