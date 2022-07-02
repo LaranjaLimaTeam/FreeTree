@@ -31,9 +31,9 @@ struct TipsView: View {
 }
 
 struct TipsView_Previews: PreviewProvider {
-    static let comments = [Comment(),
-                           Comment(),
-                           Comment()]
+    static let comments = [Comment(treeId: "udhud"),
+                           Comment(treeId: "dfndg"),
+                           Comment(treeId: "fgjgf")]
     static let treeViewModel = TreeProfileViewModel(tree: Tree())
     static var previews: some View {
         TipsView(treeViewModel: treeViewModel,

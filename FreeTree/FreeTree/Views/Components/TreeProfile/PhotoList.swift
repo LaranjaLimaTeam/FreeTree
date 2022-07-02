@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PhotoList: View {
-    @Binding var imageName: [Data]
+    @ObservedObject var treeProfileViewModel: TreeProfileViewModel
     @Binding var pickingPhoto: Bool
     
     let columns = [
@@ -35,16 +35,14 @@ struct PhotoList: View {
                             .onTapGesture {
                                 self.pickingPhoto = true
                             }
-                        ForEach(0..<imageName.count) { item in
+                        ForEach(Array(treeProfileViewModel.dbPhotos.enumerated()), id: \.1.id) { index, item in
                             ZStack {
                                 Color.white
-                                if let uiImage = UIImage(data: imageName[item]) {
-                                    Image(uiImage: uiImage)
+                                treeProfileViewModel.photos[index]
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
                                                height: (UIScreen.main.bounds.width - 4*16)/3)
-                                }
                             }
                             .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
                                     height: (UIScreen.main.bounds.width - 4*16)/3)
@@ -58,9 +56,9 @@ struct PhotoList: View {
         }
     }
 
-struct PhotoList_Previews: PreviewProvider {
-    static var previews: some View {
-        PhotoList(imageName: .constant([]),
-                  pickingPhoto: .constant(false))
-    }
-}
+//struct PhotoList_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PhotoList(imageName: .constant([]),
+//                  pickingPhoto: .constant(false))
+//    }
+//}

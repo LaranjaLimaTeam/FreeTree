@@ -15,7 +15,7 @@ class TreeManagerImplementation {
     let treeRepository: TreeDAO
     var cancellable: Cancellable?
     
-    init(treeRepository: TreeDAO = TreeRepository()) {
+    init(treeRepository: TreeDAO = FireBaseTreeRepository()) {
         self.treeRepository = treeRepository
         cancellable = self.treeRepository.treesPublished
             .sink(receiveValue: { treeArray in

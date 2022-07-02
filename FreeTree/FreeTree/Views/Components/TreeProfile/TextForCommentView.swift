@@ -22,18 +22,23 @@ struct TextForCommentView: View {
                         self.presentationMode = .large
                     }
                     .onSubmit {
-                        let comment = Comment(treeId: "\(treeViewModel.tree.id)",
-                                              user: UserProfile(),
-                                              comment: self.text)
-                        treeViewModel.insertComment(comment: comment)
+                        if let treeId = treeViewModel.tree.id {
+                            let comment = Comment(treeId: treeId,
+                                                  user: UserProfile(),
+                                                  comment: self.text)
+                            treeViewModel.insertComment(comment: comment)
+                        }
                         self.text = ""
                     }
                 Button {
                     print("Clicou")
-                    let comment = Comment(treeId: "\(treeViewModel.tree.id)",
-                                          user: UserProfile(),
-                                          comment: self.text)
-                    treeViewModel.insertComment(comment: comment)
+                    if let treeId = treeViewModel.tree.id {
+                        let comment = Comment(treeId: treeId,
+                                              user: UserProfile(),
+                                              comment: self.text)
+                        treeViewModel.insertComment(comment: comment)
+                    }
+                    self.text = ""
                     self.text = ""
                     UIApplication.shared.endEditing()
                 } label: {

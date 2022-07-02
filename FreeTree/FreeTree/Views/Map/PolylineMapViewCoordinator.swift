@@ -20,8 +20,10 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
             }
             return false
         }
-        map.mapViewModel.selectedTree = tree.first!
-        map.mapViewModel.showTreeProfile.toggle()
+        if let selectedTree = tree.first {
+            map.mapViewModel.selectedTree = tree.first!
+            map.mapViewModel.showTreeProfile.toggle()
+        }
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {

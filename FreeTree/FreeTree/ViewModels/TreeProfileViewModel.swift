@@ -1,11 +1,17 @@
 import Foundation
 import Combine
 import CoreLocation
+import UIKit
+import SwiftUI
+
+import FirebaseStorage
 
 class TreeProfileViewModel: ObservableObject {
     @Published var tree: Tree
     @Published var distance: Double = 0
-    @Published var comments:[Comment] = []
+    @Published var comments: [Comment] = []
+    @Published var photos: [Image] = []
+    @Published var dbPhotos: [Photo] = []
     private let locationManager = LocationManager.shared
     var cancellable: Cancellable?
     private let treeManager = TreeManagerImplementation.shared
@@ -47,24 +53,82 @@ class TreeProfileViewModel: ObservableObject {
         self.updateComment(comment: comment)
     }
     
-    func updateTree() {
-        treeManager.addTree(tree: self.tree) { result in
-            switch result {
-            case .success(let tree):
-                print("Salvo com sucesso")
-            case .failure(let error):
-                print("Erro ao atualizar arvore")
+    func addPhoto(photo: UIImage?) {
+        if let takenImage = photo {
+            let fireBaseManager = FireBaseManager()
+            guard let treeId = self.tree.id else { return }
+            guard let imageData = takenImage.pngData() else { return }
+            let photo = Photo(treeId: treeId)
+            self.dbPhotos.append(photo)
+            fireBaseManager.addData(data: photo, collection: FireBaseManager.photoCollection)
+            
+            let storageRef = Storage.storage().reference().child("images/\(photo.treeId)/\(photo.id!).png")
+            storageRef.putData(imageData, metadata: nil){ (metadata, error) in
+                guard let metaData = metadata else {
+                    print("encontramos um erro aqui")
+                    return
+                }
+                if let err = error {
+                    print("Erro ao salvar foto: \(err)")
+                }
+                storageRef.downloadURL(completion: { (url, error) in
+                    guard let downloadURL = url?.absoluteString else { return }
+                    // save this URL to your database as usual
+                })
+            }
+            
+        }
+        
+        
+    }
+    
+    func fetchPhotos() {
+        let fireBaseManager = FireBaseManager()
+        fireBaseManager.getData(collection: FireBaseManager.photoCollection) { (dbPhotos: [Photo]?) in
+            if let safePhotos = dbPhotos {
+                guard let treeId = self.tree.id else { return }
+                let treePhotosIds = safePhotos.filter { item in
+                    item.treeId == treeId
+                }
+                for photo in treePhotosIds {
+                    let photoReference = Storage.storage().reference().child("images/\(photo.treeId)/\(photo.id!).png")
+                    photoReference.getData(maxSize: 30*1024*1024) { data, err in
+                        if let error = err {
+                            print("Erro ao baixar arquivo")
+                        } else {
+                            let image = UIImage(data: data!)!
+                            if !self.photos.contains(Image(uiImage: image)) {
+                                self.photos.append(Image(uiImage: image))
+                                self.dbPhotos.append(photo)
+                            }
+                        }
+                    }
+                }
+//                self.photos = safePhotos.compactMap { photo in
+//                    UIImage(data: photo.image)
+//                }.map { image in
+//                    Image(uiImage: image)
+//                }
             }
         }
     }
     
     func updateComment(comment: Comment) {
-        let jsonManager = JsonManager()
-        _ = jsonManager.saveJson(data: comment, fileName: "comment.json")
+        let fireBaseManager = FireBaseManager()
+        fireBaseManager.addData(data: comment, collection: FireBaseManager.commentCollection)
     }
     
     func fetchComment() {
-        let jsonManager = JsonManager()
-        self.comments = jsonManager.decodingJson(fileName: "comment.json") ?? []
+        let fireBaseManager = FireBaseManager()
+        fireBaseManager.getData(collection: FireBaseManager.commentCollection) { (comments: [Comment]?) in
+            if let safeComments = comments {
+                self.comments = safeComments.filter({ item in
+                    if let treeId = self.tree.id {
+                        return treeId == item.treeId
+                    }
+                    return false
+                })
+            }
+        }
     }
 }

@@ -13,12 +13,15 @@ struct TreeProfileView: View {
     @State var pickingPhoto = false
     @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     let sourceType: UIImagePickerController.SourceType = .camera
-    @State private var selectedImage: Image?
+    @State private var selectedImage: UIImage?
     var body: some View {
         if !pickingPhoto {
             VStack {
                 TreeHeaderView(tagLimit: 3,
                                treeViewModel: treeViewModel)
+                .onAppear {
+                    treeViewModel.fetchPhotos()
+                }
                 SegmentedControlView(showMode: $pageControl,
                                      description: "Choose the view you want",
                                      pagesName: ["Dicas", "Fotos"])
@@ -29,26 +32,32 @@ struct TreeProfileView: View {
                              presentationMode: $presentationMode)
                     .padding(.top, 8)
                     .onAppear {
-                        if treeViewModel.comments.isEmpty {
                             treeViewModel.fetchComment()
-                        }
                     }
                 case 1:
-                    PhotoList(imageName: $treeViewModel.tree.images, pickingPhoto: $pickingPhoto)
+                    PhotoList(treeProfileViewModel: treeViewModel, pickingPhoto: $pickingPhoto)
                 default:
                     EmptyView()
                 }
             }
         } else {
-            CaptureImageView(isShown: $pickingPhoto, image: $selectedImage, images: $treeViewModel.tree.images)
+            CaptureImageView(isShown: $pickingPhoto, image: $selectedImage, images: $treeViewModel.photos)
+                .onAppear {
+                    self.presentationMode = .large
+                }
+                .onDisappear {
+                    treeViewModel.addPhoto(photo: selectedImage)
+                    self.presentationMode = .medium
+                    self.selectedImage = nil
+                }
         }
     }
 }
 
 struct TreeProfileView_Previews: PreviewProvider {
-    static let comments = [Comment(),
-                           Comment(),
-                           Comment()]
+    static let comments = [Comment(treeId: "udfus"),
+                           Comment(treeId: "dsfdsufh"),
+                           Comment(treeId: "fvufdhg")]
     static var previews: some View {
         TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
                         presentationMode: .constant(.medium))

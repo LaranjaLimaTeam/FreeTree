@@ -30,6 +30,9 @@
 		C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */; };
 		C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25623DF286B25EE009E2781 /* PhotoList.swift */; };
 		C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BBCE82861E25900CDAC42 /* JsonManager.swift */; };
+		C27FCB612870882D007262E9 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C27FCB602870882D007262E9 /* GoogleService-Info.plist */; };
+		C27FCB6328709093007262E9 /* FireBaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27FCB6228709093007262E9 /* FireBaseManager.swift */; };
+		C27FCB6528709A1A007262E9 /* FireBaseTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27FCB6428709A1A007262E9 /* FireBaseTreeRepository.swift */; };
 		C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5FA722862029500BA2469 /* SearchBar.swift */; };
 		C2CAC6E82864898600A6D4A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E72864898600A6D4A2 /* User.swift */; };
 		C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E92864929500A6D4A2 /* TagListView.swift */; };
@@ -78,6 +81,9 @@
 		C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		C25623DF286B25EE009E2781 /* PhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoList.swift; sourceTree = "<group>"; };
 		C25BBCE82861E25900CDAC42 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
+		C27FCB602870882D007262E9 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		C27FCB6228709093007262E9 /* FireBaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseManager.swift; sourceTree = "<group>"; };
+		C27FCB6428709A1A007262E9 /* FireBaseTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FireBaseTreeRepository.swift; sourceTree = "<group>"; };
 		C2B5FA722862029500BA2469 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C2CAC6E72864898600A6D4A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C2CAC6E92864929500A6D4A2 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -165,6 +171,7 @@
 				6194B5DA285A0B0A00991D50 /* Views */,
 				6194B5D9285A0AF200991D50 /* ViewModels */,
 				6194B5CB285A0AB600991D50 /* FreeTreeApp.swift */,
+				C27FCB602870882D007262E9 /* GoogleService-Info.plist */,
 				6194B5CF285A0AB700991D50 /* Assets.xcassets */,
 				6194B5D1285A0AB700991D50 /* Preview Content */,
 			);
@@ -230,6 +237,8 @@
 				C25BBCE82861E25900CDAC42 /* JsonManager.swift */,
 				E8EF0FE8286353F00085FC57 /* TreeDAO.swift */,
 				61405CE7286C8E3100B004C6 /* TreeManagerImplementation.swift */,
+				C27FCB6228709093007262E9 /* FireBaseManager.swift */,
+				C27FCB6428709A1A007262E9 /* FireBaseTreeRepository.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -307,6 +316,7 @@
 				6194B5C5285A0AB600991D50 /* Frameworks */,
 				6194B5C6285A0AB600991D50 /* Resources */,
 				6194B5DF285A0FB000991D50 /* Run SwiftLint */,
+				5C64EE5E7B439F157BE4364C /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -357,6 +367,7 @@
 			files = (
 				6194B5D3285A0AB700991D50 /* Preview Assets.xcassets in Resources */,
 				6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */,
+				C27FCB612870882D007262E9 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +394,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C64EE5E7B439F157BE4364C /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTree/Pods-FreeTree-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTree/Pods-FreeTree-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FreeTree/Pods-FreeTree-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6194B5DF285A0FB000991D50 /* Run SwiftLint */ = {
@@ -433,6 +461,8 @@
 				C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */,
 				61405CE8286C8E3100B004C6 /* TreeManagerImplementation.swift in Sources */,
 				C2CAC6E82864898600A6D4A2 /* User.swift in Sources */,
+				C27FCB6328709093007262E9 /* FireBaseManager.swift in Sources */,
+				C27FCB6528709A1A007262E9 /* FireBaseTreeRepository.swift in Sources */,
 				E89ED76A286DCD050078E84D /* ToggleField.swift in Sources */,
 				E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */,
 				C20FA61F286622DB00F4D3C4 /* CommentView.swift in Sources */,
@@ -593,7 +623,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nathan.batista.oliveira.io;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -627,7 +657,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = nathan.batista.oliveira.io;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;

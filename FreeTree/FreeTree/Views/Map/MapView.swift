@@ -47,9 +47,6 @@ struct MapView: View {
                     TreeProfileView(treeViewModel: treeProfileViewModel,
                                     presentationMode: $presentationMode)
                 }, presentationMode: $presentationMode)
-                .onDisappear {
-                    treeProfileViewModel.updateTree()
-                }
             }
             
         }

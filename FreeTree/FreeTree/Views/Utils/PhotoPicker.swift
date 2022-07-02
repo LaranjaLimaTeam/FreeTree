@@ -12,8 +12,8 @@ struct CaptureImageView {
     
     // MARK: - Properties
     @Binding var isShown: Bool
-    @Binding var image: Image?
-    @Binding var images: [Data]
+    @Binding var image: UIImage?
+    @Binding var images: [Image]
     
     func makeCoordinator() -> Coordinator {
         return Coordinator(isShown: $isShown, image: $image, images: $images)
@@ -22,9 +22,9 @@ struct CaptureImageView {
 
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
   @Binding var isCoordinatorShown: Bool
-  @Binding var imageInCoordinator: Image?
-  @Binding var images: [Data]
-    init(isShown: Binding<Bool>, image: Binding<Image?>, images: Binding<[Data]>) {
+  @Binding var imageInCoordinator: UIImage?
+  @Binding var images: [Image]
+    init(isShown: Binding<Bool>, image: Binding<UIImage?>, images: Binding<[Image]>) {
     _isCoordinatorShown = isShown
     _imageInCoordinator = image
     _images = images
@@ -33,11 +33,9 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
                              didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
      guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
     let newUnwrapImage = rotateImage(image: unwrapImage)
-    imageInCoordinator = Image(uiImage: newUnwrapImage)
+    imageInCoordinator = newUnwrapImage
       if let imageInCoordinator = imageInCoordinator {
-          if let data = newUnwrapImage.pngData() {
-              images.insert(data, at: 0)
-          }
+          images.insert(Image(uiImage: imageInCoordinator), at: 0)
       }
      isCoordinatorShown = false
   }
