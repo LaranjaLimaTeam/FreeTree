@@ -6,9 +6,15 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Comment: Identifiable {
-    let id = UUID()
+struct Comment: Identifiable, Equatable, Codable {
+    static func == (lhs: Comment, rhs: Comment) -> Bool {
+        return lhs.id == rhs.id
+    }
+    
+    var treeId: String
+    @DocumentID var id: String? = UUID().uuidString
     var user: UserProfile = UserProfile()
     var comment =  """
 Lorem ipsum dolor sit amet, consectetur adipiscing elit.
@@ -18,4 +24,9 @@ Ut massa facilisis vel tempor nunc feugiat viverra sed.
  Morbi dignissim dignissim suspendisse vestibulum.
 """
     let date = "27/06/2022 12:00"
+}
+
+struct Photo: Identifiable, Codable {
+    var treeId: String
+    @DocumentID var id: String? = UUID().uuidString
 }

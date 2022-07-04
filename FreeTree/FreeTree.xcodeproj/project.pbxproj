@@ -35,6 +35,7 @@
 		C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E92864929500A6D4A2 /* TagListView.swift */; };
 		C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6EB286492E600A6D4A2 /* ImageHeaderView.swift */; };
 		C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6ED286493DC00A6D4A2 /* TreeProfileViewModel.swift */; };
+		C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF904F28732A3300250E7D /* FirebaseManager.swift */; };
 		E82818B42861E48300E81C82 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B32861E48300E81C82 /* Tree.swift */; };
 		E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* TreeRepository.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
@@ -83,6 +84,7 @@
 		C2CAC6E92864929500A6D4A2 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
 		C2CAC6EB286492E600A6D4A2 /* ImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHeaderView.swift; sourceTree = "<group>"; };
 		C2CAC6ED286493DC00A6D4A2 /* TreeProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeProfileViewModel.swift; sourceTree = "<group>"; };
+		C2EF904F28732A3300250E7D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		E82818B32861E48300E81C82 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		E82818B52861EC9B00E81C82 /* TreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRepository.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 				C25BBCE82861E25900CDAC42 /* JsonManager.swift */,
 				E8EF0FE8286353F00085FC57 /* TreeDAO.swift */,
 				61405CE7286C8E3100B004C6 /* TreeManagerImplementation.swift */,
+				C2EF904F28732A3300250E7D /* FirebaseManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -428,6 +431,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */,
 				C20D0CCA2869EDD600BF425C /* TipsView.swift in Sources */,
 				E84803A02864A495008BD2F9 /* MapButton.swift in Sources */,
 				E82818B42861E48300E81C82 /* Tree.swift in Sources */,
