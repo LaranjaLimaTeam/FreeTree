@@ -245,7 +245,7 @@
 				C20D0CC52869ECF000BF425C /* CommentTextView.swift */,
 				C20D0CC92869EDD600BF425C /* TipsView.swift */,
 				C20D0CCB2869EE2A00BF425C /* TextForCommentView.swift */,
-                C25623DF286B25EE009E2781 /* PhotoList.swift */,
+				C25623DF286B25EE009E2781 /* PhotoList.swift */,
 			);
 			path = TreeProfile;
 			sourceTree = "<group>";
@@ -307,6 +307,7 @@
 				6194B5C5285A0AB600991D50 /* Frameworks */,
 				6194B5C6285A0AB600991D50 /* Resources */,
 				6194B5DF285A0FB000991D50 /* Run SwiftLint */,
+				2DB24A2706228F6BD3799850 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -383,6 +384,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		2DB24A2706228F6BD3799850 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTree/Pods-FreeTree-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-FreeTree/Pods-FreeTree-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-FreeTree/Pods-FreeTree-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		6194B5DF285A0FB000991D50 /* Run SwiftLint */ = {
