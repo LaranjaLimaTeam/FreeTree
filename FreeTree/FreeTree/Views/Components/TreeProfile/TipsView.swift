@@ -9,7 +9,6 @@ import SwiftUI
 
 struct TipsView: View {
     @ObservedObject var treeViewModel: TreeProfileViewModel
-    let comments: [Comment]
     @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     
     var body: some View {
@@ -18,7 +17,7 @@ struct TipsView: View {
             VStack {
                 ScrollView(.vertical) {
                     LazyVStack(spacing: 8) {
-                        ForEach(comments) { comment in
+                        ForEach(treeViewModel.comments) { comment in
                             CommentView(comment: comment, treeViewModel: treeViewModel)
                         }
                     }
@@ -33,12 +32,8 @@ struct TipsView: View {
 }
 
 struct TipsView_Previews: PreviewProvider {
-    static let comments = [Comment(),
-                           Comment(),
-                           Comment()]
     static var previews: some View {
         TipsView(treeViewModel: TreeProfileViewModel(tree: Tree()),
-                 comments: comments,
                  presentationMode: .constant(.medium))
     }
 }

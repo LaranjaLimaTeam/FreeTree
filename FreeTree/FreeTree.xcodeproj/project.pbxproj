@@ -36,6 +36,8 @@
 		C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6EB286492E600A6D4A2 /* ImageHeaderView.swift */; };
 		C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6ED286493DC00A6D4A2 /* TreeProfileViewModel.swift */; };
 		C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF904F28732A3300250E7D /* FirebaseManager.swift */; };
+		C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */; };
+		C2EF905628732FB900250E7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2EF905528732FB900250E7D /* GoogleService-Info.plist */; };
 		E82818B42861E48300E81C82 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B32861E48300E81C82 /* Tree.swift */; };
 		E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* TreeRepository.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
@@ -85,6 +87,8 @@
 		C2CAC6EB286492E600A6D4A2 /* ImageHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageHeaderView.swift; sourceTree = "<group>"; };
 		C2CAC6ED286493DC00A6D4A2 /* TreeProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeProfileViewModel.swift; sourceTree = "<group>"; };
 		C2EF904F28732A3300250E7D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTreeRepository.swift; sourceTree = "<group>"; };
+		C2EF905528732FB900250E7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		E82818B32861E48300E81C82 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		E82818B52861EC9B00E81C82 /* TreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRepository.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
@@ -160,6 +164,7 @@
 		6194B5CA285A0AB600991D50 /* FreeTree */ = {
 			isa = PBXGroup;
 			children = (
+				C2EF905528732FB900250E7D /* GoogleService-Info.plist */,
 				6162A20A2869ED09001F8449 /* Resources */,
 				6194B5DD285A0B5900991D50 /* Managers */,
 				6194B5DC285A0B5000991D50 /* Extensions */,
@@ -233,6 +238,7 @@
 				E8EF0FE8286353F00085FC57 /* TreeDAO.swift */,
 				61405CE7286C8E3100B004C6 /* TreeManagerImplementation.swift */,
 				C2EF904F28732A3300250E7D /* FirebaseManager.swift */,
+				C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -361,6 +367,7 @@
 			files = (
 				6194B5D3285A0AB700991D50 /* Preview Assets.xcassets in Resources */,
 				6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */,
+				C2EF905628732FB900250E7D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +438,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */,
 				C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */,
 				C20D0CCA2869EDD600BF425C /* TipsView.swift in Sources */,
 				E84803A02864A495008BD2F9 /* MapButton.swift in Sources */,
@@ -603,7 +611,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) photo use";
+				INFOPLIST_KEY_NSCameraUsageDescription = "FreeTree photo use";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please grant access to your location to use map functions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -615,7 +623,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pedro.mota.io;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -637,7 +645,7 @@
 				DEVELOPMENT_TEAM = "";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_KEY_NSCameraUsageDescription = "$(PRODUCT_NAME) photo use";
+				INFOPLIST_KEY_NSCameraUsageDescription = "FreeTree photo use";
 				INFOPLIST_KEY_NSLocationWhenInUseUsageDescription = "Please grant access to your location to use map functions";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -649,7 +657,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = pedro.mota.io;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
