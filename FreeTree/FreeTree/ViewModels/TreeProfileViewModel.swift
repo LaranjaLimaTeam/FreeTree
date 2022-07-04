@@ -104,11 +104,26 @@ class TreeProfileViewModel: ObservableObject {
                         }
                     }
                 }
-//                self.photos = safePhotos.compactMap { photo in
-//                    UIImage(data: photo.image)
-//                }.map { image in
-//                    Image(uiImage: image)
-//                }
+            }
+        }
+    }
+    
+    func deletePhotos() {
+        let fireBaseManager = FireBaseManager()
+        fireBaseManager.getData(collection: FireBaseManager.photoCollection) { (dbPhotos: [Photo]?) in
+            if let safePhotos = dbPhotos {
+                guard let treeId = self.tree.id else { return }
+                let treePhotosIds = safePhotos.filter { item in
+                    item.treeId == treeId
+                }
+                for photo in treePhotosIds {
+                    let photoReference = Storage.storage().reference().child("images/\(photo.treeId)/\(photo.id!).png")
+                    photoReference.delete { error in
+                        if let err = error {
+                            print("Failed to delete \(err)")
+                        }
+                    }
+                }
             }
         }
     }
