@@ -8,5 +8,7 @@ target 'FreeTree' do
   use_frameworks!
 
   # Pods for FreeTree
-
+  pod 'FirebaseFirestoreSwift'
+  pod 'Firebase/Firestore'
+  pod 'Firebase/Storage'
 end

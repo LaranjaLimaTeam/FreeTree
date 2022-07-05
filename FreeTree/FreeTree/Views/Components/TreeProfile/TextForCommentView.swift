@@ -23,8 +23,13 @@ struct TextForCommentView: View {
                     }
                 Button {
                     print("Clicou")
-                    let comment = Comment(user: UserProfile(), comment: text)
-                    treeViewModel.insertComment(comment: comment)
+                    if let treeId = treeViewModel.tree.id {
+                                            let comment = Comment(treeId: treeId,
+                                                                  user: UserProfile(),
+                                                                  comment: self.text)
+                                            treeViewModel.insertComment(comment: comment)
+                                        }
+                    self.text = ""
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
                         .foregroundColor(.green)

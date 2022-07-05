@@ -27,7 +27,7 @@ struct CommentTextView: View {
     }
 }
 struct CommentTextView_Previews: PreviewProvider {
-    static let comment = Comment()
+    static let comment = Comment(treeId: UUID().uuidString)
     static var previews: some View {
         CommentTextView(comment: comment, treeViewModel: TreeProfileViewModel(tree: Tree()))
     }

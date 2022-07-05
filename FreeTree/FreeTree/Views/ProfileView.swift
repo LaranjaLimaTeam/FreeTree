@@ -18,9 +18,6 @@ struct ProfileView: View {
             .sheet(isPresented: $sheet) {
                 HalfSheet(content: {
                     TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
-                                    comments: [Comment(),
-                                               Comment(),
-                                               Comment()],
                                     presentationMode: $presentationMode)
                 }, presentationMode: $presentationMode)
             }

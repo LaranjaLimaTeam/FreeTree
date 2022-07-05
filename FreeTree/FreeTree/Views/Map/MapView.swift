@@ -43,7 +43,6 @@ struct MapView: View {
         .sheet(isPresented: $mapViewModel.showTreeProfile) {
             HalfSheet(content: {
                 TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
-                                comments: [],
                                 presentationMode: $presentationMode)
             }, presentationMode: $presentationMode)
         }

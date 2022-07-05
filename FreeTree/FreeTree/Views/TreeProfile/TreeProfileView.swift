@@ -10,7 +10,6 @@ import SwiftUI
 struct TreeProfileView: View {
     @State var pageControl = 0
     @ObservedObject var treeViewModel: TreeProfileViewModel
-    let comments: [Comment]
     @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     var body: some View {
         VStack {
@@ -23,7 +22,6 @@ struct TreeProfileView: View {
             switch pageControl {
             case 0:
                 TipsView(treeViewModel: treeViewModel,
-                         comments: comments,
                          presentationMode: $presentationMode)
                 .padding(.top, 8)
             case 1:
@@ -36,11 +34,8 @@ struct TreeProfileView: View {
 }
 
 struct TreeProfileView_Previews: PreviewProvider {
-    static let comments = [Comment(),
-                           Comment(),
-                           Comment()]
     static var previews: some View {
         TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
-                        comments: comments, presentationMode: .constant(.medium))
+                        presentationMode: .constant(.medium))
     }
 }

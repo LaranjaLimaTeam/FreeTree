@@ -6,9 +6,13 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct Tree: Codable {
-    var id = UUID()
+struct Tree: Codable, Equatable, Identifiable {
+    static func == (lhs: Tree, rhs: Tree) -> Bool {
+        return lhs.id == rhs.id
+    }
+    @DocumentID var id: String? = UUID().uuidString
     var creationTimeStamp: String = "27/06/2022 12:00"
     var name: String = "Limoeiro"
     var address: Address = Address()
