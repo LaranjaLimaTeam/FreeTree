@@ -3,14 +3,20 @@ import Combine
 import CoreLocation
 
 class TreeProfileViewModel: ObservableObject {
+    
     @Published var tree: Tree
     @Published var distance: Double = 0
     @Published var comments:[Comment] = []
+    
     private let locationManager = LocationManager.shared
+    private let commentRepository: CommentRepository
+    
     var cancellable: Cancellable?
 
     init(tree: Tree) {
         self.tree = tree
+        self.commentRepository = FirebaseCommentRepository()
+        
         cancellable =  self.locationManager.$locationCoordinate
             .map { coordinate in
                 let distance = self.getDistance(coordinate: tree.coordinates)
@@ -18,6 +24,18 @@ class TreeProfileViewModel: ObservableObject {
             }.sink(receiveValue: { distance in
                 self.distance = distance
             })
+    }
+    
+    public func fetchComments() {
+        guard let treeId = self.tree.id else { return }
+        
+        commentRepository.fetchComments(for: treeId) { [weak self] result in
+            guard let strongSelf = self else { return }
+            switch result {
+            case .success(let comments): strongSelf.comments = comments
+            case .failure(let failure): print(failure)
+            }
+        }
     }
 
     func getStringDate(inputDate: String) -> String {
