@@ -10,7 +10,7 @@ import SwiftUI
 struct TextForCommentView: View {
     @State var text: String = ""
     @ObservedObject var treeViewModel: TreeProfileViewModel
-    @Binding var presentationMode : UISheetPresentationController.Detent.Identifier
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
     var body: some View {
         ZStack(alignment: .trailing) {
             RoundedRectangle(cornerRadius: 16)
@@ -24,11 +24,11 @@ struct TextForCommentView: View {
                 Button {
                     print("Clicou")
                     if let treeId = treeViewModel.tree.id {
-                                            let comment = Comment(treeId: treeId,
-                                                                  user: UserProfile(),
-                                                                  comment: self.text)
-                                            treeViewModel.insertComment(comment: comment)
-                                        }
+                        let comment = Comment(treeId: treeId,
+                                              user: UserProfile(),
+                                              comment: self.text)
+                        treeViewModel.insertComment(comment: comment)
+                    }
                     self.text = ""
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
