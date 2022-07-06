@@ -48,6 +48,7 @@
 		E84803A02864A495008BD2F9 /* MapButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E848039F2864A495008BD2F9 /* MapButton.swift */; };
 		E87800A328746296001C9392 /* CommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87800A228746296001C9392 /* CommentRepository.swift */; };
 		E87800A7287464AF001C9392 /* FirebaseCommentRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87800A6287464AF001C9392 /* FirebaseCommentRepository.swift */; };
+		E87C7EEF2875AF73000026F7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C7EEE2875AF73000026F7 /* DateExtension.swift */; };
 		E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED767286DCC5C0078E84D /* LargeButton.swift */; };
 		E89ED76A286DCD050078E84D /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED769286DCD050078E84D /* ToggleField.swift */; };
 		E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE9D0C2863579C002F747B /* AddTreeView.swift */; };
@@ -101,6 +102,7 @@
 		E848039F2864A495008BD2F9 /* MapButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapButton.swift; sourceTree = "<group>"; };
 		E87800A228746296001C9392 /* CommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRepository.swift; sourceTree = "<group>"; };
 		E87800A6287464AF001C9392 /* FirebaseCommentRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseCommentRepository.swift; sourceTree = "<group>"; };
+		E87C7EEE2875AF73000026F7 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E89ED767286DCC5C0078E84D /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		E89ED769286DCD050078E84D /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
 		E8AE9D0C2863579C002F747B /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
@@ -230,6 +232,7 @@
 		6194B5DC285A0B5000991D50 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				E87C7EEE2875AF73000026F7 /* DateExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -240,9 +243,9 @@
 				E82818B52861EC9B00E81C82 /* TreeRepository.swift */,
 				613F04632861E34000E4CC47 /* LocationManager.swift */,
 				C25BBCE82861E25900CDAC42 /* JsonManager.swift */,
+				C2EF904F28732A3300250E7D /* FirebaseManager.swift */,
 				E8EF0FE8286353F00085FC57 /* TreeDAO.swift */,
 				61405CE7286C8E3100B004C6 /* TreeManagerImplementation.swift */,
-				C2EF904F28732A3300250E7D /* FirebaseManager.swift */,
 				C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */,
 			);
 			path = Managers;
@@ -478,6 +481,7 @@
 				613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */,
 				E87800A7287464AF001C9392 /* FirebaseCommentRepository.swift in Sources */,
 				613F04662861E42A00E4CC47 /* MapView.swift in Sources */,
+				E87C7EEF2875AF73000026F7 /* DateExtension.swift in Sources */,
 				C20D0CC82869ED5500BF425C /* Comment.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
 				E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */,
@@ -632,7 +636,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeTree/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W989F39VWK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "FreeTree photo use";
@@ -647,7 +651,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp.mota;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
@@ -666,7 +670,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeTree/Preview Content\"";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = W989F39VWK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "FreeTree photo use";
@@ -681,7 +685,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp.mota;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
