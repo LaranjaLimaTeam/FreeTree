@@ -26,6 +26,12 @@ class TreeProfileViewModel: ObservableObject {
             })
     }
     
+    private func orderCommentsFromMostRecent(_ comments: [Comment]) -> [Comment] {
+        return comments.sorted { c1, c2 in
+            Date.from(c1.date) >= Date.from(c2.date)
+        }
+    }
+    
     public func fetchComments() {
         guard let treeId = self.tree.id else { return }
         
@@ -33,7 +39,7 @@ class TreeProfileViewModel: ObservableObject {
             guard let strongSelf = self else { return }
             switch result {
             case .success(let comments):
-                strongSelf.comments = comments
+                strongSelf.comments = strongSelf.orderCommentsFromMostRecent(comments)
             case .failure(let failure):
                 print(failure)
             }
