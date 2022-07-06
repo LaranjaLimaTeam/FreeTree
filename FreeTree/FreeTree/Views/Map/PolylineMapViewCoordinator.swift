@@ -13,6 +13,7 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
         self.map = control
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        mapView.deselectAnnotation(view.annotation, animated: false)
         if view.reuseIdentifier != "tree" { return }
         let treeArray = map.mapViewModel.treesOnMap
         let tree = treeArray.filter {
