@@ -23,7 +23,6 @@ struct CommentTextView: View {
             Text(comment.comment)
                 .font(.footnote)
         }
-        .padding([.horizontal, .vertical], 8)
     }
 }
 struct CommentTextView_Previews: PreviewProvider {
