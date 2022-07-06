@@ -9,23 +9,33 @@ import SwiftUI
 
 struct MapButton: View {
     
-    let systemIcon: String
+    let isSystemIcon: Bool
+    let iconName: String
     let action: () -> Void
     
     var body: some View {
         Button {
             self.action()
         } label: {
-            Image(systemName: self.systemIcon)
-                .foregroundColor(Color.init(uiColor: .systemGreen))
-                .frame(width: 30, height: 30)
-                .padding(.all, 2)
+            if isSystemIcon {
+                Image(systemName: iconName)
+                    .foregroundColor(Color.init(uiColor: .systemGreen))
+                    .frame(width: 30, height: 30)
+                    .padding(.all, 2)
+            } else {
+                Image(iconName)
+                    .resizable()
+                    .scaledToFit()
+                    .padding(.all, 6)
+            }
+
         }
     }
 }
 
 struct MapButton_Previews: PreviewProvider {
     static var previews: some View {
-        MapButton(systemIcon: "leaf") { }
+        MapButton(isSystemIcon: true, iconName: "leaf") {
+        }
     }
 }
