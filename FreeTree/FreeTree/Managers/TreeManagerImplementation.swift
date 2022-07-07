@@ -35,6 +35,7 @@ class TreeManagerImplementation {
             }
         }
     }
+    
     func updateTrees(completion: @escaping (Result<Bool, TreeManagerError>) -> Void) {
         self.treeRepository.fetch(completion: { [weak self] result in
             guard let strongSelf = self else { return }
