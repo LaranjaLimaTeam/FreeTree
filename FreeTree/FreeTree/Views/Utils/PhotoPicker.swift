@@ -12,7 +12,7 @@ struct CaptureImageView {
     
     // MARK: - Properties
     @Binding var isShown: Bool
-    @Binding var image: Image?
+    @Binding var image: UIImage?
     @Binding var images: [Image]
     
     func makeCoordinator() -> Coordinator {
@@ -22,21 +22,23 @@ struct CaptureImageView {
 
 class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
   @Binding var isCoordinatorShown: Bool
-  @Binding var imageInCoordinator: Image?
-    @Binding var images: [Image]
-    init(isShown: Binding<Bool>, image: Binding<Image?>, images: Binding<[Image]>) {
+  @Binding var imageInCoordinator: UIImage?
+  @Binding var images: [Image]
+    
+    init(isShown: Binding<Bool>, image: Binding<UIImage?>, images: Binding<[Image]>) {
     _isCoordinatorShown = isShown
     _imageInCoordinator = image
     _images = images
   }
+    
   func imagePickerController(_ picker: UIImagePickerController,
                              didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]) {
-     guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
-     imageInCoordinator = Image(uiImage: unwrapImage)
-      if let imageInCoordinator = imageInCoordinator {
-          images.insert(imageInCoordinator, at: 0)
-      }
-     isCoordinatorShown = false
+      
+      guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
+      imageInCoordinator = unwrapImage
+      let image = Image(uiImage: unwrapImage)
+      images.insert(image, at: 0)
+      isCoordinatorShown = false
   }
   func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
      isCoordinatorShown = false
