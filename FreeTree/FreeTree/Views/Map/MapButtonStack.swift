@@ -12,18 +12,18 @@ struct MapButtonStack: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            MapButton(systemIcon: "leaf") {
+            MapButton(isSystemIcon: false, iconName: "leaf+add") {
                 withAnimation {
                     mapViewModel.showAddTreeModal()
                 }
             }
             Divider()
-            MapButton(systemIcon: "square.stack.3d.down.right") {
+            MapButton(isSystemIcon: true, iconName: "square.stack.3d.down.right") {
                 // TODO: implementar ação
                 print("change perspective button tapped")
             }
             Divider()
-            MapButton(systemIcon: "paperplane") {
+            MapButton(isSystemIcon: true, iconName: "paperplane") {
                 mapViewModel.centralizeMapRegion()
             }
         }
