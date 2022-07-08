@@ -6,8 +6,10 @@
 //
 
 import Foundation
+import Combine
 import FirebaseFirestore
 import FirebaseStorage
+import CloudKit
 
 enum FirebaseError: Error {
     case fetchError
@@ -72,6 +74,25 @@ struct FireBaseManager {
             print("Error writing website to Firestore: \(error)")
         }
         return nil
+    }
+    
+    public func fetchFilesPath(from folder: String) -> Future<[String], FirebaseError> {
+        let storageFolderReference = storage.child(folder)
+        var filePaths = [String]()
+        
+        return Future { promise in
+            storageFolderReference.listAll { result, error in
+                guard let result = result, let error = error else {
+                    promise(.failure(.fetchError))
+                    return
+                }
+                
+                for item in result.items {
+                    filePaths.append(item.fullPath)
+                }
+            }
+            promise(.success(filePaths))
+        }
     }
     
     func fetchAllFilesPath(from folder: String, completion: @escaping (Result<[String], FirebaseError>) -> Void) {
