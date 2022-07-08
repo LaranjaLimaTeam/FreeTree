@@ -53,6 +53,11 @@ struct TreeProfileView: View {
                     self.presentationMode = .large
                 }
                 .onDisappear {
+                    guard let image = selectedImage else { return }
+                    if let data = image.jpeg(.medium) {
+                        treeViewModel.uploadImage(data: data)
+                    }
+                    self.selectedImage = nil
                     print("Sai da tela")
                 }
         }

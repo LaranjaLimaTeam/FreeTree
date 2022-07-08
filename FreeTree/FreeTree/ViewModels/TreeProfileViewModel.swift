@@ -90,6 +90,18 @@ class TreeProfileViewModel: ObservableObject {
         return nil
     }
     
+    public func uploadImage(data: Data) {
+        guard let treeID = self.tree.id else { return }
+        self.photoRepository.add(treeID, data) { (result: Result<Data, Error>) in
+            switch result {
+            case .success(let data):
+                print("Sucesso ao enviar foto")
+            case .failure(let error):
+                print("Erro ao enviar foto")
+            }
+        }
+    }
+    
     func getStringDate(inputDate: String) -> String {
         var newDate = inputDate
         let start = newDate.index(newDate.startIndex, offsetBy: 0)

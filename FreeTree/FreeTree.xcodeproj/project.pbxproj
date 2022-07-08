@@ -32,6 +32,7 @@
 		C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BBCE82861E25900CDAC42 /* JsonManager.swift */; };
 		C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD33287705B90046AAC7 /* PhotoRepository.swift */; };
 		C26CFD362877060C0046AAC7 /* FirebasePhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD352877060C0046AAC7 /* FirebasePhotoRepository.swift */; };
+		C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD37287748A90046AAC7 /* ImageExtension.swift */; };
 		C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5FA722862029500BA2469 /* SearchBar.swift */; };
 		C2CAC6E82864898600A6D4A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E72864898600A6D4A2 /* User.swift */; };
 		C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E92864929500A6D4A2 /* TagListView.swift */; };
@@ -88,6 +89,7 @@
 		C25BBCE82861E25900CDAC42 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		C26CFD33287705B90046AAC7 /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
 		C26CFD352877060C0046AAC7 /* FirebasePhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePhotoRepository.swift; sourceTree = "<group>"; };
+		C26CFD37287748A90046AAC7 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
 		C2B5FA722862029500BA2469 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C2CAC6E72864898600A6D4A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C2CAC6E92864929500A6D4A2 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -237,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				E87C7EEE2875AF73000026F7 /* DateExtension.swift */,
+				C26CFD37287748A90046AAC7 /* ImageExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -498,6 +501,7 @@
 				613F04662861E42A00E4CC47 /* MapView.swift in Sources */,
 				E87C7EEF2875AF73000026F7 /* DateExtension.swift in Sources */,
 				C20D0CC82869ED5500BF425C /* Comment.swift in Sources */,
+				C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
 				E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */,
 				C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */,

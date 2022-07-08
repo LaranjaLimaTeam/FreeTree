@@ -40,7 +40,11 @@ class FirebasePhotoRepository: PhotoRepository {
         }
     }
     
-    func add(_ photo: Data, completion: @escaping (Result<Data, Error>) -> Void) {
-        print("add")
+    func add(_ treeId:String, _ photo: Data, completion: @escaping (Result<Data, Error>) -> Void) {
+        let id = UUID().uuidString
+        let path = "\(self.storageList)/\(treeId)/\(id).png"
+        self.firebaseManager.uploadFile(to: path, data: photo) { (result:Result<Data, Error>) in
+            completion(result)
+        }
     }
 }
