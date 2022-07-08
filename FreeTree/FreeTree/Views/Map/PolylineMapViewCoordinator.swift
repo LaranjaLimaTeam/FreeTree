@@ -23,7 +23,14 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
             return false
         }
         map.mapViewModel.selectedTree = tree.first!
+        map.mapViewModel.startRoute(destination: tree.first!.coordinates) //To Debug routes
         map.mapViewModel.showTreeProfile.toggle()
+    }
+    func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
+         let renderer = MKPolylineRenderer(overlay: overlay)
+         renderer.strokeColor = UIColor.blue
+         renderer.lineWidth = 3.0
+         return renderer
     }
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
