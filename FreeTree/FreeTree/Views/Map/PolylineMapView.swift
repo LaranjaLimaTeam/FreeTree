@@ -40,7 +40,7 @@ struct PolylineMapView: UIViewRepresentable {
         if mapViewModel.hasToUpdateRoute {
             mapViewModel.hasToUpdateRoute = false
             uiView.removeOverlays(uiView.overlays)
-            if let route = mapViewModel.routeViewManager.route {
+            if let route = mapViewModel.routeViewModel.route {
                 uiView.addOverlay(route)
             }
         }

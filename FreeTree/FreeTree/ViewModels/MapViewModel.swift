@@ -23,7 +23,7 @@ class MapViewModel: ObservableObject {
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
-    let routeViewManager = RouteViewModel()
+    let routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
     var cancellableRoute: Cancellable?
     
@@ -36,7 +36,7 @@ class MapViewModel: ObservableObject {
             .sink(receiveValue: { treeArray in
                 self.treesOnMap = treeArray
             })
-        cancellableRoute = self.routeViewManager.$route
+        cancellableRoute = self.routeViewModel.$route
             .sink(receiveValue: { _ in
                 self.hasToUpdateRoute = true
             })
@@ -67,11 +67,11 @@ class MapViewModel: ObservableObject {
     }
     func startRoute(destination: Coordinate) {
         hasToUpdateRoute = true
-        routeViewManager.destination = destination
+        routeViewModel.destination = destination
     }
     func stopRoute() {
         hasToUpdateRoute = false
-        routeViewManager.destination = nil
+        routeViewModel.destination = nil
     }
     
 }

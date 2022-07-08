@@ -71,8 +71,8 @@ class RouteViewModel: ObservableObject {
             guard let unwrappedResponse = response else { return }
             guard let polyline = unwrappedResponse.routes.first?.polyline else { return }
             self.route = polyline
+            self.currentPolylineLocation = currentUserLocation
         }
-        self.currentPolylineLocation = currentUserLocation
     }
     
     func endRoute() {
