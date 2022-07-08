@@ -90,13 +90,24 @@ class TreeProfileViewModel: ObservableObject {
         return nil
     }
     
-    public func uploadImage(data: Data) {
+    func compress(_ image: UIImage?, with quality: UIImage.JPEGQuality) -> Data? {
+        guard let image = image else { return nil }
+        if let data = image.jpeg(quality) {
+            return data
+        }
+        
+        return nil
+    }
+    
+    public func uploadImage(data: UIImage?) {
         guard let treeID = self.tree.id else { return }
-        self.photoRepository.add(treeID, data) { (result: Result<Data, Error>) in
+        guard let imageData = compress(data, with: .low) else { return }
+        
+        self.photoRepository.add(treeID, imageData) { (result: Result<Data, Error>) in
             switch result {
-            case .success(let data):
+            case .success:
                 print("Sucesso ao enviar foto")
-            case .failure(let error):
+            case .failure:
                 print("Erro ao enviar foto")
             }
         }

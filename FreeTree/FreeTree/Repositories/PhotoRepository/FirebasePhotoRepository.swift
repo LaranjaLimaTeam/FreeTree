@@ -8,7 +8,7 @@
 import Foundation
 
 class FirebasePhotoRepository: PhotoRepository {
-        
+    
     private let firebaseManager: FireBaseManager
     private let storageList = "images"
     
