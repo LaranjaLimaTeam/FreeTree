@@ -95,6 +95,14 @@ struct FireBaseManager {
         }
     }
     
+//    public func downloadFiles(from storageFolder: String) -> Future<Data, FirebaseError> {
+//    
+//    }
+//    
+//    public func downloadStorageFile(with path: String) -> Future<Data, FirebaseError> {
+//        
+//    }
+    
     func fetchAllFilesPath(from folder: String, completion: @escaping (Result<[String], FirebaseError>) -> Void) {
         let storageReference = storage.child(folder)
         

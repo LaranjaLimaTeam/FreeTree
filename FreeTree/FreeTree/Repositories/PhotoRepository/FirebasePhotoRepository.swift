@@ -16,6 +16,14 @@ class FirebasePhotoRepository: PhotoRepository {
         self.firebaseManager = FireBaseManager()
     }
     
+//    fetchPhotos(for treeId: String) {
+//        let treePhotosFolderPath = "\(self.storageList)/\(treeId)"
+//        
+//        firebaseManager.fetchFilesPath(from: treePhotosFolderPath)
+//            .fla
+//
+//    }
+    
     func fetchPhotos(for treeId: String, completion: @escaping (Result<Data, Error>) -> Void) {
         let completePath = "\(self.storageList)/\(treeId)"
         var filesPath: [String] = []
