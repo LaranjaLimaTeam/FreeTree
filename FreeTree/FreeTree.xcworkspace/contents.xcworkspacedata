@@ -2,9 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:toAcademy.gpx">
-   </FileRef>
-   <FileRef
       location = "group:FreeTree.xcodeproj">
    </FileRef>
    <FileRef
