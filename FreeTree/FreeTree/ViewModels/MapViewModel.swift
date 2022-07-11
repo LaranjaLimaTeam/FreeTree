@@ -74,4 +74,10 @@ class MapViewModel: ObservableObject {
         routeViewModel.destination = nil
     }
     
+    func calculateDistance(tree: Tree) -> Double {
+        let coordinate = tree.coordinates
+        guard let distanceInMeters = locationManager.getDistance(coordinates: coordinate) else {return 0}
+        let distanceInKm: Double = distanceInMeters*1.0/1000
+        return distanceInKm
+    }
 }

@@ -11,21 +11,31 @@ struct MapView: View {
 
     @StateObject var mapViewModel = MapViewModel()
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
+    @State var isSearching: Bool = false
 
     var body: some View {
         ZStack {
             VStack {
                 PolylineMapView()
-                .edgesIgnoringSafeArea(.vertical)
+                .edgesIgnoringSafeArea(.top)
                 .onAppear {
                     mapViewModel.requestLocation()
                 }
                 .environmentObject(mapViewModel)
+                .overlay {
+                    VStack {
+                        Spacer()
+                        BottomSearchView(
+                            isSearchig: $isSearching,
+                            mapViewModel: mapViewModel,
+                            trees: mapViewModel.treesOnMap)
+                    }
+                }
                 if !mapViewModel.isLocationAuthorized() {
                     // TODO: Débito técnico -> design para Localização não autorizada
-                    Text("You haven't shared your location")
-                    Text("Please allow in Settings")
+                    ErrorMessage()
                 }
+                
             }
             BottomSheet(isPresented: $mapViewModel.showAddTreeSheet) {
                 Color.init(uiColor: .systemGray5)
@@ -33,11 +43,13 @@ struct MapView: View {
                     isPresented: $mapViewModel.showAddTreeSheet
                 )
             }
-            HStack {
-                Spacer()
-                MapButtonStack()
-                    .environmentObject(mapViewModel)
-                    .padding()
+            if !isSearching {
+                HStack {
+                    Spacer()
+                    MapButtonStack()
+                        .environmentObject(mapViewModel)
+                        .padding()
+                }
             }
         }
         .sheet(isPresented: $mapViewModel.showTreeProfile) {
@@ -55,4 +67,29 @@ struct MapView_Previews: PreviewProvider {
     static var previews: some View {
         MapView()
     }
+}
+
+struct ErrorMessage: View {
+    var body: some View {
+        VStack {
+            Text("You haven't shared your location")
+            Text("Please allow in Settings")
+        }
+    }
+}
+
+
+extension View {
+  func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+    clipShape(RoundedCorner(radius: radius, corners: corners))
+  }
+}
+
+struct RoundedCorner: Shape {
+  var radius: CGFloat = .infinity
+  var corners: UIRectCorner = .allCorners
+  func path(in rect: CGRect) -> Path {
+    let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+    return Path(path.cgPath)
+  }
 }
