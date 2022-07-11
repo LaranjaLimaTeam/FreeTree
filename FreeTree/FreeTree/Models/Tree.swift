@@ -13,7 +13,7 @@ struct Tree: Codable, Equatable, Identifiable {
         return lhs.id == rhs.id
     }
     @DocumentID var id: String? = UUID().uuidString
-    var creationTimeStamp: String = "27/06/2022 12:00"
+    var creationTimeStamp: String = Date().toString()
     var name: String = "Limoeiro"
     var address: Address = Address()
     var coordinates: Coordinate = Coordinate()

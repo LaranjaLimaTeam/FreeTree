@@ -21,9 +21,14 @@ struct TreeProfileView: View {
             .padding(.horizontal, 16)
             switch pageControl {
             case 0:
-                TipsView(treeViewModel: treeViewModel,
-                         presentationMode: $presentationMode)
+                TipsView(
+                    treeViewModel: treeViewModel,
+                    presentationMode: $presentationMode
+                )
                 .padding(.top, 8)
+                .onAppear {
+                    self.treeViewModel.fetchComments()
+                }
             case 1:
                 PhotoList()
             default:
