@@ -36,5 +36,14 @@ struct PolylineMapView: UIViewRepresentable {
                 uiView.addAnnotation(annotationTree)
             })
         }
+        
+        if mapViewModel.hasToUpdateRoute {
+            mapViewModel.hasToUpdateRoute = false
+            uiView.removeOverlays(uiView.overlays)
+            if let route = mapViewModel.routeViewModel.route {
+                uiView.addOverlay(route)
+            }
+        }
+        
     }
 }
