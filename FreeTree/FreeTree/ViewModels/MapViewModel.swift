@@ -15,6 +15,7 @@ class MapViewModel: ObservableObject {
     @Published var showAddTreeSheet: Bool = false
     @Published var showTreeProfile: Bool = false
     @Published var selectedTree: Tree?
+    @Published var hasToUpdateRoute: Bool = false
     @Published var region = MKCoordinateRegion(
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
@@ -22,7 +23,9 @@ class MapViewModel: ObservableObject {
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
+    let routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
+    var cancellableRoute: Cancellable?
     
     init() {
         cancellable = self.treeManager.$trees
@@ -32,6 +35,10 @@ class MapViewModel: ObservableObject {
             })
             .sink(receiveValue: { treeArray in
                 self.treesOnMap = treeArray
+            })
+        cancellableRoute = self.routeViewModel.$route
+            .sink(receiveValue: { _ in
+                self.hasToUpdateRoute = true
             })
     }
 
@@ -57,6 +64,14 @@ class MapViewModel: ObservableObject {
     }
     func isLocationAuthorized() -> Bool {
         return locationManager.isLocationAuthorized()
+    }
+    func startRoute(destination: Coordinate) {
+        hasToUpdateRoute = true
+        routeViewModel.destination = destination
+    }
+    func stopRoute() {
+        hasToUpdateRoute = false
+        routeViewModel.destination = nil
     }
     
 }
