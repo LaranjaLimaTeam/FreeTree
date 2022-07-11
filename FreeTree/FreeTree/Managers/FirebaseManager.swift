@@ -7,6 +7,7 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 enum FirebaseError: Error {
     case fetchError
@@ -16,6 +17,7 @@ enum FirebaseError: Error {
 struct FireBaseManager {
     
     private let dbCloud = Firestore.firestore()
+    private let storage = Storage.storage().reference()
     
     func getDocuments<T: Codable>(with key: String, value: String, from collection: String, completion: @escaping(Result<[T], FirebaseError>) -> Void) {
         var array: [T] = []
@@ -70,5 +72,51 @@ struct FireBaseManager {
             print("Error writing website to Firestore: \(error)")
         }
         return nil
+    }
+    
+    func fetchAllFilesPath(from folder: String, completion: @escaping (Result<[String], FirebaseError>) -> Void) {
+        let storageReference = storage.child(folder)
+        
+        var pathArray = [String]()
+        storageReference.listAll { (result, error) in
+            if let error = error {
+                print("error while downloading files: \(error)")
+                completion(.failure(.fetchError))
+            }
+            guard let result = result else {return}
+            for item in result.items {
+                // The items under storageReference.
+                pathArray.append(item.fullPath)
+            }
+            completion(.success(pathArray))
+        }
+    }
+    
+
+    func downloadFile(from path: String, completion: @escaping (Result<Data, Error>) -> Void ) {
+        let photoReference = storage.child(path)
+        photoReference.getData(maxSize: 20*1024*1024) { data, err in
+            if let error = err {
+                print("Erro ao baixar arquivo")
+                completion(.failure(FirebaseError.fetchError))
+            } else {
+                guard let safeData = data else { return }
+                print("Baixei imagem")
+                completion(.success(safeData))
+            }
+        }
+    }
+    
+    func uploadFile(to path: String, data: Data, completion: @escaping (Result<Data,Error>) -> Void) {
+        let storageRef = self.storage.child(path)
+        storageRef.putData(data, metadata: nil){ (metadata, error) in
+            guard let metaData = metadata else {
+                print("encontramos um erro aqui")
+                return
+            }
+            if let err = error {
+                print("Erro ao salvar foto: \(err)")
+            }
+        }
     }
 }
