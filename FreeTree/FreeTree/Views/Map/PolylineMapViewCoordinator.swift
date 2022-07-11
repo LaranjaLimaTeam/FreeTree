@@ -22,9 +22,10 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
             }
             return false
         }
-        map.mapViewModel.selectedTree = tree.first!
-        // DEBUG: apenas para debugar enquanto não existe o botão de rota
         if  let tree = tree.first {
+            map.mapViewModel.selectedTree = tree
+            
+            // DEBUG: apenas para debugar enquanto não existe o botão de rota
             map.mapViewModel.startRoute(destination: tree.coordinates)
         }
         map.mapViewModel.showTreeProfile.toggle()

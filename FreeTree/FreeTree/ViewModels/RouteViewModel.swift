@@ -33,7 +33,7 @@ class RouteViewModel: ObservableObject {
         guard let destination = destination else { return }
         guard let currentUserLocation = self.currentUserLocation else { return }
         guard let currentPolylineLocation = self.currentPolylineLocation else {
-            self.currentPolylineLocation = currentUserLocation
+            getRoutePolyline()
             return
         }
         
