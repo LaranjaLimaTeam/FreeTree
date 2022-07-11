@@ -21,17 +21,25 @@ struct AddTreeView: View {
             .padding(.horizontal, 16)
             .frame(height: 44)
             .background(.white)
-            Group {
-                Text("Endereço")
-                    .font(.headline)
-                    .padding(.top, 12)
-                    .padding(.bottom, 8)
-                Text("Praça Henfil")
-                Text("Cidade Universitária")
-                Text("Campinas - SP")
-                Text("13083")
-                Text("Brasil")
-                    .padding(.bottom, 12)
+            Section(title: "Imagens") {
+                CapturePhotoButton()
+                HStack {
+                    ZStack {
+                        Color.white
+                    }
+                }
+            }
+            .padding(.horizontal, 16)
+            .padding(.bottom, 12)
+            Section(title: "Endereço") {
+                Group {
+                    Text("Praça Henfil")
+                    Text("Cidade Universitária")
+                    Text("Campinas - SP")
+                    Text("13083")
+                    Text("Brasil")
+                        .padding(.bottom, 12)
+                }
             }
             .padding(.horizontal, 16)
             ToggleField("Foi plantada por você?", value: .constant(true))
@@ -48,6 +56,45 @@ struct AddTreeView: View {
         .frame(maxHeight: .infinity)
         .background(Color.init(uiColor: .systemGray5))
     }
+}
+
+struct CapturePhotoButton: View {
+    
+    var body: some View {
+        ZStack {
+            Color.white
+            Image(systemName: "camera")
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+                .foregroundColor(.green)
+                .frame(
+                    width: (UIScreen.main.bounds.width - 4*16)/3,
+                    height: (UIScreen.main.bounds.width - 4*16)/6
+                )
+        }
+        .frame(
+            width: (UIScreen.main.bounds.width - 4*16)/3,
+            height: (UIScreen.main.bounds.width - 4*16)/3
+        )
+        .cornerRadius(16)
+    }
+    
+}
+
+struct Section<Content: View>: View {
+    
+    var title: String
+    @ViewBuilder var content: Content
+    
+    var body: some View {
+        VStack(alignment: .leading) {
+            Text(self.title)
+                .font(.headline)
+                .padding(.bottom, 8)
+            self.content
+        }
+    }
+    
 }
 
 struct AddTreeView_Previews: PreviewProvider {
