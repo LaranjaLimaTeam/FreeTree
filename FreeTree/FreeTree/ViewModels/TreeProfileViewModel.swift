@@ -70,7 +70,7 @@ class TreeProfileViewModel: ObservableObject {
             switch result {
             case .success(let data):
                 DispatchQueue.global().async {
-                    if let image = self.convertDataIntoImage(from: data) {
+                    if let image = data.convertToImage() {
                         DispatchQueue.main.async {
                             self.photos.append(image)
                         }
@@ -80,14 +80,6 @@ class TreeProfileViewModel: ObservableObject {
                 print("Erro \(error)")
             }
         }
-    }
-    
-    public func convertDataIntoImage(from data: Data) -> Image? {
-        if let uiImage = UIImage(data: data) {
-            let image = Image(uiImage: uiImage)
-            return image
-        }
-        return nil
     }
     
     public func uploadImage(data: UIImage?) {
