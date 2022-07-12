@@ -25,6 +25,12 @@ struct MapView: View {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     Text("You haven't shared your location")
                     Text("Please allow in Settings")
+                }else {
+                    OnRouteView(
+                        stopRoute: self.mapViewModel.stopRoute,
+                        treeTitle: "Limoeiro",
+                        routeViewModel: mapViewModel.routeViewModel
+                    )
                 }
             }
             BottomSheet(isPresented: $mapViewModel.showAddTreeSheet) {
@@ -43,7 +49,13 @@ struct MapView: View {
         .sheet(isPresented: $mapViewModel.showTreeProfile) {
             HalfSheet(content: {
                 TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
-                                presentationMode: $presentationMode)
+                                presentationMode: $presentationMode,
+                                startRoute: {
+                                    if let tree = mapViewModel.selectedTree {
+                                        self.mapViewModel.startRoute(tree.coordinates)
+                                    }
+                                }
+                )
             }, presentationMode: $presentationMode)
         }
     }

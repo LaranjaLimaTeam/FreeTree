@@ -5,13 +5,23 @@ struct TreeHeaderView: View {
     let tagLimit: Int
     @ObservedObject var treeViewModel: TreeProfileViewModel
     @State var pageControl = 0
+    var startRoute: () -> Void
+    @Environment(\.presentationMode) var presentationMode
+
     
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            Text(treeViewModel.tree.name)
+            HStack {
+                Text(treeViewModel.tree.name)
                 .font(.title3)
                 .fontWeight(.semibold)
                 .padding([.leading, .top], 16)
+                Spacer()
+                StartRouteButton(iconName: "arrow.triangle.turn.up.right.circle") {
+                    startRoute()
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
             ImageHeader(treeViewModel: treeViewModel)
             .padding(.horizontal, 16)
             ScrollView(.horizontal, showsIndicators: false) {
@@ -39,7 +49,9 @@ struct TreeHeaderView_Previews: PreviewProvider {
     static let tree = Tree()
     static var previews: some View {
         TreeHeaderView(tagLimit: 4,
-                       treeViewModel: TreeProfileViewModel(tree: tree) )
+                       treeViewModel: TreeProfileViewModel(tree: tree),
+                       startRoute: {return}
+        )
     }
 }
 

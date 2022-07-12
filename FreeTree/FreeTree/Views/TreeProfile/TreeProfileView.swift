@@ -11,10 +11,15 @@ struct TreeProfileView: View {
     @State var pageControl = 0
     @ObservedObject var treeViewModel: TreeProfileViewModel
     @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
+    var startRoute: () -> Void
+    
     var body: some View {
         VStack {
-            TreeHeaderView(tagLimit: 3,
-                           treeViewModel: treeViewModel)
+            TreeHeaderView(
+                tagLimit: 3,
+                treeViewModel: treeViewModel,
+                startRoute: self.startRoute
+            )
             SegmentedControlView(showMode: $pageControl,
                                  description: "Choose the view you want",
                                  pagesName: ["Dicas", "Fotos"])
@@ -41,6 +46,7 @@ struct TreeProfileView: View {
 struct TreeProfileView_Previews: PreviewProvider {
     static var previews: some View {
         TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
-                        presentationMode: .constant(.medium))
+                        presentationMode: .constant(.medium),
+                        startRoute: {return})
     }
 }

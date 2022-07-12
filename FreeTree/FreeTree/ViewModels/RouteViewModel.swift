@@ -18,6 +18,7 @@ class RouteViewModel: ObservableObject {
     var cancellable: Cancellable?
     var destination: Coordinate?
     @Published var route: MKPolyline?
+    @Published var routeDistance: Double?
     
     init () {
         self.locationManager = LocationManager.shared
@@ -69,8 +70,9 @@ class RouteViewModel: ObservableObject {
                 return
             }
             guard let unwrappedResponse = response else { return }
-            guard let polyline = unwrappedResponse.routes.first?.polyline else { return }
-            self.route = polyline
+            guard let firstRoute = unwrappedResponse.routes.first else { return }
+            self.routeDistance = firstRoute.distance
+            self.route = firstRoute.polyline
             self.currentPolylineLocation = currentUserLocation
         }
     }
@@ -79,5 +81,6 @@ class RouteViewModel: ObservableObject {
         self.route = nil
         self.destination = nil
         self.currentPolylineLocation = nil
+        self.routeDistance = nil
     }
 }

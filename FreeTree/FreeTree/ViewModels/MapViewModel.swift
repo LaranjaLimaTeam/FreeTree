@@ -23,7 +23,7 @@ class MapViewModel: ObservableObject {
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
-    let routeViewModel = RouteViewModel()
+    var routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
     var cancellableRoute: Cancellable?
     
@@ -65,13 +65,13 @@ class MapViewModel: ObservableObject {
     func isLocationAuthorized() -> Bool {
         return locationManager.isLocationAuthorized()
     }
-    func startRoute(destination: Coordinate) {
+    func startRoute(_ destination: Coordinate) {
         hasToUpdateRoute = true
         routeViewModel.destination = destination
     }
     func stopRoute() {
-        hasToUpdateRoute = false
-        routeViewModel.destination = nil
+        routeViewModel.endRoute()
+        hasToUpdateRoute = true
     }
     
 }
