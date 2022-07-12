@@ -8,39 +8,40 @@ import SwiftUI
 import MapKit
 
 struct MapView: View {
-
+    
     @StateObject var mapViewModel = MapViewModel()
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
-
+    
     var body: some View {
         ZStack {
             VStack {
                 PolylineMapView()
-                .edgesIgnoringSafeArea(.top)
-                .onAppear {
-                    mapViewModel.requestLocation()
-                }
-                .environmentObject(mapViewModel)
-                .overlay {
-                    VStack {
-                        Spacer()
-                        BottomSearchView(
-                            isSearching: $isSearching,
-                            mapViewModel: mapViewModel,
-                            trees: mapViewModel.treesOnMap)
-                        
+                    .edgesIgnoringSafeArea(.top)
+                    .onAppear {
+                        mapViewModel.requestLocation()
                     }
-                }
+                    .environmentObject(mapViewModel)
+                    .overlay {
+                        VStack {
+                            Spacer()
+                            if mapViewModel.routeViewModel.destination == nil {
+                                BottomSearchView(
+                                    isSearching: $isSearching,
+                                    mapViewModel: mapViewModel,
+                                    trees: mapViewModel.treesOnMap)
+                            } else {
+                                OnRouteView(
+                                    stopRoute: self.mapViewModel.stopRoute,
+                                    treeTitle: "Limoeiro",
+                                    routeViewModel: mapViewModel.routeViewModel
+                                )
+                            }
+                        }
+                    }
                 if !mapViewModel.isLocationAuthorized() {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     ErrorMessage()
-                }else {
-                    OnRouteView(
-                        stopRoute: self.mapViewModel.stopRoute,
-                        treeTitle: "Limoeiro",
-                        routeViewModel: mapViewModel.routeViewModel
-                    )
                 }
                 
             }
@@ -64,10 +65,10 @@ struct MapView: View {
                 TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
                                 presentationMode: $presentationMode,
                                 startRoute: {
-                                    if let tree = mapViewModel.selectedTree {
-                                        self.mapViewModel.startRoute(tree.coordinates)
-                                    }
-                                }
+                    if let tree = mapViewModel.selectedTree {
+                        self.mapViewModel.startRoute(tree.coordinates)
+                    }
+                }
                 )
             }, presentationMode: $presentationMode)
         }
@@ -89,18 +90,19 @@ struct ErrorMessage: View {
     }
 }
 
-
 extension View {
-  func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
-    clipShape(RoundedCorner(radius: radius, corners: corners))
-  }
+    func cornerRadius(_ radius: CGFloat, corners: UIRectCorner) -> some View {
+        clipShape(RoundedCorner(radius: radius, corners: corners))
+    }
 }
 
 struct RoundedCorner: Shape {
-  var radius: CGFloat = .infinity
-  var corners: UIRectCorner = .allCorners
-  func path(in rect: CGRect) -> Path {
-    let path = UIBezierPath(roundedRect: rect, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
-    return Path(path.cgPath)
-  }
+    var radius: CGFloat = .infinity
+    var corners: UIRectCorner = .allCorners
+    func path(in rect: CGRect) -> Path {
+        let path = UIBezierPath(roundedRect: rect,
+                                byRoundingCorners: corners,
+                                cornerRadii: CGSize(width: radius, height: radius))
+        return Path(path.cgPath)
+    }
 }

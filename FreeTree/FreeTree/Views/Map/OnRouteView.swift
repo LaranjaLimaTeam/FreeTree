@@ -39,9 +39,12 @@ struct OnRouteView: View {
                 Spacer()
             }.padding([.bottom,.top], 8)
             .padding(.leading,16)
-        
-
         }
+        .background(
+            Rectangle()
+                .cornerRadius(14, corners: [.topLeft, .topRight])
+                .foregroundColor(Color(UIColor.systemBackground))
+        )
     }
 }
 

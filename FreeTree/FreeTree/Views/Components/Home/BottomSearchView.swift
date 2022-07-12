@@ -41,6 +41,9 @@ struct BottomSearchView: View {
                             }
                             return false
                         })
+                        if filteredTrees.isEmpty {
+                            isSearching = false
+                        }
                     }, cleanData: {
                         self.text = ""
                         self.filteredTrees = []
