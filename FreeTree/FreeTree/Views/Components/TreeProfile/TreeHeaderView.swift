@@ -31,8 +31,8 @@ struct TreeHeaderView: View {
                         .aspectRatio(contentMode: .fit)
                         .frame(height: 2*UIScreen.main.bounds.height/20/3)
                         .foregroundColor(.green)
-                    TagList(tags: treeViewModel.tree.tags,
-                            tagLimit: tagLimit, cellWidth: UIScreen.main.bounds.width/4)
+                    TagList(tree: treeViewModel.tree,
+                            cellWidth: UIScreen.main.bounds.width/4)
                 }
             }
             .padding(.horizontal, 16)

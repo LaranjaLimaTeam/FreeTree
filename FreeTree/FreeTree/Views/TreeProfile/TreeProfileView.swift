@@ -50,7 +50,9 @@ struct TreeProfileView: View {
                 }
             }
             .onAppear {
-                treeViewModel.fetchPhotos()
+                if treeViewModel.photos.isEmpty {
+                    treeViewModel.fetchPhotos()
+                }
             }
         } else {
             CaptureImageView(isShown: $pickingPhoto, image: $selectedImage, images: $treeViewModel.photos)

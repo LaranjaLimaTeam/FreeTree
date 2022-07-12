@@ -5,32 +5,33 @@ struct TagView: View {
     var body: some View {
         ZStack {
             RoundedRectangle(cornerRadius: 8)
-                .fill(.green)
+                .strokeBorder(.green, lineWidth: 1.5)
+                .opacity(0.9)
+                .background(
+                    RoundedRectangle(cornerRadius: 8)
+                        .fill(.green)
+                        .opacity(0.4)
+                )
+                
             Text(tagText)
                 .font(.footnote)
-                .foregroundColor(.white)
+                .foregroundColor(.green)
         }
     }
 }
 
 struct TagList: View {
-    let tags: [String]
-    let tagLimit: Int
+    let tree: Tree
     let cellWidth: CGFloat
-    var tagsSize: Int {
-        return tags.count
-    }
-
+    
     var body: some View {
-        ForEach(0..<tagLimit) { tagIndex in
-            if (tagIndex == tagLimit-1) && (tagsSize > tagLimit) {
-                TagView(tagText: "+\(tagsSize - (tagLimit-1))")
-                    .frame(width: cellWidth)
-            } else if tagIndex <= tagsSize-1 {
-                TagView(tagText: tags[tagIndex])
-                    .frame(width: cellWidth)
-            } else {
-                EmptyView()
+        ScrollView(.horizontal) {
+            LazyHStack {
+                ForEach(0..<tree.tags.count) { tagIndex in
+                    TagView(tagText: tree.tags[tagIndex])
+                        .frame(width: cellWidth)
+                    
+                }
             }
         }
     }
