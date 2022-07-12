@@ -35,6 +35,12 @@ struct MapView: View {
                 if !mapViewModel.isLocationAuthorized() {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     ErrorMessage()
+                }else {
+                    OnRouteView(
+                        stopRoute: self.mapViewModel.stopRoute,
+                        treeTitle: "Limoeiro",
+                        routeViewModel: mapViewModel.routeViewModel
+                    )
                 }
                 
             }
@@ -55,9 +61,13 @@ struct MapView: View {
         }
         .sheet(isPresented: $mapViewModel.showTreeProfile) {
             HalfSheet(content: {
-                TreeProfileView(
-                    presentationMode: $presentationMode,
-                    treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!)
+                TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
+                                presentationMode: $presentationMode,
+                                startRoute: {
+                                    if let tree = mapViewModel.selectedTree {
+                                        self.mapViewModel.startRoute(tree.coordinates)
+                                    }
+                                }
                 )
             }, presentationMode: $presentationMode)
         }
