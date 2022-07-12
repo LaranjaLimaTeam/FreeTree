@@ -14,7 +14,7 @@ struct Tree: Codable, Equatable, Identifiable {
     }
     @DocumentID var id: String? = UUID().uuidString
     var creationTimeStamp: String = Date().toString()
-    var name: String = "Limoeiro"
+    var name: String = ""
     var address: Address = Address()
     var coordinates: Coordinate = Coordinate()
     var tags: [String] = ["Limoeiro", "Azedo", "Melancia"]

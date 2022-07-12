@@ -42,6 +42,10 @@
 		C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF904F28732A3300250E7D /* FirebaseManager.swift */; };
 		C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */; };
 		C2EF905628732FB900250E7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2EF905528732FB900250E7D /* GoogleService-Info.plist */; };
+		E82420B9287DBA30007C516C /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B5287DBA30007C516C /* AddTreeForm.swift */; };
+		E82420BA287DBA30007C516C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B6287DBA30007C516C /* Section.swift */; };
+		E82420BB287DBA30007C516C /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B7287DBA30007C516C /* ImageView.swift */; };
+		E82420BC287DBA30007C516C /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B8287DBA30007C516C /* AddTreeView.swift */; };
 		E82818B42861E48300E81C82 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B32861E48300E81C82 /* Tree.swift */; };
 		E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* TreeRepository.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
@@ -55,10 +59,6 @@
 		E87C7EEF2875AF73000026F7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C7EEE2875AF73000026F7 /* DateExtension.swift */; };
 		E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED767286DCC5C0078E84D /* LargeButton.swift */; };
 		E89ED76A286DCD050078E84D /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED769286DCD050078E84D /* ToggleField.swift */; };
-		E8D50BBE287DAF890007EDFA /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BBD287DAF890007EDFA /* Section.swift */; };
-		E8D50BC0287DAFBD0007EDFA /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BBF287DAFBD0007EDFA /* ImageView.swift */; };
-		E8D50BC2287DB01E0007EDFA /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */; };
-		E8D50BC4287DB0660007EDFA /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC3287DB0660007EDFA /* AddTreeView.swift */; };
 		E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */; };
 		E8EF0FE9286353F00085FC57 /* TreeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EF0FE8286353F00085FC57 /* TreeDAO.swift */; };
 		F0F833B67002D7129BF870BC /* Pods_FreeTree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94158BFC38E5A0DCB8F43071 /* Pods_FreeTree.framework */; };
@@ -104,6 +104,10 @@
 		C2EF904F28732A3300250E7D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTreeRepository.swift; sourceTree = "<group>"; };
 		C2EF905528732FB900250E7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E82420B5287DBA30007C516C /* AddTreeForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
+		E82420B6287DBA30007C516C /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		E82420B7287DBA30007C516C /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		E82420B8287DBA30007C516C /* AddTreeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
 		E82818B32861E48300E81C82 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		E82818B52861EC9B00E81C82 /* TreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRepository.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
@@ -117,10 +121,6 @@
 		E87C7EEE2875AF73000026F7 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E89ED767286DCC5C0078E84D /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		E89ED769286DCD050078E84D /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
-		E8D50BBD287DAF890007EDFA /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		E8D50BBF287DAFBD0007EDFA /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
-		E8D50BC3287DB0660007EDFA /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
 		E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePhotoButton.swift; sourceTree = "<group>"; };
 		E8EF0FE8286353F00085FC57 /* TreeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -223,9 +223,9 @@
 		6194B5DA285A0B0A00991D50 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E82420B4287DBA30007C516C /* AddTreeView */,
 				613F04692862530500E4CC47 /* Map */,
 				C20D0CC22869DFC500BF425C /* TreeProfile */,
-				E8D50BBB287DAF580007EDFA /* AddTreeView */,
 				C2B5FA702862026900BA2469 /* Components */,
 				C204299A2863476E003C6B71 /* Utils */,
 				6194B5CD285A0AB600991D50 /* ContentView.swift */,
@@ -340,6 +340,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E82420B4287DBA30007C516C /* AddTreeView */ = {
+			isa = PBXGroup;
+			children = (
+				E82420B5287DBA30007C516C /* AddTreeForm.swift */,
+				E82420B6287DBA30007C516C /* Section.swift */,
+				E82420B7287DBA30007C516C /* ImageView.swift */,
+				E82420B8287DBA30007C516C /* AddTreeView.swift */,
+			);
+			path = AddTreeView;
+			sourceTree = "<group>";
+		};
 		E87800A12874625E001C9392 /* Repositories */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,18 +367,6 @@
 				E87800A6287464AF001C9392 /* FirebaseCommentRepository.swift */,
 			);
 			path = CommentRepository;
-			sourceTree = "<group>";
-		};
-		E8D50BBB287DAF580007EDFA /* AddTreeView */ = {
-			isa = PBXGroup;
-			children = (
-				E8D50BC3287DB0660007EDFA /* AddTreeView.swift */,
-				E8D50BBD287DAF890007EDFA /* Section.swift */,
-				E8D50BBF287DAFBD0007EDFA /* ImageView.swift */,
-				E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */,
-			);
-			name = AddTreeView;
-			path = ../../../../../../AddTreeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -504,6 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E82420BB287DBA30007C516C /* ImageView.swift in Sources */,
 				C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */,
 				C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */,
 				C26CFD362877060C0046AAC7 /* FirebasePhotoRepository.swift in Sources */,
@@ -513,11 +513,11 @@
 				C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */,
 				6150EAF32876FA2600A277D1 /* RouteViewModel.swift in Sources */,
 				614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */,
+				E82420B9287DBA30007C516C /* AddTreeForm.swift in Sources */,
 				E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */,
 				E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */,
 				E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */,
 				E87800A328746296001C9392 /* CommentRepository.swift in Sources */,
-				E8D50BC0287DAFBD0007EDFA /* ImageView.swift in Sources */,
 				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				C204299C2863478B003C6B71 /* SheetView.swift in Sources */,
 				C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */,
@@ -530,10 +530,9 @@
 				C20D0CC82869ED5500BF425C /* Comment.swift in Sources */,
 				C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
-				E8D50BC2287DB01E0007EDFA /* AddTreeForm.swift in Sources */,
 				C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */,
 				C204299E286356AC003C6B71 /* SegmentedControlView.swift in Sources */,
-				E8D50BC4287DB0660007EDFA /* AddTreeView.swift in Sources */,
+				E82420BC287DBA30007C516C /* AddTreeView.swift in Sources */,
 				C20D0CC62869ECF000BF425C /* CommentTextView.swift in Sources */,
 				C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */,
 				61405CE8286C8E3100B004C6 /* TreeManagerImplementation.swift in Sources */,
@@ -544,6 +543,7 @@
 				C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */,
 				C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */,
 				6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */,
+				E82420BA287DBA30007C516C /* Section.swift in Sources */,
 				C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */,
 				E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */,
 				E845A5BB2869F171004D9E29 /* BottomSheet.swift in Sources */,
@@ -552,7 +552,6 @@
 				61E4A8C7286343A0008F333C /* MapViewModel.swift in Sources */,
 				C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */,
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
-				E8D50BBE287DAF890007EDFA /* Section.swift in Sources */,
 				61E4A8C528634204008F333C /* Coordinate.swift in Sources */,
 				C20429992863464B003C6B71 /* TreeHeaderView.swift in Sources */,
 			);
