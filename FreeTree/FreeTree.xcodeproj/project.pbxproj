@@ -42,10 +42,10 @@
 		C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF904F28732A3300250E7D /* FirebaseManager.swift */; };
 		C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */; };
 		C2EF905628732FB900250E7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2EF905528732FB900250E7D /* GoogleService-Info.plist */; };
-		E82420B0287DB8A9007C516C /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420AC287DB8A9007C516C /* AddTreeForm.swift */; };
-		E82420B1287DB8A9007C516C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420AD287DB8A9007C516C /* Section.swift */; };
-		E82420B2287DB8A9007C516C /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420AE287DB8A9007C516C /* ImageView.swift */; };
-		E82420B3287DB8A9007C516C /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420AF287DB8A9007C516C /* AddTreeView.swift */; };
+		E82420B9287DBA30007C516C /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B5287DBA30007C516C /* AddTreeForm.swift */; };
+		E82420BA287DBA30007C516C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B6287DBA30007C516C /* Section.swift */; };
+		E82420BB287DBA30007C516C /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B7287DBA30007C516C /* ImageView.swift */; };
+		E82420BC287DBA30007C516C /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420B8287DBA30007C516C /* AddTreeView.swift */; };
 		E82818B42861E48300E81C82 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B32861E48300E81C82 /* Tree.swift */; };
 		E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* TreeRepository.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
@@ -104,10 +104,10 @@
 		C2EF904F28732A3300250E7D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTreeRepository.swift; sourceTree = "<group>"; };
 		C2EF905528732FB900250E7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		E82420AC287DB8A9007C516C /* AddTreeForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
-		E82420AD287DB8A9007C516C /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
-		E82420AE287DB8A9007C516C /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		E82420AF287DB8A9007C516C /* AddTreeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
+		E82420B5287DBA30007C516C /* AddTreeForm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
+		E82420B6287DBA30007C516C /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		E82420B7287DBA30007C516C /* ImageView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		E82420B8287DBA30007C516C /* AddTreeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
 		E82818B32861E48300E81C82 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		E82818B52861EC9B00E81C82 /* TreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRepository.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 		6194B5DA285A0B0A00991D50 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				E82420AB287DB8A9007C516C /* AddTreeView */,
+				E82420B4287DBA30007C516C /* AddTreeView */,
 				613F04692862530500E4CC47 /* Map */,
 				C20D0CC22869DFC500BF425C /* TreeProfile */,
 				C2B5FA702862026900BA2469 /* Components */,
@@ -340,16 +340,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		E82420AB287DB8A9007C516C /* AddTreeView */ = {
+		E82420B4287DBA30007C516C /* AddTreeView */ = {
 			isa = PBXGroup;
 			children = (
-				E82420AC287DB8A9007C516C /* AddTreeForm.swift */,
-				E82420AD287DB8A9007C516C /* Section.swift */,
-				E82420AE287DB8A9007C516C /* ImageView.swift */,
-				E82420AF287DB8A9007C516C /* AddTreeView.swift */,
+				E82420B5287DBA30007C516C /* AddTreeForm.swift */,
+				E82420B6287DBA30007C516C /* Section.swift */,
+				E82420B7287DBA30007C516C /* ImageView.swift */,
+				E82420B8287DBA30007C516C /* AddTreeView.swift */,
 			);
-			name = AddTreeView;
-			path = ../../../../../../AddTreeView;
+			path = AddTreeView;
 			sourceTree = "<group>";
 		};
 		E87800A12874625E001C9392 /* Repositories */ = {
@@ -504,7 +503,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E82420B2287DB8A9007C516C /* ImageView.swift in Sources */,
+				E82420BB287DBA30007C516C /* ImageView.swift in Sources */,
 				C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */,
 				C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */,
 				C26CFD362877060C0046AAC7 /* FirebasePhotoRepository.swift in Sources */,
@@ -514,7 +513,7 @@
 				C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */,
 				6150EAF32876FA2600A277D1 /* RouteViewModel.swift in Sources */,
 				614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */,
-				E82420B0287DB8A9007C516C /* AddTreeForm.swift in Sources */,
+				E82420B9287DBA30007C516C /* AddTreeForm.swift in Sources */,
 				E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */,
 				E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */,
 				E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */,
@@ -533,7 +532,7 @@
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
 				C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */,
 				C204299E286356AC003C6B71 /* SegmentedControlView.swift in Sources */,
-				E82420B3287DB8A9007C516C /* AddTreeView.swift in Sources */,
+				E82420BC287DBA30007C516C /* AddTreeView.swift in Sources */,
 				C20D0CC62869ECF000BF425C /* CommentTextView.swift in Sources */,
 				C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */,
 				61405CE8286C8E3100B004C6 /* TreeManagerImplementation.swift in Sources */,
@@ -544,7 +543,7 @@
 				C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */,
 				C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */,
 				6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */,
-				E82420B1287DB8A9007C516C /* Section.swift in Sources */,
+				E82420BA287DBA30007C516C /* Section.swift in Sources */,
 				C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */,
 				E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */,
 				E845A5BB2869F171004D9E29 /* BottomSheet.swift in Sources */,
