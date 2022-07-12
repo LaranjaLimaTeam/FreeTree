@@ -33,7 +33,7 @@ struct MapView: View {
                             } else {
                                 OnRouteView(
                                     stopRoute: self.mapViewModel.stopRoute,
-                                    treeTitle: "Limoeiro",
+                                    treeTitle: mapViewModel.selectedTree?.name ?? "Arvore",
                                     routeViewModel: mapViewModel.routeViewModel
                                 )
                             }
@@ -45,10 +45,12 @@ struct MapView: View {
                 }
                 
             }
-            BottomSheet(isPresented: $mapViewModel.showAddTreeSheet) {
-                Color.init(uiColor: .systemGray5)
-                AddTreeView(
-                    isPresented: $mapViewModel.showAddTreeSheet
+            .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
+                HalfSheet(
+                    content: {
+                        AddTreeView(isPresented: $mapViewModel.showAddTreeSheet)
+                    },
+                    presentationMode: .constant(.large)
                 )
             }
             if !isSearching {

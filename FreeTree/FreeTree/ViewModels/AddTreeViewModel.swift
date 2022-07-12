@@ -9,13 +9,19 @@ import Foundation
 import SwiftUI
 
 class AddTreeViewModel: ObservableObject {
+    
     @ObservedObject private var locationManager: LocationManager
+    
     @Published var tree = Tree()
+    @Published var photos = [Image]()
+    
     private let treeManager: TreeManagerImplementation
+    private let photoRepository: PhotoRepository
     
     init() {
-        self.treeManager = TreeManagerImplementation.shared
         self.locationManager = LocationManager.shared
+        self.treeManager = TreeManagerImplementation.shared
+        self.photoRepository = FirebasePhotoRepository()
     }
     
     public func addTree() {
