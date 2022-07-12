@@ -55,7 +55,11 @@
 		E87C7EEF2875AF73000026F7 /* DateExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E87C7EEE2875AF73000026F7 /* DateExtension.swift */; };
 		E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED767286DCC5C0078E84D /* LargeButton.swift */; };
 		E89ED76A286DCD050078E84D /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED769286DCD050078E84D /* ToggleField.swift */; };
-		E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8AE9D0C2863579C002F747B /* AddTreeView.swift */; };
+		E8D50BBE287DAF890007EDFA /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BBD287DAF890007EDFA /* Section.swift */; };
+		E8D50BC0287DAFBD0007EDFA /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BBF287DAFBD0007EDFA /* ImageView.swift */; };
+		E8D50BC2287DB01E0007EDFA /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */; };
+		E8D50BC4287DB0660007EDFA /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC3287DB0660007EDFA /* AddTreeView.swift */; };
+		E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */; };
 		E8EF0FE9286353F00085FC57 /* TreeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EF0FE8286353F00085FC57 /* TreeDAO.swift */; };
 		F0F833B67002D7129BF870BC /* Pods_FreeTree.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94158BFC38E5A0DCB8F43071 /* Pods_FreeTree.framework */; };
 /* End PBXBuildFile section */
@@ -113,7 +117,11 @@
 		E87C7EEE2875AF73000026F7 /* DateExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtension.swift; sourceTree = "<group>"; };
 		E89ED767286DCC5C0078E84D /* LargeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargeButton.swift; sourceTree = "<group>"; };
 		E89ED769286DCD050078E84D /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
-		E8AE9D0C2863579C002F747B /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
+		E8D50BBD287DAF890007EDFA /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		E8D50BBF287DAFBD0007EDFA /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
+		E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
+		E8D50BC3287DB0660007EDFA /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
+		E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePhotoButton.swift; sourceTree = "<group>"; };
 		E8EF0FE8286353F00085FC57 /* TreeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDAO.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -215,14 +223,14 @@
 		6194B5DA285A0B0A00991D50 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				C20D0CC22869DFC500BF425C /* TreeProfile */,
-				C204299A2863476E003C6B71 /* Utils */,
-				C2B5FA702862026900BA2469 /* Components */,
 				613F04692862530500E4CC47 /* Map */,
+				C20D0CC22869DFC500BF425C /* TreeProfile */,
+				E8D50BBB287DAF580007EDFA /* AddTreeView */,
+				C2B5FA702862026900BA2469 /* Components */,
+				C204299A2863476E003C6B71 /* Utils */,
 				6194B5CD285A0AB600991D50 /* ContentView.swift */,
 				E82818B92861F50200E81C82 /* RecipesView.swift */,
 				E82818BB2861F51F00E81C82 /* ProfileView.swift */,
-				E8AE9D0C2863579C002F747B /* AddTreeView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -311,6 +319,7 @@
 				E845A5BA2869F171004D9E29 /* BottomSheet.swift */,
 				E89ED767286DCC5C0078E84D /* LargeButton.swift */,
 				E89ED769286DCD050078E84D /* ToggleField.swift */,
+				E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -347,6 +356,18 @@
 				E87800A6287464AF001C9392 /* FirebaseCommentRepository.swift */,
 			);
 			path = CommentRepository;
+			sourceTree = "<group>";
+		};
+		E8D50BBB287DAF580007EDFA /* AddTreeView */ = {
+			isa = PBXGroup;
+			children = (
+				E8D50BC3287DB0660007EDFA /* AddTreeView.swift */,
+				E8D50BBD287DAF890007EDFA /* Section.swift */,
+				E8D50BBF287DAFBD0007EDFA /* ImageView.swift */,
+				E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */,
+			);
+			name = AddTreeView;
+			path = ../../../../../../AddTreeView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -493,8 +514,10 @@
 				6150EAF32876FA2600A277D1 /* RouteViewModel.swift in Sources */,
 				614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */,
 				E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */,
+				E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */,
 				E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */,
 				E87800A328746296001C9392 /* CommentRepository.swift in Sources */,
+				E8D50BC0287DAFBD0007EDFA /* ImageView.swift in Sources */,
 				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				C204299C2863478B003C6B71 /* SheetView.swift in Sources */,
 				C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */,
@@ -507,9 +530,10 @@
 				C20D0CC82869ED5500BF425C /* Comment.swift in Sources */,
 				C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
-				E8AE9D0D2863579C002F747B /* AddTreeView.swift in Sources */,
+				E8D50BC2287DB01E0007EDFA /* AddTreeForm.swift in Sources */,
 				C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */,
 				C204299E286356AC003C6B71 /* SegmentedControlView.swift in Sources */,
+				E8D50BC4287DB0660007EDFA /* AddTreeView.swift in Sources */,
 				C20D0CC62869ECF000BF425C /* CommentTextView.swift in Sources */,
 				C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */,
 				61405CE8286C8E3100B004C6 /* TreeManagerImplementation.swift in Sources */,
@@ -528,6 +552,7 @@
 				61E4A8C7286343A0008F333C /* MapViewModel.swift in Sources */,
 				C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */,
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
+				E8D50BBE287DAF890007EDFA /* Section.swift in Sources */,
 				61E4A8C528634204008F333C /* Coordinate.swift in Sources */,
 				C20429992863464B003C6B71 /* TreeHeaderView.swift in Sources */,
 			);
@@ -660,7 +685,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"FreeTree/Preview Content\"";
-				DEVELOPMENT_TEAM = X7KR94TCJ8;
+				DEVELOPMENT_TEAM = W989F39VWK;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCameraUsageDescription = "FreeTree photo use";
@@ -675,7 +700,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp.io;
+				PRODUCT_BUNDLE_IDENTIFIER = co.academy.freetreeapp.mota;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_EMIT_LOC_STRINGS = YES;
