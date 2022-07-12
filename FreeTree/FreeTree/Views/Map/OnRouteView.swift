@@ -20,7 +20,6 @@ struct OnRouteView: View {
                 Spacer()
                 Button {
                     self.stopRoute()
-                    print("Stop Route")
                 } label: {
                     Image(systemName: "x.circle")
                         .resizable()
@@ -28,7 +27,7 @@ struct OnRouteView: View {
                         .scaledToFit()
                         .frame(width: 26, height: 26)
                 }
-            }.padding(.horizontal,16)
+            }.padding(.horizontal, 16)
             
             HStack {
                 Text( String(format: "%.01f Km de distância",(routeViewModel.routeDistance ?? 0) / 1000) )
@@ -37,9 +36,10 @@ struct OnRouteView: View {
                 Text(String(format: "%.f minutos",
                             (routeViewModel.routeDistance ?? 0) * 0.0028))
                 Spacer()
-            }.padding([.bottom,.top], 8)
-            .padding(.leading,16)
+            }.padding([.bottom, .top], 8)
+        .padding(.leading, 16)
         }
+        .padding(.top, 16)
         .background(
             Rectangle()
                 .cornerRadius(14, corners: [.topLeft, .topRight])
@@ -52,7 +52,7 @@ struct OnRouteView_Previews: PreviewProvider {
     static var previews: some View {
         OnRouteView(stopRoute: {return},
                     treeTitle: "Limoeiro texto grande",
-                    routeViewModel:  RouteViewModel()
+                    routeViewModel: RouteViewModel()
         )
     }
 }
