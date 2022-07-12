@@ -17,10 +17,11 @@ struct SearchBarView: View {
                     Image(systemName: "magnifyingglass")
                         .foregroundColor(.green)
                         .padding(.leading, 8)
-                    TextField(placeHolderText, text: $searchText).onSubmit {
+                    TextField(placeHolderText, text: $searchText)
+                        .onSubmit {
                         searching = true
                         searchAction()
-                    }
+                        }
                     Spacer()
                     Button {
                         searching = false

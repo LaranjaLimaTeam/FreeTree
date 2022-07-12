@@ -26,9 +26,10 @@ struct MapView: View {
                     VStack {
                         Spacer()
                         BottomSearchView(
-                            isSearchig: $isSearching,
+                            isSearching: $isSearching,
                             mapViewModel: mapViewModel,
                             trees: mapViewModel.treesOnMap)
+                        
                     }
                 }
                 if !mapViewModel.isLocationAuthorized() {
