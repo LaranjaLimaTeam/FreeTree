@@ -22,10 +22,13 @@ struct AddTreeView: View {
             .frame(height: 44)
             .background(.white)
             Section(title: "Imagens") {
-                CapturePhotoButton()
-                HStack {
-                    ZStack {
-                        Color.white
+                ScrollView(.horizontal, showsIndicators: false) {
+                    HStack {
+                        CapturePhotoButton()
+                        ImageView()
+                        ImageView()
+                        ImageView()
+                        ImageView()
                     }
                 }
             }
@@ -81,6 +84,7 @@ struct CapturePhotoButton: View {
     
 }
 
+// TODO: mover para arquivo separado
 struct Section<Content: View>: View {
     
     var title: String
@@ -97,10 +101,28 @@ struct Section<Content: View>: View {
     
 }
 
+// TODO: mover para arquivo separado
 struct AddTreeView_Previews: PreviewProvider {
     static var previews: some View {
         AddTreeView(
             isPresented: .constant(true)
         )
+    }
+}
+
+// TODO: mover para arquivo separado
+struct ImageView: View {
+    var body: some View {
+        ZStack {
+            Color.white
+            Image("tree2")
+                .resizable()
+                .aspectRatio(contentMode: .fill)
+        }
+        .frame(
+            width: (UIScreen.main.bounds.width - 4*16)/3,
+            height: (UIScreen.main.bounds.width - 4*16)/3
+        )
+        .cornerRadius(16)
     }
 }
