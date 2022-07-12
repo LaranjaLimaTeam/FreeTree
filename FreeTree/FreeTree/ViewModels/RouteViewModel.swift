@@ -71,9 +71,11 @@ class RouteViewModel: ObservableObject {
             }
             guard let unwrappedResponse = response else { return }
             guard let firstRoute = unwrappedResponse.routes.first else { return }
-            self.routeDistance = firstRoute.distance
-            self.route = firstRoute.polyline
-            self.currentPolylineLocation = currentUserLocation
+            if self.destination != nil {
+                self.routeDistance = firstRoute.distance
+                self.route = firstRoute.polyline
+                self.currentPolylineLocation = currentUserLocation
+            }
         }
     }
     
