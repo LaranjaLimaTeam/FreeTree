@@ -42,6 +42,7 @@
 		C2EF905028732A3300250E7D /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF904F28732A3300250E7D /* FirebaseManager.swift */; };
 		C2EF905228732B2200250E7D /* FirebaseTreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */; };
 		C2EF905628732FB900250E7D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = C2EF905528732FB900250E7D /* GoogleService-Info.plist */; };
+		E82420AA287DB562007C516C /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82420A9287DB562007C516C /* AddTreeForm.swift */; };
 		E82818B42861E48300E81C82 /* Tree.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B32861E48300E81C82 /* Tree.swift */; };
 		E82818B62861EC9B00E81C82 /* TreeRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B52861EC9B00E81C82 /* TreeRepository.swift */; };
 		E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E82818B92861F50200E81C82 /* RecipesView.swift */; };
@@ -57,7 +58,6 @@
 		E89ED76A286DCD050078E84D /* ToggleField.swift in Sources */ = {isa = PBXBuildFile; fileRef = E89ED769286DCD050078E84D /* ToggleField.swift */; };
 		E8D50BBE287DAF890007EDFA /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BBD287DAF890007EDFA /* Section.swift */; };
 		E8D50BC0287DAFBD0007EDFA /* ImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BBF287DAFBD0007EDFA /* ImageView.swift */; };
-		E8D50BC2287DB01E0007EDFA /* AddTreeForm.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */; };
 		E8D50BC4287DB0660007EDFA /* AddTreeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC3287DB0660007EDFA /* AddTreeView.swift */; };
 		E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */; };
 		E8EF0FE9286353F00085FC57 /* TreeDAO.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8EF0FE8286353F00085FC57 /* TreeDAO.swift */; };
@@ -104,6 +104,7 @@
 		C2EF904F28732A3300250E7D /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseTreeRepository.swift; sourceTree = "<group>"; };
 		C2EF905528732FB900250E7D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		E82420A9287DB562007C516C /* AddTreeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
 		E82818B32861E48300E81C82 /* Tree.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tree.swift; sourceTree = "<group>"; };
 		E82818B52861EC9B00E81C82 /* TreeRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeRepository.swift; sourceTree = "<group>"; };
 		E82818B92861F50200E81C82 /* RecipesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipesView.swift; sourceTree = "<group>"; };
@@ -119,7 +120,6 @@
 		E89ED769286DCD050078E84D /* ToggleField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToggleField.swift; sourceTree = "<group>"; };
 		E8D50BBD287DAF890007EDFA /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		E8D50BBF287DAFBD0007EDFA /* ImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageView.swift; sourceTree = "<group>"; };
-		E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeForm.swift; sourceTree = "<group>"; };
 		E8D50BC3287DB0660007EDFA /* AddTreeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTreeView.swift; sourceTree = "<group>"; };
 		E8D50BC5287DB0E80007EDFA /* CapturePhotoButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapturePhotoButton.swift; sourceTree = "<group>"; };
 		E8EF0FE8286353F00085FC57 /* TreeDAO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeDAO.swift; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 				E8D50BC3287DB0660007EDFA /* AddTreeView.swift */,
 				E8D50BBD287DAF890007EDFA /* Section.swift */,
 				E8D50BBF287DAFBD0007EDFA /* ImageView.swift */,
-				E8D50BC1287DB01E0007EDFA /* AddTreeForm.swift */,
+				E82420A9287DB562007C516C /* AddTreeForm.swift */,
 			);
 			name = AddTreeView;
 			path = ../../../../../../AddTreeView;
@@ -528,9 +528,9 @@
 				613F04662861E42A00E4CC47 /* MapView.swift in Sources */,
 				E87C7EEF2875AF73000026F7 /* DateExtension.swift in Sources */,
 				C20D0CC82869ED5500BF425C /* Comment.swift in Sources */,
+				E82420AA287DB562007C516C /* AddTreeForm.swift in Sources */,
 				C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
-				E8D50BC2287DB01E0007EDFA /* AddTreeForm.swift in Sources */,
 				C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */,
 				C204299E286356AC003C6B71 /* SegmentedControlView.swift in Sources */,
 				E8D50BC4287DB0660007EDFA /* AddTreeView.swift in Sources */,
