@@ -33,6 +33,11 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
          renderer.lineWidth = 3.0
          return renderer
     }
+    
+    func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
+        self.map.mapViewModel.currentCenterLocation = mapView.centerCoordinate
+    }
+    
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
             return usetPin(annotation: annotation)
@@ -42,6 +47,7 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     func usetPin(annotation: MKAnnotation) -> MKAnnotationView? {
         return nil
     }
+    
     func treePin(annotation: MKAnnotation) -> MKAnnotationView? {
         let view = MKAnnotationView(annotation: annotation, reuseIdentifier: "tree")
         view.image =  UIImage(named: "tree-placemark")

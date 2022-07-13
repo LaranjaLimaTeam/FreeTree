@@ -20,6 +20,7 @@ class MapViewModel: ObservableObject {
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
+    var currentCenterLocation: CLLocationCoordinate2D?
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
