@@ -118,17 +118,5 @@ struct FireBaseManager {
                 completion(.failure(FirebaseError.createError))
             }
         }
-        
-//        storageRef.putData(data, metadata: nil){ (metadata, error) in
-//            guard let metaData = metadata else {
-//                print("encontramos um erro aqui")
-//                return
-//            }
-//            if let err = error {
-//                print("Erro ao salvar foto: \(err)")
-//            }
-//            
-//            completion(.success(data))
-//        }
     }
 }
