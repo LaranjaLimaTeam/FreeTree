@@ -21,7 +21,8 @@ class MapViewModel: ObservableObject {
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
-    var currentCenterLocation: CLLocationCoordinate2D?
+    
+    var currentCenterLocation: Coordinate?
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
@@ -96,5 +97,9 @@ class MapViewModel: ObservableObject {
     
     func cleanTreesOnMap() {
         self.treesOnMap = []
+    }
+    
+    func setCenterCoordinate(coordinate: Coordinate) {
+        self.currentCenterLocation = coordinate
     }
 }

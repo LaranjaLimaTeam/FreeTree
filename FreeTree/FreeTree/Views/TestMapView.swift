@@ -34,6 +34,9 @@ struct TestMapView: View {
                 Spacer()
             }
         }
+        .onAppear {
+            mapViewModel.cleanTreesOnMap()
+        }
     }
 }
 

@@ -35,7 +35,8 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        self.map.mapViewModel.currentCenterLocation = mapView.centerCoordinate
+        let coordinate = Coordinate(latitude: Double(mapView.centerCoordinate.latitude), longitude: Double(mapView.centerCoordinate.longitude))
+        self.map.mapViewModel
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
