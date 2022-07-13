@@ -12,8 +12,10 @@ struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
-    @State var showingAlert: Bool = false
-    let notificationPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
+    @State var showingRouteAlert: Bool = false
+    @State var showingTreeFiltersAlert: Bool = false
+    let notificationRoutePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
+    let notificationTreeFilterPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("treeFilters"))
     
     var body: some View {
         ZStack {
@@ -23,7 +25,12 @@ struct MapView: View {
                     .onAppear {
                         mapViewModel.requestLocation()
                     }
-                    .alert(isPresented: $showingAlert) {
+                    .alert(isPresented: $showingTreeFiltersAlert) {
+                        Alert(title: Text("Você chegou ao seu destino!"),
+                              message: Text("Aproveite o seu momento com a natureza :-)"),
+                              dismissButton: .default(Text("OK")))
+                    }
+                    .alert(isPresented: $showingRouteAlert) {
                         Alert(title: Text("Você chegou ao seu destino!"),
                               message: Text("Aproveite o seu momento com a natureza :-)"),
                               dismissButton: .default(Text("OK")))
@@ -81,8 +88,11 @@ struct MapView: View {
                 )
             }, presentationMode: $presentationMode)
         }
-        .onReceive(notificationPublisher) { (output) in
-            showingAlert = true
+        .onReceive(notificationRoutePublisher) { _ in
+            showingRouteAlert = true
+        }
+        .onReceive(notificationTreeFilterPublisher){ _ in
+            
         }
     }
 }

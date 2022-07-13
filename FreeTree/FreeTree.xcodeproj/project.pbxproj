@@ -18,6 +18,14 @@
 		6194B5D0285A0AB700991D50 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6194B5CF285A0AB700991D50 /* Assets.xcassets */; };
 		6194B5D3285A0AB700991D50 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 6194B5D2285A0AB700991D50 /* Preview Assets.xcassets */; };
 		61B67CFF287C67B40054DEA6 /* StartRouteButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61B67CFE287C67B40054DEA6 /* StartRouteButton.swift */; };
+		61BEF0C1287F0AE7001580FA /* TreeFilterFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0C0287F0AE7001580FA /* TreeFilterFactory.swift */; };
+		61BEF0C3287F0B38001580FA /* TreeFilterFruitful.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0C2287F0B38001580FA /* TreeFilterFruitful.swift */; };
+		61BEF0C5287F0B5A001580FA /* TreeFilterPersonal.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0C4287F0B5A001580FA /* TreeFilterPersonal.swift */; };
+		61BEF0C7287F0B78001580FA /* TreeFilterAll.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0C6287F0B78001580FA /* TreeFilterAll.swift */; };
+		61BEF0CA287F0B9A001580FA /* TreeFilterOnRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0C9287F0B9A001580FA /* TreeFilterOnRoute.swift */; };
+		61BEF0CC287F0D9F001580FA /* TreeFilterTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0CB287F0D9F001580FA /* TreeFilterTypes.swift */; };
+		61BEF0CE287F0DF9001580FA /* TreeFilterProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0CD287F0DF9001580FA /* TreeFilterProtocol.swift */; };
+		61BEF0D0287F11AF001580FA /* TreeFilterRandom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61BEF0CF287F11AF001580FA /* TreeFilterRandom.swift */; };
 		61C95617287DB39E0086CD94 /* OnRouteView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61C95616287DB39E0086CD94 /* OnRouteView.swift */; };
 		61E4A8C528634204008F333C /* Coordinate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4A8C428634204008F333C /* Coordinate.swift */; };
 		61E4A8C7286343A0008F333C /* MapViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61E4A8C6286343A0008F333C /* MapViewModel.swift */; };
@@ -81,6 +89,14 @@
 		6194B5CF285A0AB700991D50 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		6194B5D2285A0AB700991D50 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		61B67CFE287C67B40054DEA6 /* StartRouteButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRouteButton.swift; sourceTree = "<group>"; };
+		61BEF0C0287F0AE7001580FA /* TreeFilterFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterFactory.swift; sourceTree = "<group>"; };
+		61BEF0C2287F0B38001580FA /* TreeFilterFruitful.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterFruitful.swift; sourceTree = "<group>"; };
+		61BEF0C4287F0B5A001580FA /* TreeFilterPersonal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterPersonal.swift; sourceTree = "<group>"; };
+		61BEF0C6287F0B78001580FA /* TreeFilterAll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterAll.swift; sourceTree = "<group>"; };
+		61BEF0C9287F0B9A001580FA /* TreeFilterOnRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterOnRoute.swift; sourceTree = "<group>"; };
+		61BEF0CB287F0D9F001580FA /* TreeFilterTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterTypes.swift; sourceTree = "<group>"; };
+		61BEF0CD287F0DF9001580FA /* TreeFilterProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterProtocol.swift; sourceTree = "<group>"; };
+		61BEF0CF287F11AF001580FA /* TreeFilterRandom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TreeFilterRandom.swift; sourceTree = "<group>"; };
 		61C95616287DB39E0086CD94 /* OnRouteView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OnRouteView.swift; sourceTree = "<group>"; };
 		61E4A8C428634204008F333C /* Coordinate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinate.swift; sourceTree = "<group>"; };
 		61E4A8C6286343A0008F333C /* MapViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewModel.swift; sourceTree = "<group>"; };
@@ -222,6 +238,7 @@
 		6194B5D9285A0AF200991D50 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				61BEF0BF287F0AC9001580FA /* TreeFilters */,
 				61E4A8C6286343A0008F333C /* MapViewModel.swift */,
 				E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */,
 				C2CAC6ED286493DC00A6D4A2 /* TreeProfileViewModel.swift */,
@@ -277,6 +294,29 @@
 				C2EF905128732B2200250E7D /* FirebaseTreeRepository.swift */,
 			);
 			path = Managers;
+			sourceTree = "<group>";
+		};
+		61BEF0BF287F0AC9001580FA /* TreeFilters */ = {
+			isa = PBXGroup;
+			children = (
+				61BEF0C8287F0B87001580FA /* Filters */,
+				61BEF0C0287F0AE7001580FA /* TreeFilterFactory.swift */,
+				61BEF0CB287F0D9F001580FA /* TreeFilterTypes.swift */,
+				61BEF0CD287F0DF9001580FA /* TreeFilterProtocol.swift */,
+			);
+			path = TreeFilters;
+			sourceTree = "<group>";
+		};
+		61BEF0C8287F0B87001580FA /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				61BEF0C2287F0B38001580FA /* TreeFilterFruitful.swift */,
+				61BEF0C4287F0B5A001580FA /* TreeFilterPersonal.swift */,
+				61BEF0C6287F0B78001580FA /* TreeFilterAll.swift */,
+				61BEF0C9287F0B9A001580FA /* TreeFilterOnRoute.swift */,
+				61BEF0CF287F11AF001580FA /* TreeFilterRandom.swift */,
+			);
+			path = Filters;
 			sourceTree = "<group>";
 		};
 		C2042997286345EC003C6B71 /* TreeProfile */ = {
@@ -527,11 +567,14 @@
 				C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */,
 				C20179E0287C691400B269A3 /* BottomSearchView.swift in Sources */,
 				6150EAF32876FA2600A277D1 /* RouteViewModel.swift in Sources */,
+				61BEF0C1287F0AE7001580FA /* TreeFilterFactory.swift in Sources */,
 				614097EC2864C6640019E4C3 /* PolylineMapViewCoordinator.swift in Sources */,
 				E82420B9287DBA30007C516C /* AddTreeForm.swift in Sources */,
 				E89ED768286DCC5C0078E84D /* LargeButton.swift in Sources */,
 				E8D50BC6287DB0E80007EDFA /* CapturePhotoButton.swift in Sources */,
+				61BEF0CA287F0B9A001580FA /* TreeFilterOnRoute.swift in Sources */,
 				E848039E28649953008BD2F9 /* MapButtonStack.swift in Sources */,
+				61BEF0D0287F11AF001580FA /* TreeFilterRandom.swift in Sources */,
 				E87800A328746296001C9392 /* CommentRepository.swift in Sources */,
 				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				C204299C2863478B003C6B71 /* SheetView.swift in Sources */,
@@ -549,15 +592,19 @@
 				C204299E286356AC003C6B71 /* SegmentedControlView.swift in Sources */,
 				E82420BC287DBA30007C516C /* AddTreeView.swift in Sources */,
 				C20D0CC62869ECF000BF425C /* CommentTextView.swift in Sources */,
+				61BEF0C3287F0B38001580FA /* TreeFilterFruitful.swift in Sources */,
 				C2CAC6EE286493DC00A6D4A2 /* TreeProfileViewModel.swift in Sources */,
 				61405CE8286C8E3100B004C6 /* TreeManagerImplementation.swift in Sources */,
 				61C95617287DB39E0086CD94 /* OnRouteView.swift in Sources */,
+				61BEF0CE287F0DF9001580FA /* TreeFilterProtocol.swift in Sources */,
+				61BEF0CC287F0D9F001580FA /* TreeFilterTypes.swift in Sources */,
 				C2CAC6E82864898600A6D4A2 /* User.swift in Sources */,
 				E89ED76A286DCD050078E84D /* ToggleField.swift in Sources */,
 				E82818BA2861F50200E81C82 /* RecipesView.swift in Sources */,
 				C20FA61F286622DB00F4D3C4 /* CommentView.swift in Sources */,
 				C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */,
 				C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */,
+				61BEF0C5287F0B5A001580FA /* TreeFilterPersonal.swift in Sources */,
 				6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */,
 				E82420BA287DBA30007C516C /* Section.swift in Sources */,
 				C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */,
@@ -570,6 +617,7 @@
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
 				61E4A8C528634204008F333C /* Coordinate.swift in Sources */,
 				C20429992863464B003C6B71 /* TreeHeaderView.swift in Sources */,
+				61BEF0C7287F0B78001580FA /* TreeFilterAll.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

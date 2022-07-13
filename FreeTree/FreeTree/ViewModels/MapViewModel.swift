@@ -11,6 +11,7 @@ import Combine
 
 class MapViewModel: ObservableObject {
     @Published private(set) var treesOnMap: [Tree] = []
+    var trees: [Tree] = []
     @Published var hasToCentrilize: Bool = false
     @Published var showAddTreeSheet: Bool = false
     @Published var showTreeProfile: Bool = false
@@ -21,18 +22,21 @@ class MapViewModel: ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
-    
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
+    let treeFilterFactory = TreeFilterFactory()
+    var currentFilter: TreeFilter
     var routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
     var cancellableRoute: Cancellable?
     
     init() {
+        self.currentFilter = treeFilterFactory.create(type: .all)
         cancellable = self.treeManager.$trees
-            // TODO: Implement filters from contextual menu
-            .filter({ _ in
-                return true
+            .map({ trees in
+                return trees.filter { tree in
+                    self.currentFilter.filter(tree: tree)
+                }
             })
             .sink(receiveValue: { treeArray in
                 self.treesOnMap = treeArray
@@ -80,5 +84,8 @@ class MapViewModel: ObservableObject {
         guard let distanceInMeters = locationManager.getDistance(coordinates: coordinate) else {return 0}
         let distanceInKm: Double = distanceInMeters*1.0/1000
         return distanceInKm
+    }
+    func updateFilter(filterType: TreeFilterTypes){
+        
     }
 }
