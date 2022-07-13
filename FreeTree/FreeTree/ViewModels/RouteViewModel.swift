@@ -84,5 +84,7 @@ class RouteViewModel: ObservableObject {
         self.destination = nil
         self.currentPolylineLocation = nil
         self.routeDistance = nil
+        let notificationName = Notification.Name("endRoute")
+        NotificationCenter.default.post(name: notificationName, object: nil)
     }
 }

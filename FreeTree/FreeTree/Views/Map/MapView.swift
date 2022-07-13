@@ -12,6 +12,8 @@ struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
+    @State var showingAlert: Bool = false
+    let notificationPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
     
     var body: some View {
         ZStack {
@@ -20,6 +22,11 @@ struct MapView: View {
                     .edgesIgnoringSafeArea(.top)
                     .onAppear {
                         mapViewModel.requestLocation()
+                    }
+                    .alert(isPresented: $showingAlert) {
+                        Alert(title: Text("Você chegou ao seu destino!"),
+                              message: Text("Aproveite o seu momento com a natureza :-)"),
+                              dismissButton: .default(Text("OK")))
                     }
                     .environmentObject(mapViewModel)
                     .overlay {
@@ -73,6 +80,9 @@ struct MapView: View {
                 }
                 )
             }, presentationMode: $presentationMode)
+        }
+        .onReceive(notificationPublisher) { (output) in
+            showingAlert = true
         }
     }
 }

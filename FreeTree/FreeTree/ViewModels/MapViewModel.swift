@@ -21,6 +21,7 @@ class MapViewModel: ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
+    
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
     var routeViewModel = RouteViewModel()
