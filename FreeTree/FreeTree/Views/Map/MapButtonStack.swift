@@ -14,7 +14,8 @@ struct MapButtonStack: View {
         VStack(spacing: 0) {
             MapButton(isSystemIcon: false, iconName: "leaf+add") {
                 withAnimation {
-                    mapViewModel.showAddTreeModal()
+                    mapViewModel.selectingPosition = true
+                    //mapViewModel.showAddTreeModal()
                 }
             }
             Divider()

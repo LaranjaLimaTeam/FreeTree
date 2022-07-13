@@ -44,11 +44,11 @@ struct AddTreeForm: View {
             ToggleField("É frutífera?", value: .constant(true))
             Section(title: "Endereço") {
                 Group {
-                    Text("Praça Henfil")
-                    Text("Cidade Universitária")
-                    Text("Campinas - SP")
-                    Text("13083")
-                    Text("Brasil")
+                    Text(addTreeViewModel.tree.address.street)
+                    Text(addTreeViewModel.tree.address.neighborHood)
+                    Text("\(addTreeViewModel.tree.address.city) - \(addTreeViewModel.tree.address.stateOrProvince)" )
+                    Text(addTreeViewModel.tree.address.zipCode)
+                    //Text("Brasil")
                         .padding(.bottom, 12)
                 }
             }

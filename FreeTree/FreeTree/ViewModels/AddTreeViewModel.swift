@@ -25,7 +25,7 @@ class AddTreeViewModel: ObservableObject {
     }
     
     public func addTree() {
-        self.tree.coordinates = getTreeCoordinate()
+        //self.tree.coordinates = getTreeCoordinate()
         
         self.treeManager.addTree(tree: tree) { [weak self] result in
             guard let strongSelf = self else { return }
@@ -43,6 +43,14 @@ class AddTreeViewModel: ObservableObject {
                 return Coordinate()
             }
             return currentCoordinate
+    }
+    
+    func fetchAddress(coordinate: Coordinate) {
+        locationManager.getAddress(coordinate: coordinate) { address in
+            if let safeAddress = address {
+                self.tree.address = safeAddress
+            }
+        }
     }
                                  
 }

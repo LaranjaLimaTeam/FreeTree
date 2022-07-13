@@ -21,19 +21,22 @@ class MapViewModel: ObservableObject {
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
+    @Published var selectingPosition: Bool = false
     
     var currentCenterLocation: Coordinate?
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
     let treeFilterFactory = TreeFilterFactory()
+    var currentFilterEnum: TreeFilterTypes
     var currentFilter: TreeFilter
     var routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
     var cancellableRoute: Cancellable?
     
     init() {
-        self.currentFilter = treeFilterFactory.create(type: .all)
+        self.currentFilterEnum = .all
+        self.currentFilter = treeFilterFactory.create(type: currentFilterEnum)
         cancellable = self.treeManager.$trees
             .map({ trees in
                 self.trees = trees
@@ -89,6 +92,7 @@ class MapViewModel: ObservableObject {
         return distanceInKm
     }
     func updateFilter(filterType: TreeFilterTypes) {
+        self.currentFilterEnum = filterType
         self.currentFilter = treeFilterFactory.create(type: filterType)
         treesOnMap = self.trees.filter({ tree in
             currentFilter.filter(tree: tree)

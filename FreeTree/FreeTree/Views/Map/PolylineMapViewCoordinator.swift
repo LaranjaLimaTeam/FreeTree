@@ -9,6 +9,7 @@ import MapKit
 
 final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     private let map: PolylineMapView
+    private var isHiddenUserPin: Bool = false
     init(_ control: PolylineMapView) {
         self.map = control
     }
@@ -35,24 +36,38 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     }
     
     func mapViewDidChangeVisibleRegion(_ mapView: MKMapView) {
-        let coordinate = Coordinate(latitude: Double(mapView.centerCoordinate.latitude), longitude: Double(mapView.centerCoordinate.longitude))
-        self.map.mapViewModel
+        if self.map.mapViewModel.selectingPosition {
+            let coordinate = Coordinate(latitude: Double(mapView.centerCoordinate.latitude),
+                                        longitude: Double(mapView.centerCoordinate.longitude))
+            self.map.mapViewModel.setCenterCoordinate(coordinate: coordinate)
+        }
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-            return usetPin(annotation: annotation)
+            if map.mapViewModel.selectingPosition {
+                self.isHiddenUserPin = true
+                return usetPin(annotation: annotation)
+            }
+            return nil
         }
         return treePin(annotation: annotation)
     }
+    
     func usetPin(annotation: MKAnnotation) -> MKAnnotationView? {
+        if isHiddenUserPin {
+            var view = MKAnnotationView(annotation: annotation, reuseIdentifier: "user")
+            return view
+        }
         return nil
     }
     
     func treePin(annotation: MKAnnotation) -> MKAnnotationView? {
         let view = MKAnnotationView(annotation: annotation, reuseIdentifier: "tree")
-        view.image =  UIImage(named: "tree-placemark")
-        view.frame.size = CGSize(width: 50, height: 50)
+        if !isHiddenUserPin {
+            view.image =  UIImage(named: "tree-placemark")
+            view.frame.size = CGSize(width: 50, height: 50)
+        }
         return view
     }
 }

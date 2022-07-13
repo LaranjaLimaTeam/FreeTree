@@ -18,81 +18,88 @@ struct MapView: View {
     let notificationTreeFilterPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("treeFilters"))
     
     var body: some View {
-        ZStack {
-            VStack {
-                PolylineMapView()
-                    .edgesIgnoringSafeArea(.top)
-                    .onAppear {
-                        mapViewModel.requestLocation()
-                    }
-                    .alert(isPresented: $showingTreeFiltersAlert) {
-                        Alert(title: Text("Você chegou ao seu destino!"),
-                              message: Text("Aproveite o seu momento com a natureza :-)"),
-                              dismissButton: .default(Text("OK")))
-                    }
-                    .alert(isPresented: $showingRouteAlert) {
-                        Alert(title: Text("Você chegou ao seu destino!"),
-                              message: Text("Aproveite o seu momento com a natureza :-)"),
-                              dismissButton: .default(Text("OK")))
-                    }
-                    .environmentObject(mapViewModel)
-                    .overlay {
-                        VStack {
-                            Spacer()
-                            if mapViewModel.routeViewModel.destination == nil {
-                                BottomSearchView(
-                                    isSearching: $isSearching,
-                                    mapViewModel: mapViewModel,
-                                    trees: mapViewModel.treesOnMap)
-                            } else {
-                                OnRouteView(
-                                    stopRoute: self.mapViewModel.stopRoute,
-                                    treeTitle: mapViewModel.selectedTree?.name ?? "Arvore",
-                                    routeViewModel: mapViewModel.routeViewModel
-                                )
+        if mapViewModel.selectingPosition {
+            TestMapView(mapViewModel: mapViewModel)
+                .onDisappear {
+                    mapViewModel.updateFilter(filterType: mapViewModel.currentFilterEnum)
+                }
+        } else {
+            ZStack {
+                VStack {
+                    PolylineMapView()
+                        .edgesIgnoringSafeArea(.top)
+                        .onAppear {
+                            mapViewModel.requestLocation()
+                        }
+                        .alert(isPresented: $showingTreeFiltersAlert) {
+                            Alert(title: Text("Você chegou ao seu destino!"),
+                                  message: Text("Aproveite o seu momento com a natureza :-)"),
+                                  dismissButton: .default(Text("OK")))
+                        }
+                        .alert(isPresented: $showingRouteAlert) {
+                            Alert(title: Text("Você chegou ao seu destino!"),
+                                  message: Text("Aproveite o seu momento com a natureza :-)"),
+                                  dismissButton: .default(Text("OK")))
+                        }
+                        .environmentObject(mapViewModel)
+                        .overlay {
+                            VStack {
+                                Spacer()
+                                if mapViewModel.routeViewModel.destination == nil {
+                                    BottomSearchView(
+                                        isSearching: $isSearching,
+                                        mapViewModel: mapViewModel,
+                                        trees: mapViewModel.treesOnMap)
+                                } else {
+                                    OnRouteView(
+                                        stopRoute: self.mapViewModel.stopRoute,
+                                        treeTitle: mapViewModel.selectedTree?.name ?? "Arvore",
+                                        routeViewModel: mapViewModel.routeViewModel
+                                    )
+                                }
                             }
                         }
+                    if !mapViewModel.isLocationAuthorized() {
+                        // TODO: Débito técnico -> design para Localização não autorizada
+                        ErrorMessage()
                     }
-                if !mapViewModel.isLocationAuthorized() {
-                    // TODO: Débito técnico -> design para Localização não autorizada
-                    ErrorMessage()
+                    
                 }
-                
-            }
-            .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
-                HalfSheet(
-                    content: {
-                        AddTreeView(isPresented: $mapViewModel.showAddTreeSheet)
-                    },
-                    presentationMode: .constant(.large)
-                )
-            }
-            if !isSearching {
-                HStack {
-                    Spacer()
-                    MapButtonStack()
-                        .environmentObject(mapViewModel)
-                        .padding()
+                .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
+                    if let safeCoordinate = mapViewModel.currentCenterLocation {
+                        AddTreeView(treeCoordinate: safeCoordinate,
+                                    isPresented: $mapViewModel.showAddTreeSheet
+                        )
+                    }
+                    
+                    
                 }
-            }
-        }
-        .sheet(isPresented: $mapViewModel.showTreeProfile) {
-            HalfSheet(content: {
-                TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
-                                presentationMode: $presentationMode,
-                                startRoute: {
-                    if let tree = mapViewModel.selectedTree {
-                        self.mapViewModel.startRoute(tree.coordinates)
+                if !isSearching {
+                    HStack {
+                        Spacer()
+                        MapButtonStack()
+                            .environmentObject(mapViewModel)
+                            .padding()
                     }
                 }
-                )
-            }, presentationMode: $presentationMode)
-        }
-        .onReceive(notificationRoutePublisher) { _ in
-            showingRouteAlert = true
-        }
-        .onReceive(notificationTreeFilterPublisher){ _ in
-            
+            }
+            .sheet(isPresented: $mapViewModel.showTreeProfile) {
+                HalfSheet(content: {
+                    TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
+                                    presentationMode: $presentationMode,
+                                    startRoute: {
+                        if let tree = mapViewModel.selectedTree {
+                            self.mapViewModel.startRoute(tree.coordinates)
+                        }
+                    }
+                    )
+                }, presentationMode: $presentationMode)
+            }
+            .onReceive(notificationRoutePublisher) { _ in
+                showingRouteAlert = true
+            }
+            .onReceive(notificationTreeFilterPublisher) { _ in
+            }
         }
     }
 }
