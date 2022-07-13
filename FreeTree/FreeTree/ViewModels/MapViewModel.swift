@@ -34,6 +34,7 @@ class MapViewModel: ObservableObject {
         self.currentFilter = treeFilterFactory.create(type: .all)
         cancellable = self.treeManager.$trees
             .map({ trees in
+                self.trees = trees
                 return trees.filter { tree in
                     self.currentFilter.filter(tree: tree)
                 }
@@ -85,7 +86,14 @@ class MapViewModel: ObservableObject {
         let distanceInKm: Double = distanceInMeters*1.0/1000
         return distanceInKm
     }
-    func updateFilter(filterType: TreeFilterTypes){
-        
+    func updateFilter(filterType: TreeFilterTypes) {
+        self.currentFilter = treeFilterFactory.create(type: filterType)
+        treesOnMap = self.trees.filter({ tree in
+            currentFilter.filter(tree: tree)
+        })
+    }
+    
+    func cleanTreesOnMap() {
+        self.treesOnMap = []
     }
 }
