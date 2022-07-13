@@ -15,12 +15,13 @@ struct SearchBarView: View {
                     .opacity(0.4)
                 HStack {
                     Image(systemName: "magnifyingglass")
-                        .foregroundColor(Color.gray)
+                        .foregroundColor(.green)
                         .padding(.leading, 8)
-                    TextField(placeHolderText, text: $searchText).onSubmit {
+                    TextField(placeHolderText, text: $searchText)
+                        .onSubmit {
                         searching = true
                         searchAction()
-                    }
+                        }
                     Spacer()
                     Button {
                         searching = false
@@ -28,7 +29,7 @@ struct SearchBarView: View {
                         searchText = ""
                     } label: {
                         Image(systemName: "x.circle.fill")
-                            .foregroundColor(Color.gray)
+                            .foregroundColor(.green)
                             .padding(.trailing, 13)
                     }
                 }

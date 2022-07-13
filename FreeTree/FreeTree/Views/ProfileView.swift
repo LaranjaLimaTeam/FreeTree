@@ -17,9 +17,9 @@ struct ProfileView: View {
             }
             .sheet(isPresented: $sheet) {
                 HalfSheet(content: {
-                    TreeProfileView(
-                        presentationMode: $presentationMode,
-                        treeViewModel: TreeProfileViewModel(tree: Tree())
+                    TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
+                                    presentationMode: $presentationMode,
+                                    startRoute: {print("from ProfileView")}
                     )
                 }, presentationMode: $presentationMode)
             }

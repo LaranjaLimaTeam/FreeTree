@@ -21,9 +21,10 @@ class MapViewModel: ObservableObject {
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
     
+    
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
-    let routeViewModel = RouteViewModel()
+    var routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
     var cancellableRoute: Cancellable?
     
@@ -65,13 +66,19 @@ class MapViewModel: ObservableObject {
     func isLocationAuthorized() -> Bool {
         return locationManager.isLocationAuthorized()
     }
-    func startRoute(destination: Coordinate) {
+    func startRoute(_ destination: Coordinate) {
         hasToUpdateRoute = true
         routeViewModel.destination = destination
     }
     func stopRoute() {
-        hasToUpdateRoute = false
-        routeViewModel.destination = nil
+        routeViewModel.endRoute()
+        hasToUpdateRoute = true
     }
     
+    func calculateDistance(tree: Tree) -> Double {
+        let coordinate = tree.coordinates
+        guard let distanceInMeters = locationManager.getDistance(coordinates: coordinate) else {return 0}
+        let distanceInKm: Double = distanceInMeters*1.0/1000
+        return distanceInKm
+    }
 }

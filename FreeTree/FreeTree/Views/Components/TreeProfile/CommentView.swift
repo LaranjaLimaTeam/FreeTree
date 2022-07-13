@@ -12,7 +12,7 @@ struct CommentView: View {
     let treeViewModel: TreeProfileViewModel
     var body: some View {
         HStack(alignment: .top, spacing: 16) {
-            RoundedProfileImage(imageName: "person", backgroundColor: .blue)
+            RoundedImage(imageName: "person", backgroundColor: .blue, systemName: true)
                 .frame(width: (UIScreen.main.bounds.width-32)/6, height: (UIScreen.main.bounds.width-32)/6)
                 .padding([.top, .leading], 16)
             CommentTextView(comment: comment,

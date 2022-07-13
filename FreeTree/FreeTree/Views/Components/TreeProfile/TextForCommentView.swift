@@ -30,6 +30,7 @@ struct TextForCommentView: View {
                         treeViewModel.insertComment(comment: comment)
                     }
                     self.text = ""
+                    hideKeyboard()
                 } label: {
                     Image(systemName: "arrow.up.circle.fill")
                         .foregroundColor(.green)
@@ -47,3 +48,12 @@ struct TextForCommentView_Previews: PreviewProvider {
         TextForCommentView(treeViewModel: TreeProfileViewModel(tree: Tree()), presentationMode: .constant(.medium))
     }
 }
+
+
+#if canImport(UIKit)
+extension View {
+    func hideKeyboard() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+}
+#endif

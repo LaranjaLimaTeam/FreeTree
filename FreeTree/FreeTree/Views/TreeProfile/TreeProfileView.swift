@@ -13,17 +13,21 @@ struct TreeProfileView: View {
     @State var pickingPhoto = false
     @State private var selectedImage: UIImage?
     
-    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
-    
     @ObservedObject var treeViewModel: TreeProfileViewModel
     
+    @Binding var presentationMode: UISheetPresentationController.Detent.Identifier
+    
     let sourceType: UIImagePickerController.SourceType = .camera
+    var startRoute: () -> Void
     
     var body: some View {
         if !pickingPhoto {
             VStack {
-                TreeHeaderView(tagLimit: 3,
-                               treeViewModel: treeViewModel)
+                TreeHeaderView(
+                    tagLimit: 3,
+                    treeViewModel: treeViewModel,
+                    startRoute: self.startRoute
+                )
                 SegmentedControlView(showMode: $pageControl,
                                      description: "Choose the view you want",
                                      pagesName: ["Dicas", "Fotos"])
@@ -42,10 +46,13 @@ struct TreeProfileView: View {
                     PhotoList(pickingPhoto: $pickingPhoto, treeViewModel: treeViewModel)
                 default:
                     EmptyView()
+
                 }
             }
             .onAppear {
-                treeViewModel.fetchPhotos()
+                if treeViewModel.photos.isEmpty {
+                    treeViewModel.fetchPhotos()
+                }
             }
         } else {
             CaptureImageView(isShown: $pickingPhoto, image: $selectedImage, images: $treeViewModel.photos)
@@ -63,9 +70,8 @@ struct TreeProfileView: View {
 
 struct TreeProfileView_Previews: PreviewProvider {
     static var previews: some View {
-        TreeProfileView(
-            presentationMode: .constant(.medium),
-            treeViewModel: TreeProfileViewModel(tree: Tree())
-        )
+        TreeProfileView(treeViewModel: TreeProfileViewModel(tree: Tree()),
+                        presentationMode: .constant(.medium),
+                        startRoute: {return})
     }
 }
