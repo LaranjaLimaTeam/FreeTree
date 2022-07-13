@@ -8,7 +8,6 @@ struct TreeHeaderView: View {
     var startRoute: () -> Void
     @Environment(\.presentationMode) var presentationMode
 
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             HStack {
@@ -18,8 +17,8 @@ struct TreeHeaderView: View {
                 .padding([.leading, .top], 16)
                 Spacer()
                 StartRouteButton(iconName: "arrow.triangle.turn.up.right.circle") {
-                    startRoute()
                     presentationMode.wrappedValue.dismiss()
+                    startRoute()
                 }
             }
             ImageHeader(treeViewModel: treeViewModel)

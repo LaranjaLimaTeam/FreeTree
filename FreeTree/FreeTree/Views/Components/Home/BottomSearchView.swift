@@ -47,6 +47,7 @@ struct BottomSearchView: View {
                     }, cleanData: {
                         self.text = ""
                         self.filteredTrees = []
+                        hideKeyboard()
                     }, placeHolderText: "Write the tree you want")
                     RoundedImage(imageName: "person", backgroundColor: nil, systemName: true)
                         .frame(width: UIScreen.main.bounds.width/10, height: UIScreen.main.bounds.width/10)
