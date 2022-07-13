@@ -36,7 +36,6 @@ class Coordinator: NSObject, UINavigationControllerDelegate, UIImagePickerContro
       
       guard let unwrapImage = info[UIImagePickerController.InfoKey.originalImage] as? UIImage else { return }
       imageInCoordinator = unwrapImage
-//      let image = Image(uiImage: unwrapImage)
       images.insert(unwrapImage, at: 0)
       isCoordinatorShown = false
   }
