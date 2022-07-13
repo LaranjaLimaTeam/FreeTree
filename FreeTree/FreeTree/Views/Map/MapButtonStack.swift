@@ -19,7 +19,7 @@ struct MapButtonStack: View {
             }
             Divider()
             MapButton(isSystemIcon: true, iconName: "square.stack.3d.down.right") {
-                // TODO: implementar ação
+                mapViewModel.currentFilter = mapViewModel.treeFilterFactory.create(type: .random)
                 print("change perspective button tapped")
             }
             Divider()
