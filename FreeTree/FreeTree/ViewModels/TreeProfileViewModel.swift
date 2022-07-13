@@ -9,7 +9,7 @@ class TreeProfileViewModel: ObservableObject {
     @Published var tree: Tree
     @Published var distance: Double = 0
     @Published var comments: [Comment] = []
-    @Published var photos: [Image] = []
+    @Published var photos: [UIImage] = []
     
     private let locationManager = LocationManager.shared
     private let commentRepository: CommentRepository
@@ -82,10 +82,10 @@ class TreeProfileViewModel: ObservableObject {
         }
     }
     
-    public func convertDataIntoImage(from data: Data) -> Image? {
+    public func convertDataIntoImage(from data: Data) -> UIImage? {
         if let uiImage = UIImage(data: data) {
-            let image = Image(uiImage: uiImage)
-            return image
+//            let image = Image(uiImage: uiImage)
+            return uiImage
         }
         return nil
     }

@@ -13,7 +13,8 @@ class AddTreeViewModel: ObservableObject {
     @ObservedObject private var locationManager: LocationManager
     
     @Published var tree = Tree()
-    @Published var photos = [Image]()
+    @Published var photos = [UIImage]()
+    
     
     private let treeManager: TreeManagerImplementation
     private let photoRepository: PhotoRepository
