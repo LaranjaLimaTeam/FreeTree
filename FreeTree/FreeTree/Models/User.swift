@@ -6,8 +6,11 @@
 //
 
 import Foundation
+import FirebaseFirestoreSwift
 
-struct UserProfile: Codable {
+struct UserProfile: Codable, Identifiable {
+    @DocumentID var id = UUID().uuidString
     var name: String = "Karina Costa"
+    var email: String = ""
     var imageName: String = "person"
 }

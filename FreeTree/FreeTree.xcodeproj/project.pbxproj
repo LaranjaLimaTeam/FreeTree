@@ -37,6 +37,12 @@
 		C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD33287705B90046AAC7 /* PhotoRepository.swift */; };
 		C26CFD362877060C0046AAC7 /* FirebasePhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD352877060C0046AAC7 /* FirebasePhotoRepository.swift */; };
 		C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD37287748A90046AAC7 /* ImageExtension.swift */; };
+		C27652C3287DE8E100C68F30 /* HeaderLoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27652C2287DE8E100C68F30 /* HeaderLoginView.swift */; };
+		C27652C5287DEA8200C68F30 /* LoginFieldsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27652C4287DEA8200C68F30 /* LoginFieldsView.swift */; };
+		C27652C7287DEE1200C68F30 /* LoginButtons.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27652C6287DEE1200C68F30 /* LoginButtons.swift */; };
+		C27652C9287DEFCE00C68F30 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27652C8287DEFCE00C68F30 /* LoginScreen.swift */; };
+		C27652CB287DF0FF00C68F30 /* LoginViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27652CA287DF0FF00C68F30 /* LoginViewModel.swift */; };
+		C27652CE287DF45700C68F30 /* RegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C27652CD287DF45700C68F30 /* RegisterView.swift */; };
 		C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5FA722862029500BA2469 /* SearchBar.swift */; };
 		C2CAC6E82864898600A6D4A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E72864898600A6D4A2 /* User.swift */; };
 		C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E92864929500A6D4A2 /* TagListView.swift */; };
@@ -102,6 +108,12 @@
 		C26CFD33287705B90046AAC7 /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
 		C26CFD352877060C0046AAC7 /* FirebasePhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePhotoRepository.swift; sourceTree = "<group>"; };
 		C26CFD37287748A90046AAC7 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		C27652C2287DE8E100C68F30 /* HeaderLoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderLoginView.swift; sourceTree = "<group>"; };
+		C27652C4287DEA8200C68F30 /* LoginFieldsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginFieldsView.swift; sourceTree = "<group>"; };
+		C27652C6287DEE1200C68F30 /* LoginButtons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginButtons.swift; sourceTree = "<group>"; };
+		C27652C8287DEFCE00C68F30 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		C27652CA287DF0FF00C68F30 /* LoginViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewModel.swift; sourceTree = "<group>"; };
+		C27652CD287DF45700C68F30 /* RegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterView.swift; sourceTree = "<group>"; };
 		C2B5FA722862029500BA2469 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C2CAC6E72864898600A6D4A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C2CAC6E92864929500A6D4A2 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -223,6 +235,7 @@
 				E83A0160286375DC00A1BF18 /* AddTreeViewModel.swift */,
 				C2CAC6ED286493DC00A6D4A2 /* TreeProfileViewModel.swift */,
 				6150EAF22876FA2600A277D1 /* RouteViewModel.swift */,
+				C27652CA287DF0FF00C68F30 /* LoginViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -319,9 +332,30 @@
 			path = PhotoRepository;
 			sourceTree = "<group>";
 		};
+		C27652C1287DE8BB00C68F30 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				C27652C2287DE8E100C68F30 /* HeaderLoginView.swift */,
+				C27652C4287DEA8200C68F30 /* LoginFieldsView.swift */,
+				C27652C6287DEE1200C68F30 /* LoginButtons.swift */,
+				C27652C8287DEFCE00C68F30 /* LoginScreen.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		C27652CC287DF43B00C68F30 /* Register */ = {
+			isa = PBXGroup;
+			children = (
+				C27652CD287DF45700C68F30 /* RegisterView.swift */,
+			);
+			path = Register;
+			sourceTree = "<group>";
+		};
 		C2B5FA702862026900BA2469 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C27652CC287DF43B00C68F30 /* Register */,
+				C27652C1287DE8BB00C68F30 /* Login */,
 				C2042997286345EC003C6B71 /* TreeProfile */,
 				C2B5FA712862027400BA2469 /* Home */,
 				E845A5BA2869F171004D9E29 /* BottomSheet.swift */,
@@ -533,6 +567,7 @@
 				C204299C2863478B003C6B71 /* SheetView.swift in Sources */,
 				C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */,
 				6194B5CE285A0AB600991D50 /* ContentView.swift in Sources */,
+				C27652CE287DF45700C68F30 /* RegisterView.swift in Sources */,
 				C20D0CC42869DFD700BF425C /* TreeProfileView.swift in Sources */,
 				613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */,
 				E87800A7287464AF001C9392 /* FirebaseCommentRepository.swift in Sources */,
@@ -542,6 +577,8 @@
 				C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */,
 				E82818BC2861F51F00E81C82 /* ProfileView.swift in Sources */,
 				C2CAC6EC286492E600A6D4A2 /* ImageHeaderView.swift in Sources */,
+				C27652C3287DE8E100C68F30 /* HeaderLoginView.swift in Sources */,
+				C27652C9287DEFCE00C68F30 /* LoginScreen.swift in Sources */,
 				C204299E286356AC003C6B71 /* SegmentedControlView.swift in Sources */,
 				E82420BC287DBA30007C516C /* AddTreeView.swift in Sources */,
 				C20D0CC62869ECF000BF425C /* CommentTextView.swift in Sources */,
@@ -554,6 +591,8 @@
 				C20FA61F286622DB00F4D3C4 /* CommentView.swift in Sources */,
 				C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */,
 				C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */,
+				C27652C5287DEA8200C68F30 /* LoginFieldsView.swift in Sources */,
+				C27652CB287DF0FF00C68F30 /* LoginViewModel.swift in Sources */,
 				6194B5CC285A0AB600991D50 /* FreeTreeApp.swift in Sources */,
 				E82420BA287DBA30007C516C /* Section.swift in Sources */,
 				C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */,
@@ -561,6 +600,7 @@
 				E845A5BB2869F171004D9E29 /* BottomSheet.swift in Sources */,
 				C20D0CCC2869EE2A00BF425C /* TextForCommentView.swift in Sources */,
 				E8EF0FE9286353F00085FC57 /* TreeDAO.swift in Sources */,
+				C27652C7287DEE1200C68F30 /* LoginButtons.swift in Sources */,
 				61E4A8C7286343A0008F333C /* MapViewModel.swift in Sources */,
 				C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */,
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
