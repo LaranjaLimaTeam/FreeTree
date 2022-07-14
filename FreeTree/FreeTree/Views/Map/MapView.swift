@@ -63,6 +63,9 @@ struct MapView: View {
                     AddTreeView(treeCoordinate: safeCoordinate,
                                 isPresented: $mapViewModel.showAddTreeSheet
                     )
+                    .onDisappear {
+                        mapViewModel.updateFilter(filterType: mapViewModel.currentFilterEnum)
+                    }
                 }
                 
             }
