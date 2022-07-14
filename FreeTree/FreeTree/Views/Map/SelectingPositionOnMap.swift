@@ -21,6 +21,7 @@ struct SelectingPositionOnMap: View {
                             print("Cancelei arvore")
                             mapViewModel.currentCenterLocation = nil
                             mapViewModel.selectingPosition = false
+                            mapViewModel.updateFilter(filterType: mapViewModel.currentFilterEnum)
                         } label: {
                             Text("Cancelar")
                                 .font(.body)
