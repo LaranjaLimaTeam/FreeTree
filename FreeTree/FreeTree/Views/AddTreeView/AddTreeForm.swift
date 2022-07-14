@@ -41,8 +41,8 @@ struct AddTreeForm: View {
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 12)
-            ToggleField("Foi plantada por você?", value: .constant(true))
-            ToggleField("É frutífera?", value: .constant(true))
+            ToggleField("Foi plantada por você?", value: $addTreeViewModel.tree.wasPlantedByUser)
+            ToggleField("É frutífera?", value: $addTreeViewModel.tree.isFruitful)
             Section(title: "Endereço") {
                 Group {
                     Text("Praça Henfil")
