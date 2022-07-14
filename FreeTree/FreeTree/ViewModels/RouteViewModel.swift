@@ -44,6 +44,8 @@ class RouteViewModel: ObservableObject {
         
         if dest.distance(from: user) < distanceThreshold {
             endRoute()
+            let notificationName = Notification.Name("endRoute")
+            NotificationCenter.default.post(name: notificationName, object: nil)
         }
         
         if user.distance(from: poly) > distanceThreshold {
@@ -84,7 +86,5 @@ class RouteViewModel: ObservableObject {
         self.destination = nil
         self.currentPolylineLocation = nil
         self.routeDistance = nil
-        let notificationName = Notification.Name("endRoute")
-        NotificationCenter.default.post(name: notificationName, object: nil)
     }
 }

@@ -13,7 +13,6 @@ struct MapView: View {
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
     @State var showingRouteAlert: Bool = false
-    @State var showingTreeFiltersAlert: Bool = false
     let notificationRoutePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
     let notificationTreeFilterPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("treeFilters"))
     
@@ -30,11 +29,6 @@ struct MapView: View {
                         .edgesIgnoringSafeArea(.top)
                         .onAppear {
                             mapViewModel.requestLocation()
-                        }
-                        .alert(isPresented: $showingTreeFiltersAlert) {
-                            Alert(title: Text("Você chegou ao seu destino!"),
-                                  message: Text("Aproveite o seu momento com a natureza :-)"),
-                                  dismissButton: .default(Text("OK")))
                         }
                         .alert(isPresented: $showingRouteAlert) {
                             Alert(title: Text("Você chegou ao seu destino!"),
@@ -71,8 +65,6 @@ struct MapView: View {
                                     isPresented: $mapViewModel.showAddTreeSheet
                         )
                     }
-                    
-                    
                 }
                 if !isSearching {
                     HStack {

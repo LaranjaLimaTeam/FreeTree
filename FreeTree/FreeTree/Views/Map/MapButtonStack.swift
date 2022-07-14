@@ -15,20 +15,21 @@ struct MapButtonStack: View {
             MapButton(isSystemIcon: false, iconName: "leaf+add") {
                 withAnimation {
                     mapViewModel.selectingPosition = true
-                    //mapViewModel.showAddTreeModal()
                 }
             }
             Divider()
-            MapButton(isSystemIcon: true, iconName: "square.stack.3d.down.right") {
-                mapViewModel.currentFilter = mapViewModel.treeFilterFactory.create(type: .random)
-                print("change perspective button tapped")
-            }
-            Divider()
+            //Feature on research
+//            MapButton(isSystemIcon: true, iconName: "square.stack.3d.down.right") {
+//                withAnimation {
+//                    mapViewModel.presentFilterSheet()
+//                }
+//            }
+//            Divider()
             MapButton(isSystemIcon: true, iconName: "paperplane") {
                 mapViewModel.centralizeMapRegion()
             }
         }
-        .frame(maxWidth: 30)
+        .frame(maxWidth: 40)
         .background(.white)
         .cornerRadius(10)
     }

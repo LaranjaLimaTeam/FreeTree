@@ -26,6 +26,7 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
         if  let tree = tree.first {
             map.mapViewModel.selectedTree = tree
         }
+        
         map.mapViewModel.showTreeProfile.toggle()
     }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {

@@ -78,11 +78,18 @@ class MapViewModel: ObservableObject {
     }
     func startRoute(_ destination: Coordinate) {
         hasToUpdateRoute = true
+        if let tree = selectedTree {
+            centerOnTree(tree: tree)
+            updateFilter(filterType: .byTree(tree: tree))
+        }
         routeViewModel.destination = destination
+        
     }
     func stopRoute() {
         routeViewModel.endRoute()
         hasToUpdateRoute = true
+        updateFilter(filterType: .all)
+        centralizeMapRegion()
     }
     
     func calculateDistance(tree: Tree) -> Double {
@@ -92,7 +99,14 @@ class MapViewModel: ObservableObject {
         return distanceInKm
     }
     func updateFilter(filterType: TreeFilterTypes) {
-        self.currentFilterEnum = filterType
+        switch filterType {
+        case .none:
+            break
+        case .byTree:
+            break
+        default:
+            self.currentFilterEnum = filterType
+        }
         self.currentFilter = treeFilterFactory.create(type: filterType)
         treesOnMap = self.trees.filter({ tree in
             currentFilter.filter(tree: tree)
@@ -100,10 +114,19 @@ class MapViewModel: ObservableObject {
     }
     
     func cleanTreesOnMap() {
-        self.treesOnMap = []
+        updateFilter(filterType: .none)
     }
     
     func setCenterCoordinate(coordinate: Coordinate) {
         self.currentCenterLocation = coordinate
+    }
+    
+    func centerOnTree(tree: Tree) {
+        region.center = tree.coordinates.coordinate
+        hasToCentrilize = true
+    }
+    
+    func updateSpan(zoom: Double) {
+        region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
     }
 }

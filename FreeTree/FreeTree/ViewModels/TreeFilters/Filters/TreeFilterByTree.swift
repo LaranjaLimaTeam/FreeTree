@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TreeFilterOnRoute: TreeFilter {
+class TreeFilterByTree: TreeFilter {
     let tree: Tree
     init(tree: Tree) {
         self.tree = tree
