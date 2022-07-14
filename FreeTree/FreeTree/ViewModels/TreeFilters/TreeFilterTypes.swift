@@ -8,9 +8,10 @@
 import Foundation
 
 enum TreeFilterTypes {
-    case fruitful
-    case personal(user: UserProfile)
+    case onlyFruitful
+    case byUser(user: UserProfile)
     case all
-    case onRoute(tree: Tree)
+    case byTree(tree: Tree)
     case random
+    case none
 }

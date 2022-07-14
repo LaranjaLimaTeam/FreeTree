@@ -13,9 +13,9 @@ struct MapView: View {
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
     @State var showingRouteAlert: Bool = false
-    @State var showingTreeFiltersAlert: Bool = false
+    @State var showingRouteErrorAlert: Bool = false
     let notificationRoutePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
-    let notificationTreeFilterPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("treeFilters"))
+    let notificationRouteErrorPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("routeError"))
     
     var body: some View {
         ZStack {
@@ -29,6 +29,18 @@ struct MapView: View {
                         Alert(title: Text("Você chegou ao seu destino!"),
                               message: Text("Aproveite o seu momento com a natureza :-)"),
                               dismissButton: .default(Text("OK")))
+                    }
+                    .alert(isPresented: $showingRouteErrorAlert) {
+                        Alert(title: Text("Erro ao calcular a rota"),
+                              message: Text("Não conseguimos calcular a rota até essa árvore)"),
+                              dismissButton: .default(
+                                Text("OK")                               ,
+                                action: {
+                                    self.mapViewModel.stopRoute()
+                                }
+                              )
+                              
+                        )
                     }
                     .environmentObject(mapViewModel)
                     .overlay {
@@ -65,6 +77,7 @@ struct MapView: View {
                     )
                     .onDisappear {
                         mapViewModel.updateFilter(filterType: mapViewModel.currentFilterEnum)
+                        mapViewModel.updateSpan(zoom: 0.01)
                     }
                 }
                 
@@ -93,7 +106,8 @@ struct MapView: View {
         .onReceive(notificationRoutePublisher) { _ in
             showingRouteAlert = true
         }
-        .onReceive(notificationTreeFilterPublisher) { _ in
+        .onReceive(notificationRouteErrorPublisher){ _ in
+            showingRouteErrorAlert = true
         }
     }
 }

@@ -10,16 +10,18 @@ import Foundation
 class TreeFilterFactory{
     func create(type: TreeFilterTypes) -> TreeFilter {
             switch type {
-            case .fruitful:
+            case .onlyFruitful:
                 return TreeFilterFruitful()
-            case .personal(let user):
-                return TreeFilterPersonal(user: user)
+            case .byUser(let user):
+                return TreeFilterByUser(user: user)
             case .all:
                 return TreeFilterAll()
-            case .onRoute(let tree):
-                return TreeFilterOnRoute(tree: tree)
+            case .byTree(let tree):
+                return TreeFilterByTree(tree: tree)
             case .random:
                 return TreeFilterRandom()
-            }
+             case .none:
+                return TreeFilterNone()
         }
+    }
 }

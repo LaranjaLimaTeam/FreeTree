@@ -7,7 +7,7 @@
 
 import Foundation
 
-class TreeFilterPersonal: TreeFilter{
+class TreeFilterByUser: TreeFilter{
     let user: UserProfile
     init(user: UserProfile) {
         self.user = user
