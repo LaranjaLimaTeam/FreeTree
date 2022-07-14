@@ -50,15 +50,10 @@ struct MapView: View {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     ErrorMessage()
                 }
-                
             }
             .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
-                HalfSheet(
-                    content: {
-                        AddTreeView(isPresented: $mapViewModel.showAddTreeSheet)
-                    },
-                    presentationMode: .constant(.large)
-                )
+                AddTreeView(isPresented: $mapViewModel.showAddTreeSheet)
+//                    .ignoresSafeArea(.keyboard)
             }
             if !isSearching {
                 HStack {

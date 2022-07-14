@@ -27,6 +27,7 @@ struct AddTreeView: View {
                 $isCapturingPhoto,
                 addTreeViewModel: addTreeViewModel
             )
+            .ignoresSafeArea(.keyboard)
         }
     }
 }
