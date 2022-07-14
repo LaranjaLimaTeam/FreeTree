@@ -21,8 +21,9 @@ struct AddTreeForm: View {
     
     var body: some View {
         VStack(alignment: .leading) {
+            Spacer()
             TextField(
-                "User name (email address)",
+                "Nome da árvore",
                 text: $addTreeViewModel.tree.name
             )
             .padding(.horizontal, 16)
@@ -40,8 +41,8 @@ struct AddTreeForm: View {
             }
             .padding(.horizontal, 16)
             .padding(.bottom, 12)
-            ToggleField("Foi plantada por você?", value: .constant(true))
-            ToggleField("É frutífera?", value: .constant(true))
+            ToggleField("Foi plantada por você?", value: $addTreeViewModel.tree.wasPlantedByUser)
+            ToggleField("É frutífera?", value: $addTreeViewModel.tree.isFruitful)
             Section(title: "Endereço") {
                 Group {
                     Text(addTreeViewModel.tree.address.street)
@@ -53,6 +54,7 @@ struct AddTreeForm: View {
                 }
             }
             .padding(.horizontal, 16)
+            Spacer()
             LargeButton(title: "Adicionar árvore") {
                 withAnimation {
                     addTreeViewModel.addTree()
@@ -64,5 +66,6 @@ struct AddTreeForm: View {
         .padding(.top, 16)
         .frame(maxHeight: .infinity)
         .background(Color.init(uiColor: .systemGray5))
+        .ignoresSafeArea(.keyboard)
     }
 }

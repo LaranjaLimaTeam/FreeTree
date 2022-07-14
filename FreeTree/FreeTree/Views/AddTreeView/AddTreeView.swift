@@ -30,6 +30,7 @@ struct AddTreeView: View {
             ).onAppear {
                 addTreeViewModel.fetchAddress(coordinate: treeCoordinate)
             }
+            .ignoresSafeArea(.keyboard)
         }
     }
 }

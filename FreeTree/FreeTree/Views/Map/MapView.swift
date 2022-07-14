@@ -68,7 +68,6 @@ struct MapView: View {
                     // TODO: Débito técnico -> design para Localização não autorizada
                     ErrorMessage()
                 }
-                
             }
             .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
                 if let safeCoordinate = mapViewModel.currentCenterLocation {
@@ -80,7 +79,6 @@ struct MapView: View {
                         mapViewModel.updateSpan(zoom: 0.01)
                     }
                 }
-                
             }
             if !isSearching {
                 HStack {
