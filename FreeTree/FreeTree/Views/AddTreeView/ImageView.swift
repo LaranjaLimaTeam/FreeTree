@@ -10,16 +10,16 @@ import SwiftUI
 
 struct ImageView: View {
     
-    private var image: Image
+    private var image: UIImage
     
-    init(for image: Image) {
+    init(for image: UIImage) {
         self.image = image
     }
     
     var body: some View {
         ZStack {
             Color.white
-            image
+            Image(uiImage: image)
                 .resizable()
                 .aspectRatio(contentMode: .fill)
         }

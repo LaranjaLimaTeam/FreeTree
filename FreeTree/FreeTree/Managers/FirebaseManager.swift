@@ -107,15 +107,15 @@ struct FireBaseManager {
         }
     }
     
-    func uploadFile(to path: String, data: Data, completion: @escaping (Result<Data,Error>) -> Void) {
+    func uploadFile(to path: String, data: Data, completion: @escaping (Result<Data, Error>) -> Void) {
         let storageRef = self.storage.child(path)
-        storageRef.putData(data, metadata: nil){ (metadata, error) in
-            guard let metaData = metadata else {
-                print("encontramos um erro aqui")
-                return
-            }
-            if let err = error {
-                print("Erro ao salvar foto: \(err)")
+        
+        storageRef.putData(data) { result in
+            switch result {
+            case .success:
+                completion(.success(data))
+            case .failure:
+                completion(.failure(FirebaseError.createError))
             }
         }
     }

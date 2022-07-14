@@ -39,7 +39,7 @@ struct PhotoList: View {
                         ForEach(Array(treeViewModel.photos.enumerated()),  id: \.0) { (index, item) in
                             ZStack {
                                 Color.white
-                                    item
+                                    Image(uiImage: item)
                                         .resizable()
                                         .aspectRatio(contentMode: .fit)
                                         .frame(width: (UIScreen.main.bounds.width - 4*16)/3,

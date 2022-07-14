@@ -13,7 +13,8 @@ class AddTreeViewModel: ObservableObject {
     @ObservedObject private var locationManager: LocationManager
     
     @Published var tree = Tree()
-    @Published var photos = [Image]()
+    @Published var photos = [UIImage]()
+    
     
     private let treeManager: TreeManagerImplementation
     private let photoRepository: PhotoRepository
@@ -24,15 +25,34 @@ class AddTreeViewModel: ObservableObject {
         self.photoRepository = FirebasePhotoRepository()
     }
     
+    private func addPhtos(to treeId: String) {
+        for photo in photos {
+            if let data = photo.jpeg(.low) {
+                self.photoRepository.add(treeId, data) { [weak self] result in
+                    guard let strongSelf = self else { return }
+                    
+                    switch result {
+                    case .success:
+                        print("Added photo with sucess")
+                    case .failure(let error):
+                        print(error)
+                    }
+                }
+            }
+        }
+    }
+    
     public func addTree() {
         self.tree.coordinates = getTreeCoordinate()
         
         self.treeManager.addTree(tree: tree) { [weak self] result in
             guard let strongSelf = self else { return }
             switch result {
-            case .success:
-                print("Tree added with success")
-            case . failure(_):
+            case .success(let tree):
+                if let treeId = tree.id {
+                    strongSelf.addPhtos(to: treeId)
+                }
+            case .failure:
                 print("error on add a tree")
             }
         }
