@@ -32,9 +32,9 @@ struct MapView: View {
                     }
                     .alert(isPresented: $showingRouteErrorAlert) {
                         Alert(title: Text("Erro ao calcular a rota"),
-                              message: Text("Não conseguimos calcular a rota até essa árvore)"),
+                              message: Text("Não conseguimos calcular a rota até essa árvore."),
                               dismissButton: .default(
-                                Text("OK")                               ,
+                                Text("OK"),
                                 action: {
                                     self.mapViewModel.stopRoute()
                                 }
