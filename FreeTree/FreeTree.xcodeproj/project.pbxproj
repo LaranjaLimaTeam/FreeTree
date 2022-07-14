@@ -41,12 +41,12 @@
 		C20FA61F286622DB00F4D3C4 /* CommentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C20FA61E286622DB00F4D3C4 /* CommentView.swift */; };
 		C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */; };
 		C2485E2B287EED59008FD198 /* toAcademy.gpx in Resources */ = {isa = PBXBuildFile; fileRef = C2485E2A287EED58008FD198 /* toAcademy.gpx */; };
-		C2485E2D287EFF30008FD198 /* TestMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2485E2C287EFF30008FD198 /* TestMapView.swift */; };
 		C25623E0286B25EE009E2781 /* PhotoList.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25623DF286B25EE009E2781 /* PhotoList.swift */; };
 		C25BBCE92861E25900CDAC42 /* JsonManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = C25BBCE82861E25900CDAC42 /* JsonManager.swift */; };
 		C26CFD34287705B90046AAC7 /* PhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD33287705B90046AAC7 /* PhotoRepository.swift */; };
 		C26CFD362877060C0046AAC7 /* FirebasePhotoRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD352877060C0046AAC7 /* FirebasePhotoRepository.swift */; };
 		C26CFD38287748A90046AAC7 /* ImageExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = C26CFD37287748A90046AAC7 /* ImageExtension.swift */; };
+		C2B3614128804EA000E14BCF /* SelectingPositionOnMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B3614028804EA000E14BCF /* SelectingPositionOnMap.swift */; };
 		C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2B5FA722862029500BA2469 /* SearchBar.swift */; };
 		C2CAC6E82864898600A6D4A2 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E72864898600A6D4A2 /* User.swift */; };
 		C2CAC6EA2864929500A6D4A2 /* TagListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C2CAC6E92864929500A6D4A2 /* TagListView.swift */; };
@@ -116,12 +116,12 @@
 		C20FA61E286622DB00F4D3C4 /* CommentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentView.swift; sourceTree = "<group>"; };
 		C210CC8C286B63A10093E5E2 /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
 		C2485E2A287EED58008FD198 /* toAcademy.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = toAcademy.gpx; sourceTree = "<group>"; };
-		C2485E2C287EFF30008FD198 /* TestMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestMapView.swift; sourceTree = "<group>"; };
 		C25623DF286B25EE009E2781 /* PhotoList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoList.swift; sourceTree = "<group>"; };
 		C25BBCE82861E25900CDAC42 /* JsonManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonManager.swift; sourceTree = "<group>"; };
 		C26CFD33287705B90046AAC7 /* PhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoRepository.swift; sourceTree = "<group>"; };
 		C26CFD352877060C0046AAC7 /* FirebasePhotoRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebasePhotoRepository.swift; sourceTree = "<group>"; };
 		C26CFD37287748A90046AAC7 /* ImageExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageExtension.swift; sourceTree = "<group>"; };
+		C2B3614028804EA000E14BCF /* SelectingPositionOnMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectingPositionOnMap.swift; sourceTree = "<group>"; };
 		C2B5FA722862029500BA2469 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		C2CAC6E72864898600A6D4A2 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C2CAC6E92864929500A6D4A2 /* TagListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagListView.swift; sourceTree = "<group>"; };
@@ -181,6 +181,7 @@
 				E848039D28649953008BD2F9 /* MapButtonStack.swift */,
 				E848039F2864A495008BD2F9 /* MapButton.swift */,
 				61C95616287DB39E0086CD94 /* OnRouteView.swift */,
+				C2B3614028804EA000E14BCF /* SelectingPositionOnMap.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -260,7 +261,6 @@
 				6194B5CD285A0AB600991D50 /* ContentView.swift */,
 				E82818B92861F50200E81C82 /* RecipesView.swift */,
 				E82818BB2861F51F00E81C82 /* ProfileView.swift */,
-				C2485E2C287EFF30008FD198 /* TestMapView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -582,7 +582,6 @@
 				E83A0161286375DC00A1BF18 /* AddTreeViewModel.swift in Sources */,
 				C204299C2863478B003C6B71 /* SheetView.swift in Sources */,
 				C2B5FA732862029500BA2469 /* SearchBar.swift in Sources */,
-				C2485E2D287EFF30008FD198 /* TestMapView.swift in Sources */,
 				6194B5CE285A0AB600991D50 /* ContentView.swift in Sources */,
 				C20D0CC42869DFD700BF425C /* TreeProfileView.swift in Sources */,
 				613F04682862050D00E4CC47 /* PolylineMapView.swift in Sources */,
@@ -620,6 +619,7 @@
 				C210CC8D286B63A10093E5E2 /* PhotoPicker.swift in Sources */,
 				613F04642861E34000E4CC47 /* LocationManager.swift in Sources */,
 				61E4A8C528634204008F333C /* Coordinate.swift in Sources */,
+				C2B3614128804EA000E14BCF /* SelectingPositionOnMap.swift in Sources */,
 				C20429992863464B003C6B71 /* TreeHeaderView.swift in Sources */,
 				61BEF0C7287F0B78001580FA /* TreeFilterAll.swift in Sources */,
 			);

@@ -21,14 +21,9 @@ struct MapView: View {
         ZStack {
             VStack {
                 PolylineMapView()
-                    .edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea( mapViewModel.selectingPosition ? .vertical : .top)
                     .onAppear {
                         mapViewModel.requestLocation()
-                    }
-                    .alert(isPresented: $showingTreeFiltersAlert) {
-                        Alert(title: Text("Você chegou ao seu destino!"),
-                              message: Text("Aproveite o seu momento com a natureza :-)"),
-                              dismissButton: .default(Text("OK")))
                     }
                     .alert(isPresented: $showingRouteAlert) {
                         Alert(title: Text("Você chegou ao seu destino!"),
@@ -38,7 +33,7 @@ struct MapView: View {
                     .environmentObject(mapViewModel)
                     .overlay {
                         if mapViewModel.selectingPosition {
-                            BackgroundAddingTree(mapViewModel: mapViewModel)
+                            SelectingPositionOnMap(mapViewModel: mapViewModel)
                         } else {
                             VStack {
                                 Spacer()
@@ -129,56 +124,5 @@ struct RoundedCorner: Shape {
                                 byRoundingCorners: corners,
                                 cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
-    }
-}
-
-
-struct BackgroundAddingTree: View {
-    @ObservedObject var mapViewModel: MapViewModel
-    @State var distanceError = false
-    var body: some View {
-        if mapViewModel.selectingPosition == true {
-            ZStack(alignment: .center) {
-                Image("tree-placemark")
-                    .resizable()
-                    .aspectRatio(contentMode: .fit)
-                    .frame(width: 50, height: 50)
-                VStack {
-                    Spacer()
-                    HStack {
-                        Button {
-                            print("Cancelei arvore")
-                            mapViewModel.currentCenterLocation = nil
-                            mapViewModel.selectingPosition = false
-                        } label: {
-                            Text("Cancelar")
-                        }
-                        
-                        Button {
-                            print("To pegando localizaçao")
-                            print(mapViewModel.currentCenterLocation)
-                            let result = mapViewModel.verifyAvailableDistance()
-                            if result {
-                                mapViewModel.selectingPosition = false
-                                mapViewModel.showAddTreeSheet.toggle()
-                            } else {
-                                self.distanceError = true
-                                print("Erro")
-                            }
-                        } label: {
-                            Text("Choose Spot")
-                        }
-                        
-                    }
-                }
-            }
-            .alert("Erro ao selecionar posição", isPresented: $distanceError) {
-                Button("Ok", role: .destructive) {
-                    self.distanceError = false
-                }
-            }
-        } else {
-            EmptyView()
-        }
     }
 }
