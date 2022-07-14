@@ -18,34 +18,31 @@ struct MapView: View {
     let notificationTreeFilterPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("treeFilters"))
     
     var body: some View {
-        if mapViewModel.selectingPosition {
-            TestMapView(mapViewModel: mapViewModel)
-                .onDisappear {
-                    mapViewModel.updateFilter(filterType: mapViewModel.currentFilterEnum)
-                }
-        } else {
-            ZStack {
-                VStack {
-                    PolylineMapView()
-                        .edgesIgnoringSafeArea(.top)
-                        .onAppear {
-                            mapViewModel.requestLocation()
-                        }
-                        .alert(isPresented: $showingTreeFiltersAlert) {
-                            Alert(title: Text("Você chegou ao seu destino!"),
-                                  message: Text("Aproveite o seu momento com a natureza :-)"),
-                                  dismissButton: .default(Text("OK")))
-                        }
-                        .alert(isPresented: $showingRouteAlert) {
-                            Alert(title: Text("Você chegou ao seu destino!"),
-                                  message: Text("Aproveite o seu momento com a natureza :-)"),
-                                  dismissButton: .default(Text("OK")))
-                        }
-                        .environmentObject(mapViewModel)
-                        .overlay {
+        ZStack {
+            VStack {
+                PolylineMapView()
+                    .edgesIgnoringSafeArea(.top)
+                    .onAppear {
+                        mapViewModel.requestLocation()
+                    }
+                    .alert(isPresented: $showingTreeFiltersAlert) {
+                        Alert(title: Text("Você chegou ao seu destino!"),
+                              message: Text("Aproveite o seu momento com a natureza :-)"),
+                              dismissButton: .default(Text("OK")))
+                    }
+                    .alert(isPresented: $showingRouteAlert) {
+                        Alert(title: Text("Você chegou ao seu destino!"),
+                              message: Text("Aproveite o seu momento com a natureza :-)"),
+                              dismissButton: .default(Text("OK")))
+                    }
+                    .environmentObject(mapViewModel)
+                    .overlay {
+                        if mapViewModel.selectingPosition {
+                            BackgroundAddingTree(mapViewModel: mapViewModel)
+                        } else {
                             VStack {
                                 Spacer()
-                                if mapViewModel.routeViewModel.destination == nil {
+                                if mapViewModel.routeViewModel.destination == nil  {
                                     BottomSearchView(
                                         isSearching: $isSearching,
                                         mapViewModel: mapViewModel,
@@ -59,47 +56,46 @@ struct MapView: View {
                                 }
                             }
                         }
-                    if !mapViewModel.isLocationAuthorized() {
-                        // TODO: Débito técnico -> design para Localização não autorizada
-                        ErrorMessage()
                     }
-                    
+                if !mapViewModel.isLocationAuthorized() {
+                    // TODO: Débito técnico -> design para Localização não autorizada
+                    ErrorMessage()
                 }
-                .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
-                    if let safeCoordinate = mapViewModel.currentCenterLocation {
-                        AddTreeView(treeCoordinate: safeCoordinate,
-                                    isPresented: $mapViewModel.showAddTreeSheet
-                        )
-                    }
-                    
-                    
-                }
-                if !isSearching {
-                    HStack {
-                        Spacer()
-                        MapButtonStack()
-                            .environmentObject(mapViewModel)
-                            .padding()
-                    }
-                }
+                
             }
-            .sheet(isPresented: $mapViewModel.showTreeProfile) {
-                HalfSheet(content: {
-                    TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
-                                    presentationMode: $presentationMode,
-                                    startRoute: {
-                        if let tree = mapViewModel.selectedTree {
-                            self.mapViewModel.startRoute(tree.coordinates)
-                        }
-                    }
+            .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
+                if let safeCoordinate = mapViewModel.currentCenterLocation {
+                    AddTreeView(treeCoordinate: safeCoordinate,
+                                isPresented: $mapViewModel.showAddTreeSheet
                     )
-                }, presentationMode: $presentationMode)
+                }
+                
             }
-            .onReceive(notificationRoutePublisher) { _ in
-                showingRouteAlert = true
+            if !isSearching {
+                HStack {
+                    Spacer()
+                    MapButtonStack()
+                        .environmentObject(mapViewModel)
+                        .padding()
+                }
             }
-            .onReceive(notificationTreeFilterPublisher) { _ in
-            }
+        }
+        .sheet(isPresented: $mapViewModel.showTreeProfile) {
+            HalfSheet(content: {
+                TreeProfileView(treeViewModel: TreeProfileViewModel(tree: mapViewModel.selectedTree!),
+                                presentationMode: $presentationMode,
+                                startRoute: {
+                    if let tree = mapViewModel.selectedTree {
+                        self.mapViewModel.startRoute(tree.coordinates)
+                    }
+                }
+                )
+            }, presentationMode: $presentationMode)
+        }
+        .onReceive(notificationRoutePublisher) { _ in
+            showingRouteAlert = true
+        }
+        .onReceive(notificationTreeFilterPublisher) { _ in
         }
     }
 }
@@ -133,5 +129,56 @@ struct RoundedCorner: Shape {
                                 byRoundingCorners: corners,
                                 cornerRadii: CGSize(width: radius, height: radius))
         return Path(path.cgPath)
+    }
+}
+
+
+struct BackgroundAddingTree: View {
+    @ObservedObject var mapViewModel: MapViewModel
+    @State var distanceError = false
+    var body: some View {
+        if mapViewModel.selectingPosition == true {
+            ZStack(alignment: .center) {
+                Image("tree-placemark")
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                    .frame(width: 50, height: 50)
+                VStack {
+                    Spacer()
+                    HStack {
+                        Button {
+                            print("Cancelei arvore")
+                            mapViewModel.currentCenterLocation = nil
+                            mapViewModel.selectingPosition = false
+                        } label: {
+                            Text("Cancelar")
+                        }
+                        
+                        Button {
+                            print("To pegando localizaçao")
+                            print(mapViewModel.currentCenterLocation)
+                            let result = mapViewModel.verifyAvailableDistance()
+                            if result {
+                                mapViewModel.selectingPosition = false
+                                mapViewModel.showAddTreeSheet.toggle()
+                            } else {
+                                self.distanceError = true
+                                print("Erro")
+                            }
+                        } label: {
+                            Text("Choose Spot")
+                        }
+                        
+                    }
+                }
+            }
+            .alert("Erro ao selecionar posição", isPresented: $distanceError) {
+                Button("Ok", role: .destructive) {
+                    self.distanceError = false
+                }
+            }
+        } else {
+            EmptyView()
+        }
     }
 }

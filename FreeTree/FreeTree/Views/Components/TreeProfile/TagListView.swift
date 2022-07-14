@@ -22,14 +22,14 @@ struct TagView: View {
 
 struct TagList: View {
     let tree: Tree
-    let cellWidth: CGFloat
+    let cellSize: CGSize
     
     var body: some View {
         ScrollView(.horizontal) {
             LazyHStack {
                 ForEach(0..<tree.tags.count) { tagIndex in
                     TagView(tagText: tree.tags[tagIndex])
-                        .frame(width: cellWidth)
+                        .frame(width: cellSize.width, height: cellSize.height)
                     
                 }
             }

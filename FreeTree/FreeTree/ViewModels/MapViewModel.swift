@@ -106,4 +106,14 @@ class MapViewModel: ObservableObject {
     func setCenterCoordinate(coordinate: Coordinate) {
         self.currentCenterLocation = coordinate
     }
+    
+    func verifyAvailableDistance() -> Bool {
+        if let safeCoordinate = self.currentCenterLocation {
+            let distance = locationManager.getDistance(coordinates: safeCoordinate)
+            guard let safeDistance = distance else { return false }
+            print(safeDistance)
+            return safeDistance <= 50 ? true : false
+        }
+        return false
+    }
 }

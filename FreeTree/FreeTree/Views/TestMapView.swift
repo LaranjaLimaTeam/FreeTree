@@ -10,6 +10,7 @@ import SwiftUI
 struct TestMapView: View {
     
     @ObservedObject var mapViewModel: MapViewModel
+    @State var distanceError = false
     
     var body: some View {
         ZStack(alignment: .center) {
@@ -37,8 +38,13 @@ struct TestMapView: View {
                     Button {
                         print("To pegando localizaçao")
                         print(mapViewModel.currentCenterLocation)
-                        mapViewModel.selectingPosition = false
-                        mapViewModel.showAddTreeSheet.toggle()
+                        let result = mapViewModel.verifyAvailableDistance()
+                        if result {
+                            mapViewModel.selectingPosition = false
+                            mapViewModel.showAddTreeSheet.toggle()
+                        } else {
+                            self.distanceError = true
+                        }
                     } label: {
                         Text("Choose Spot")
                     }
@@ -49,6 +55,9 @@ struct TestMapView: View {
         .onAppear {
             mapViewModel.cleanTreesOnMap()
             mapViewModel.selectingPosition = true
+        }
+        .alert("Erro ao selecionar posição", isPresented: $distanceError) {
+            Button("Ok", role: .destructive) { }
         }
     }
 }

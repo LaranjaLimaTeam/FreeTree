@@ -45,29 +45,19 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         if annotation is MKUserLocation {
-            if map.mapViewModel.selectingPosition {
-                self.isHiddenUserPin = true
                 return usetPin(annotation: annotation)
-            }
-            return nil
         }
         return treePin(annotation: annotation)
     }
     
     func usetPin(annotation: MKAnnotation) -> MKAnnotationView? {
-        if isHiddenUserPin {
-            var view = MKAnnotationView(annotation: annotation, reuseIdentifier: "user")
-            return view
-        }
         return nil
     }
     
     func treePin(annotation: MKAnnotation) -> MKAnnotationView? {
         let view = MKAnnotationView(annotation: annotation, reuseIdentifier: "tree")
-        if !isHiddenUserPin {
-            view.image =  UIImage(named: "tree-placemark")
-            view.frame.size = CGSize(width: 50, height: 50)
-        }
+        view.image =  UIImage(named: "tree-placemark")
+        view.frame.size = CGSize(width: 50, height: 50)
         return view
     }
 }

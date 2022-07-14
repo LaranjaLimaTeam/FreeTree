@@ -15,6 +15,7 @@ struct MapButtonStack: View {
             MapButton(isSystemIcon: false, iconName: "leaf+add") {
                 withAnimation {
                     mapViewModel.selectingPosition = true
+                    mapViewModel.cleanTreesOnMap()
                     //mapViewModel.showAddTreeModal()
                 }
             }
@@ -22,6 +23,7 @@ struct MapButtonStack: View {
             MapButton(isSystemIcon: true, iconName: "square.stack.3d.down.right") {
                 mapViewModel.currentFilter = mapViewModel.treeFilterFactory.create(type: .random)
                 print("change perspective button tapped")
+                mapViewModel.cleanTreesOnMap()
             }
             Divider()
             MapButton(isSystemIcon: true, iconName: "paperplane") {
