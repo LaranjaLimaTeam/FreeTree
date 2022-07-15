@@ -19,6 +19,7 @@ class RouteViewModel: ObservableObject {
     var destination: Coordinate?
     @Published var route: MKPolyline?
     @Published var routeDistance: Double?
+    @Published var isFetchingRoute: Bool = false
     
     init () {
         self.locationManager = LocationManager.shared
@@ -65,23 +66,31 @@ class RouteViewModel: ObservableObject {
         request.destination = MKMapItem(placemark: MKPlacemark(coordinate: destination.coordinate,
                                                                addressDictionary: nil))
         request.transportType = .walking
+        if route == nil {
+            self.isFetchingRoute = true
+        }
         let directions = MKDirections(request: request)
-        directions.calculate { response, error in
-            if let error = error {
-                print(error)
-                self.routeAlertError()
-                return
-            }
-            guard let unwrappedResponse = response else { return }
-            guard let firstRoute = unwrappedResponse.routes.first else { return }
-            if self.destination != nil {
-                self.routeDistance = firstRoute.distance
-                self.route = firstRoute.polyline
-                self.currentPolylineLocation = currentUserLocation
+        DispatchQueue.main.async {
+            directions.calculate { response, error in
+                self.isFetchingRoute = false
+                if let error = error {
+                    print(error)
+                    self.routeAlertError()
+                    self.endRoute()
+                    return
+                }
+                guard let unwrappedResponse = response else { return }
+                guard let firstRoute = unwrappedResponse.routes.first else { return }
+                if self.destination != nil {
+                    self.routeDistance = firstRoute.distance
+                    self.route = firstRoute.polyline
+                    self.currentPolylineLocation = currentUserLocation
+                }
             }
         }
     }
-    func routeAlertError(){
+    
+    func routeAlertError() {
         let notificationName = Notification.Name("routeError")
         NotificationCenter.default.post(name: notificationName, object: nil)
     }

@@ -18,11 +18,11 @@ struct MapButtonStack: View {
                     mapViewModel.cleanTreesOnMap()
                     mapViewModel.updateSpan(zoom: 0.0025)
                     mapViewModel.centralizeMapRegion()
-                    //mapViewModel.showAddTreeModal()
+                    // mapViewModel.showAddTreeModal()
                 }
             }
             Divider()
-            //Feature on research
+            // Feature on research
 //            MapButton(isSystemIcon: true, iconName: "square.stack.3d.down.right") {
 //                withAnimation {
 //                    mapViewModel.presentFilterSheet()

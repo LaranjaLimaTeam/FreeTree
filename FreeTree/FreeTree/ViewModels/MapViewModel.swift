@@ -84,13 +84,13 @@ class MapViewModel: ObservableObject {
             updateFilter(filterType: .byTree(tree: tree))
         }
         routeViewModel.destination = destination
+        routeViewModel.updatePolyline()
     }
     
     func stopRoute() {
         routeViewModel.endRoute()
         hasToUpdateRoute = true
         updateFilter(filterType: .all)
-        centralizeMapRegion()
     }
     
     func calculateDistance(tree: Tree) -> Double {
