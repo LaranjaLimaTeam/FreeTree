@@ -14,6 +14,7 @@ struct MapView: View {
     @State var isSearching: Bool = false
     @State var showingRouteAlert: Bool = false
     @State var showingRouteErrorAlert: Bool = false
+    @State var loadingRoute: Bool = false
     let notificationRoutePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
     let notificationRouteErrorPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("routeError"))
     
@@ -69,6 +70,7 @@ struct MapView: View {
                     ErrorMessage()
                 }
             }
+            .blur(radius: loadingRoute ? 30 : 0)
             .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
                 if let safeCoordinate = mapViewModel.currentCenterLocation {
                     AddTreeView(treeCoordinate: safeCoordinate,
@@ -80,6 +82,9 @@ struct MapView: View {
                     }
                 }
             }
+            if loadingRoute {
+                LoadingView(label: "Calculando a rota..")
+            }
             if !isSearching {
                 HStack {
                     Spacer()
@@ -88,6 +93,9 @@ struct MapView: View {
                         .padding()
                 }
             }
+        }
+        .onReceive(self.mapViewModel.routeViewModel.$isFetchingRoute) { resp in
+            loadingRoute = resp
         }
         .sheet(isPresented: $mapViewModel.showTreeProfile) {
             HalfSheet(content: {
@@ -104,7 +112,7 @@ struct MapView: View {
         .onReceive(notificationRoutePublisher) { _ in
             showingRouteAlert = true
         }
-        .onReceive(notificationRouteErrorPublisher){ _ in
+        .onReceive(notificationRouteErrorPublisher) { _ in
             showingRouteErrorAlert = true
         }
     }

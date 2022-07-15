@@ -23,21 +23,6 @@ struct TreeHeaderView: View {
             }
             ImageHeader(treeViewModel: treeViewModel)
             .padding(.horizontal, 16)
-//            ScrollView(.horizontal, showsIndicators: false) {
-//                LazyHStack {
-//                    Image(systemName: "plus.circle")
-//                        .resizable()
-//                        .aspectRatio(contentMode: .fit)
-//                        .frame(height: 2*UIScreen.main.bounds.height/20/3)
-//                        .foregroundColor(.green)
-//                    TagList(
-//                        tree: treeViewModel.tree,
-//                        cellSize: CGSize(width: UIScreen.main.bounds.width/5,
-//                                         height: 30 ))
-//                }
-//            }
-//            .padding(.horizontal, 16)
-//            .frame(height: UIScreen.main.bounds.height/20)
             DistanceView(distance: treeViewModel.distance)
                 .padding(.leading, 16)
            
