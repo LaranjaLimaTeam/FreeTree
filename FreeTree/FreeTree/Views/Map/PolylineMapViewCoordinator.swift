@@ -15,7 +15,7 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
     }
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         mapView.deselectAnnotation(view.annotation, animated: false)
-        if view.reuseIdentifier != "tree" { return }
+        if view.reuseIdentifier != "tree" { map.mapViewModel.showTreeProfile = false; return }
         let treeArray = map.mapViewModel.treesOnMap
         let tree = treeArray.filter {
             if let subtitle = view.annotation?.subtitle {
@@ -27,7 +27,7 @@ final class PolylineMapViewCoordinator: NSObject, MKMapViewDelegate {
             map.mapViewModel.selectedTree = tree
         }
         
-        map.mapViewModel.showTreeProfile.toggle()
+        map.mapViewModel.showTreeProfile = true
     }
     func mapView(_ mapView: MKMapView, rendererFor overlay: MKOverlay) -> MKOverlayRenderer {
          let renderer = MKPolylineRenderer(overlay: overlay)

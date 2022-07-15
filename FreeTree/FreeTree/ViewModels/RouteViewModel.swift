@@ -70,22 +70,20 @@ class RouteViewModel: ObservableObject {
             self.isFetchingRoute = true
         }
         let directions = MKDirections(request: request)
-        DispatchQueue.main.async {
-            directions.calculate { response, error in
-                self.isFetchingRoute = false
-                if let error = error {
-                    print(error)
-                    self.routeAlertError()
-                    self.endRoute()
-                    return
-                }
-                guard let unwrappedResponse = response else { return }
-                guard let firstRoute = unwrappedResponse.routes.first else { return }
-                if self.destination != nil {
-                    self.routeDistance = firstRoute.distance
-                    self.route = firstRoute.polyline
-                    self.currentPolylineLocation = currentUserLocation
-                }
+        directions.calculate { response, error in
+            self.isFetchingRoute = false
+            if let error = error {
+                print(error)
+                self.routeAlertError()
+                self.endRoute()
+                return
+            }
+            guard let unwrappedResponse = response else { return }
+            guard let firstRoute = unwrappedResponse.routes.first else { return }
+            if self.destination != nil {
+                self.routeDistance = firstRoute.distance
+                self.route = firstRoute.polyline
+                self.currentPolylineLocation = currentUserLocation
             }
         }
     }
