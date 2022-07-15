@@ -19,14 +19,19 @@ struct MapButton: View {
         } label: {
             if isSystemIcon {
                 Image(systemName: iconName)
+                    .resizable()
+                    .scaledToFit()
                     .foregroundColor(Color.init(uiColor: .systemGreen))
                     .frame(width: 30, height: 30)
-                    .padding(.all, 2)
+                    .padding(.all, 10)
+                   
+                   
             } else {
                 Image(iconName)
                     .resizable()
                     .scaledToFit()
-                    .padding(.all, 6)
+                    .frame(width: 30, height: 30)
+                    .padding(.all, 10)
             }
 
         }

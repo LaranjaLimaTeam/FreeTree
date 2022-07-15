@@ -89,4 +89,31 @@ extension LocationManager {
         let location = CLLocation(latitude: coordinate.latitude, longitude: coordinate.longitude)
         return location
     }
+    
+    func getAddress(coordinate: Coordinate, completion: @escaping (Address?) -> Void) {
+        let geoCoder = CLGeocoder()
+        let clCoordinate = createCLLocation(coordinate: coordinate)
+        geoCoder.reverseGeocodeLocation(clCoordinate) { placeMarks, err in
+            if let error = err {
+                print("Erro tentando obter nome do local")
+                completion(nil)
+                return
+            }
+            guard let safePlaceMarks = placeMarks else {
+                completion(nil)
+                return
+            }
+            if let firstPlaceMark = safePlaceMarks.first {
+                var address = Address()
+                address.city = firstPlaceMark.locality ?? "Não há"
+                address.street = firstPlaceMark.name ?? "Não há"
+                address.neighborHood = firstPlaceMark.subLocality ?? "Não há"
+                address.stateOrProvince = firstPlaceMark.administrativeArea ?? "Não há"
+                address.zipCode = firstPlaceMark.postalCode ?? "Não há"
+                completion(address)
+            }
+            completion(nil)
+        }
+        
+    }
 }

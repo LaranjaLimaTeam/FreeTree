@@ -21,11 +21,13 @@ struct PolylineMapView: UIViewRepresentable {
         mapView.region = mapViewModel.region
         return mapView
     }
+    
     func updateUIView(_ uiView: MKMapView, context: UIViewRepresentableContext<PolylineMapView>) {
         if mapViewModel.hasToCentrilize {
             uiView.setRegion(mapViewModel.region, animated: true)
             mapViewModel.hasToCentrilize = false
         }
+        
         if mapViewModel.treesOnMap.count != uiView.annotations.count-1 {
             uiView.removeAnnotations(uiView.annotations)
             mapViewModel.treesOnMap.forEach({ tree in
@@ -35,6 +37,7 @@ struct PolylineMapView: UIViewRepresentable {
                 annotationTree.subtitle = "\(tree.id)"
                 uiView.addAnnotation(annotationTree)
             })
+            
         }
         
         if mapViewModel.hasToUpdateRoute {

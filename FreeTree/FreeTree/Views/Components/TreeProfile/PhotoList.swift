@@ -37,18 +37,7 @@ struct PhotoList: View {
                             self.pickingPhoto = true
                         }
                         ForEach(Array(treeViewModel.photos.enumerated()),  id: \.0) { (index, item) in
-                            ZStack {
-                                Color.white
-                                    Image(uiImage: item)
-                                        .resizable()
-                                        .aspectRatio(contentMode: .fit)
-                                        .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
-                                               height: (UIScreen.main.bounds.width - 4*16)/3)
-                                
-                            }
-                            .frame(width: (UIScreen.main.bounds.width - 4*16)/3,
-                                    height: (UIScreen.main.bounds.width - 4*16)/3)
-                            .cornerRadius(16)
+                            ImageView(for: item)
                         }
                     }
                     .padding(.horizontal, 16)

@@ -12,37 +12,55 @@ struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
-    @State var showingAlert: Bool = false
-    let notificationPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
+    @State var showingRouteAlert: Bool = false
+    @State var showingRouteErrorAlert: Bool = false
+    let notificationRoutePublisher = NotificationCenter.default.publisher(for: NSNotification.Name("endRoute"))
+    let notificationRouteErrorPublisher = NotificationCenter.default.publisher(for: NSNotification.Name("routeError"))
     
     var body: some View {
         ZStack {
             VStack {
                 PolylineMapView()
-                    .edgesIgnoringSafeArea(.top)
+                    .edgesIgnoringSafeArea( mapViewModel.selectingPosition ? .vertical : .top)
                     .onAppear {
                         mapViewModel.requestLocation()
                     }
-                    .alert(isPresented: $showingAlert) {
+                    .alert(isPresented: $showingRouteAlert) {
                         Alert(title: Text("Você chegou ao seu destino!"),
                               message: Text("Aproveite o seu momento com a natureza :-)"),
                               dismissButton: .default(Text("OK")))
                     }
+                    .alert(isPresented: $showingRouteErrorAlert) {
+                        Alert(title: Text("Erro ao calcular a rota"),
+                              message: Text("Não conseguimos calcular a rota até essa árvore."),
+                              dismissButton: .default(
+                                Text("OK"),
+                                action: {
+                                    self.mapViewModel.stopRoute()
+                                }
+                              )
+                              
+                        )
+                    }
                     .environmentObject(mapViewModel)
                     .overlay {
-                        VStack {
-                            Spacer()
-                            if mapViewModel.routeViewModel.destination == nil {
-                                BottomSearchView(
-                                    isSearching: $isSearching,
-                                    mapViewModel: mapViewModel,
-                                    trees: mapViewModel.treesOnMap)
-                            } else {
-                                OnRouteView(
-                                    stopRoute: self.mapViewModel.stopRoute,
-                                    treeTitle: mapViewModel.selectedTree?.name ?? "Arvore",
-                                    routeViewModel: mapViewModel.routeViewModel
-                                )
+                        if mapViewModel.selectingPosition {
+                            SelectingPositionOnMap(mapViewModel: mapViewModel)
+                        } else {
+                            VStack {
+                                Spacer()
+                                if mapViewModel.routeViewModel.destination == nil  {
+                                    BottomSearchView(
+                                        isSearching: $isSearching,
+                                        mapViewModel: mapViewModel,
+                                        trees: mapViewModel.treesOnMap)
+                                } else {
+                                    OnRouteView(
+                                        stopRoute: self.mapViewModel.stopRoute,
+                                        treeTitle: mapViewModel.selectedTree?.name ?? "Arvore",
+                                        routeViewModel: mapViewModel.routeViewModel
+                                    )
+                                }
                             }
                         }
                     }
@@ -52,8 +70,15 @@ struct MapView: View {
                 }
             }
             .sheet(isPresented: $mapViewModel.showAddTreeSheet) {
-                AddTreeView(isPresented: $mapViewModel.showAddTreeSheet)
-//                    .ignoresSafeArea(.keyboard)
+                if let safeCoordinate = mapViewModel.currentCenterLocation {
+                    AddTreeView(treeCoordinate: safeCoordinate,
+                                isPresented: $mapViewModel.showAddTreeSheet
+                    )
+                    .onDisappear {
+                        mapViewModel.updateFilter(filterType: mapViewModel.currentFilterEnum)
+                        mapViewModel.updateSpan(zoom: 0.01)
+                    }
+                }
             }
             if !isSearching {
                 HStack {
@@ -76,8 +101,11 @@ struct MapView: View {
                 )
             }, presentationMode: $presentationMode)
         }
-        .onReceive(notificationPublisher) { (output) in
-            showingAlert = true
+        .onReceive(notificationRoutePublisher) { _ in
+            showingRouteAlert = true
+        }
+        .onReceive(notificationRouteErrorPublisher){ _ in
+            showingRouteErrorAlert = true
         }
     }
 }

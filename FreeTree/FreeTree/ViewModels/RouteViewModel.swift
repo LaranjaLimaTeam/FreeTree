@@ -44,6 +44,8 @@ class RouteViewModel: ObservableObject {
         
         if dest.distance(from: user) < distanceThreshold {
             endRoute()
+            let notificationName = Notification.Name("endRoute")
+            NotificationCenter.default.post(name: notificationName, object: nil)
         }
         
         if user.distance(from: poly) > distanceThreshold {
@@ -67,6 +69,7 @@ class RouteViewModel: ObservableObject {
         directions.calculate { response, error in
             if let error = error {
                 print(error)
+                self.routeAlertError()
                 return
             }
             guard let unwrappedResponse = response else { return }
@@ -78,13 +81,15 @@ class RouteViewModel: ObservableObject {
             }
         }
     }
+    func routeAlertError(){
+        let notificationName = Notification.Name("routeError")
+        NotificationCenter.default.post(name: notificationName, object: nil)
+    }
     
     func endRoute() {
         self.route = nil
         self.destination = nil
         self.currentPolylineLocation = nil
         self.routeDistance = nil
-        let notificationName = Notification.Name("endRoute")
-        NotificationCenter.default.post(name: notificationName, object: nil)
     }
 }

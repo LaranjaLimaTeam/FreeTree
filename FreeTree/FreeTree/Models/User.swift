@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct UserProfile: Codable {
+struct UserProfile: Codable, Equatable {
     var name: String = "Karina Costa"
     var imageName: String = "person"
 }

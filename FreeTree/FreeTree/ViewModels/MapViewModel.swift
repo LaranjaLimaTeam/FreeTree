@@ -11,6 +11,7 @@ import Combine
 
 class MapViewModel: ObservableObject {
     @Published private(set) var treesOnMap: [Tree] = []
+    var trees: [Tree] = []
     @Published var hasToCentrilize: Bool = false
     @Published var showAddTreeSheet: Bool = false
     @Published var showTreeProfile: Bool = false
@@ -20,19 +21,28 @@ class MapViewModel: ObservableObject {
         center: LocationManager.shared.locationCoordinate?.coordinate ?? LocationManager.shared.defaultLocation,
         span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
     )
+    @Published var selectingPosition: Bool = false
     
+    var currentCenterLocation: Coordinate?
     
     private let locationManager = LocationManager.shared
     private let treeManager = TreeManagerImplementation.shared
+    let treeFilterFactory = TreeFilterFactory()
+    var currentFilterEnum: TreeFilterTypes
+    var currentFilter: TreeFilter
     var routeViewModel = RouteViewModel()
     var cancellable: Cancellable?
     var cancellableRoute: Cancellable?
     
     init() {
+        self.currentFilterEnum = .all
+        self.currentFilter = treeFilterFactory.create(type: currentFilterEnum)
         cancellable = self.treeManager.$trees
-            // TODO: Implement filters from contextual menu
-            .filter({ _ in
-                return true
+            .map({ trees in
+                self.trees = trees
+                return trees.filter { tree in
+                    self.currentFilter.filter(tree: tree)
+                }
             })
             .sink(receiveValue: { treeArray in
                 self.treesOnMap = treeArray
@@ -42,7 +52,7 @@ class MapViewModel: ObservableObject {
                 self.hasToUpdateRoute = true
             })
     }
-
+    
     func showAddTreeModal() {
         self.showAddTreeSheet.toggle()
     }
@@ -53,7 +63,7 @@ class MapViewModel: ObservableObject {
         }
         hasToCentrilize = true
     }
-
+    
     func requestLocation() {
         locationManager.requestLocation(completion: {
             guard let location = self.locationManager.locationCoordinate else { return }
@@ -66,13 +76,21 @@ class MapViewModel: ObservableObject {
     func isLocationAuthorized() -> Bool {
         return locationManager.isLocationAuthorized()
     }
+    
     func startRoute(_ destination: Coordinate) {
         hasToUpdateRoute = true
+        if let tree = selectedTree {
+            centerOnTree(tree: tree)
+            updateFilter(filterType: .byTree(tree: tree))
+        }
         routeViewModel.destination = destination
     }
+    
     func stopRoute() {
         routeViewModel.endRoute()
         hasToUpdateRoute = true
+        updateFilter(filterType: .all)
+        centralizeMapRegion()
     }
     
     func calculateDistance(tree: Tree) -> Double {
@@ -80,5 +98,46 @@ class MapViewModel: ObservableObject {
         guard let distanceInMeters = locationManager.getDistance(coordinates: coordinate) else {return 0}
         let distanceInKm: Double = distanceInMeters*1.0/1000
         return distanceInKm
+    }
+    
+    func updateFilter(filterType: TreeFilterTypes) {
+        switch filterType {
+        case .none:
+            break
+        case .byTree:
+            break
+        default:
+            self.currentFilterEnum = filterType
+        }
+        self.currentFilter = treeFilterFactory.create(type: filterType)
+        treesOnMap = self.trees.filter({ tree in
+            currentFilter.filter(tree: tree)
+        })
+    }
+    
+    func cleanTreesOnMap() {
+        updateFilter(filterType: .none)
+    }
+    
+    func setCenterCoordinate(coordinate: Coordinate) {
+        self.currentCenterLocation = coordinate
+    }
+    
+    func verifyAvailableDistance() -> Bool {
+        if let safeCoordinate = self.currentCenterLocation {
+            let distance = locationManager.getDistance(coordinates: safeCoordinate)
+            guard let safeDistance = distance else { return false }
+            print(safeDistance)
+            return safeDistance <= 50 ? true : false
+        }
+        return false
+    }
+    func centerOnTree(tree: Tree) {
+        region.center = tree.coordinates.coordinate
+        hasToCentrilize = true
+    }
+    
+    func updateSpan(zoom: Double) {
+        region.span = MKCoordinateSpan(latitudeDelta: zoom, longitudeDelta: zoom)
     }
 }
