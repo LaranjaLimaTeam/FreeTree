@@ -14,6 +14,7 @@ struct LoginButtons: View {
         VStack {
             Button {
                 print("Tentei Login")
+                loginAction()
             } label: {
                 ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 16)
@@ -30,6 +31,9 @@ struct LoginButtons: View {
                 .font(.subheadline)
                 .fontWeight(.semibold)
                 .foregroundColor(.green)
+                .onTapGesture {
+                    createAccountAction()
+                }
         }
     }
 }

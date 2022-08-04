@@ -12,6 +12,7 @@ struct MapView: View {
     @StateObject var mapViewModel = MapViewModel()
     @State var presentationMode: UISheetPresentationController.Detent.Identifier = .medium
     @State var isSearching: Bool = false
+    let userProfile: UserProfile?
     
     var body: some View {
         ZStack {
@@ -79,7 +80,7 @@ struct MapView: View {
 
 struct MapView_Previews: PreviewProvider {
     static var previews: some View {
-        MapView()
+        MapView(userProfile: nil)
     }
 }
 

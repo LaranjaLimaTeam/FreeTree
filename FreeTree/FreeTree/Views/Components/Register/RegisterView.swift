@@ -9,6 +9,7 @@ import SwiftUI
 
 struct RegisterView: View {
     @ObservedObject var registerViewModel = RegisterViewModel()
+    let createAccount:(UserProfile?, Int) -> Void
     var body: some View {
         VStack(spacing: 16) {
             
@@ -55,7 +56,7 @@ struct RegisterView: View {
             
             Button {
                 print("Tentei Criar Conta")
-                registerViewModel.createUser()
+                registerViewModel.tapCreateUser(completion: createAccount)
             } label: {
                 ZStack(alignment: .center) {
                     RoundedRectangle(cornerRadius: 16)
@@ -67,13 +68,29 @@ struct RegisterView: View {
                 }
                 .frame(width: UIScreen.main.bounds.width - 48,
                        height: 48)
+                .padding(.bottom)
             }
+        }
+        .alert(isPresented: $registerViewModel.didFail) {
+            Alert(title: Text("Erro ao criar conta"),
+                  message: Text(registerViewModel.alertMessage),
+                  dismissButton: .default(
+                    Text("OK"),
+                    action: {
+                        self.registerViewModel.didFail = false
+                        self.registerViewModel.alertMessage = ""
+                    }
+                  )
+                  
+            )
         }
     }
 }
 
 struct RegisterView_Previews: PreviewProvider {
     static var previews: some View {
-        RegisterView()
+        RegisterView(createAccount: { user, index in
+            return
+        })
     }
 }
